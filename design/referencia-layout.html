@@ -1,0 +1,379 @@
+<title>Funcionalidades Rota Saúde</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+:root {
+  --paper: #f5f7f6; --surface: #ffffff; --surface-2: #eef2f1; --ink: #15222a; --muted: #52626a;
+  --line: #d5dedb; --line-strong: #9aa8ad; --accent: #0e6f68; --accent-ink: #ffffff; --accent-soft: #e2f1ee;
+  --ok: #1f6f46; --ok-soft: #e3f3ea; --val: #8a4f00; --val-soft: #fbf0dc; --plan: #2c5a8a; --plan-soft: #e6eef7;
+  --road: #4f5d63; --road-soft: #eceff0;
+  --display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0f1719; --surface: #152124; --surface-2: #1b2a2e; --ink: #e4ecea; --muted: #9fb0b3;
+    --line: #2a3c40; --line-strong: #4a6166; --accent: #4fc2b5; --accent-ink: #0b1f1d; --accent-soft: #173331;
+    --ok: #6fd39e; --ok-soft: #16301f; --val: #e8b765; --val-soft: #33280f; --plan: #9cc3ee; --plan-soft: #172638;
+    --road: #b3c0c3; --road-soft: #232d30;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0f1719; --surface: #152124; --surface-2: #1b2a2e; --ink: #e4ecea; --muted: #9fb0b3;
+  --line: #2a3c40; --line-strong: #4a6166; --accent: #4fc2b5; --accent-ink: #0b1f1d; --accent-soft: #173331;
+  --ok: #6fd39e; --ok-soft: #16301f; --val: #e8b765; --val-soft: #33280f; --plan: #9cc3ee; --plan-soft: #172638;
+  --road: #b3c0c3; --road-soft: #232d30;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--body); padding-inline: 20px; }
+.wrap { max-width: 860px; margin: 0 auto; padding-block: 40px 72px; display: flex; flex-direction: column; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; line-height: 1.15; }
+p { margin: 0; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+.top { display: flex; flex-direction: column; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 17px; }
+.brand svg { flex-shrink: 0; }
+.top h1 { font-size: clamp(30px, 6vw, 42px); font-weight: 700; letter-spacing: -0.01em; }
+.lead { font-size: 18px; max-width: 62ch; }
+.cycle { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-family: var(--display); font-weight: 700; font-size: 14px; }
+
+.jump { display: flex; flex-wrap: wrap; gap: 6px; }
+.jump a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font-size: 14px; }
+.jump a span { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-right: 6px; }
+.jump a:hover { border-color: var(--accent); }
+
+.mods { display: flex; flex-direction: column; gap: 12px; }
+.mod { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; scroll-margin-top: 20px; }
+.mod[open] { border-color: var(--accent); }
+.mod summary { list-style: none; display: flex; align-items: flex-start; gap: 16px; padding: 18px 20px; cursor: pointer; }
+.mod summary::-webkit-details-marker { display: none; }
+.mod summary:hover { background: var(--surface-2); }
+.mod summary:hover h2 { text-decoration: underline; text-underline-offset: 3px; }
+.s-main { flex-grow: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.s-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.s-title .num { font-family: var(--mono); font-size: 13.5px; color: var(--muted); }
+.s-title h2 { font-size: 22px; }
+.s-desc { font-size: 15.5px; max-width: 64ch; }
+.mod .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); padding-top: 4px; }
+.caret { flex-shrink: 0; margin-top: 4px; color: var(--muted); transition: transform 0.15s ease; }
+.mod[open] .caret { transform: rotate(180deg); color: var(--accent); }
+.mod.off .s-title h2, .mod.off .s-desc { color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .caret { transition: none; } }
+
+.items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); background: var(--paper); }
+.items a { padding-left: 20px; }
+.items li + li { border-top: 1px solid var(--line); }
+.items a { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 16px; color: var(--ink); text-decoration: none; }
+.items a:hover { background: var(--surface-2); }
+.items a:hover .t { text-decoration: underline; text-underline-offset: 3px; }
+.items .t { flex-grow: 1; }
+.items .tag { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+.items .chev { color: var(--muted); flex-shrink: 0; }
+
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px 0 7px; border-radius: 999px; font-size: 13px; font-weight: 600; white-space: nowrap; line-height: 1; }
+.badge svg { flex-shrink: 0; }
+.b-available { color: var(--ok); background: var(--ok-soft); }
+.b-validating { color: var(--val); background: var(--val-soft); }
+.b-planned { color: var(--plan); background: var(--plan-soft); }
+.b-disabled { color: var(--road); background: transparent; border: 1px solid var(--line-strong); }
+
+/* detail */
+.detail { display: flex; flex-direction: column; gap: 28px; }
+.back { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600; text-decoration: none; }
+.back:hover { text-decoration: underline; }
+.d-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: clamp(20px, 5vw, 40px); display: flex; flex-direction: column; gap: 20px; }
+.d-eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 14px; color: var(--muted); }
+.d-eyebrow .id { font-family: var(--mono); font-size: 13px; }
+.d-card h1 { font-size: clamp(28px, 5.5vw, 40px); font-weight: 700; letter-spacing: -0.01em; }
+.d-benefit { font-size: 20px; line-height: 1.5; max-width: 60ch; }
+.d-note { font-size: 15px; color: var(--muted); padding: 12px 14px; border-radius: 10px; background: var(--surface-2); }
+.d-sec { display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid var(--line); }
+.d-sec h2 { font-size: 15px; font-family: var(--body); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.surfaces { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.surfaces li { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 12px; background: var(--accent-soft); }
+.surfaces li svg { flex-shrink: 0; color: var(--accent); margin-top: 2px; }
+.surfaces b { display: block; font-weight: 600; }
+.surfaces span { font-size: 14px; color: var(--muted); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pager a { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; min-height: 64px; }
+.pager a:hover { border-color: var(--accent); }
+.pager a small { font-size: 13px; color: var(--muted); }
+.pager a.next { text-align: right; grid-column: 2; }
+.foot { font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+@media (max-width: 560px) {
+  .mod-head .meta { margin-left: 0; width: 100%; }
+  .items .tag { display: none; }
+  .pager { grid-template-columns: 1fr; }
+  .pager a.next { grid-column: 1; }
+}
+</style>
+
+<div class="wrap" id="app"></div>
+
+<script>
+const S = { c: ['Tela do cidadão', 'O cidadão vê ou usa pelo navegador.'], s: ['Painel da secretaria', 'A equipe da cidade vê ou usa no painel.'], p: ['Gestão da plataforma', 'A equipe da plataforma usa no console de operação.'], b: ['Nos bastidores', 'Funciona sem tela própria, protegendo os dados e o processo.'] };
+const ST = {
+  available: ['Disponível e verificado', '<circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M4.7 8.3l2.2 2.2 4.4-4.8" fill="none" stroke="var(--ok-soft)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'],
+  validating: ['Em validação', '<circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 1.7a6.3 6.3 0 0 0 0 12.6z" fill="currentColor"/>'],
+  planned: ['Planejado', '<circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="8" r="2" fill="currentColor"/>'],
+  disabled: ['Canal desativado', '<circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.6 12.4l8.8-8.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>']
+};
+const ICON = {
+  c: '<svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="7" r="3.6"/><path d="M4 19c.8-3.8 3.6-5.6 7-5.6s6.2 1.8 7 5.6"/></svg>',
+  s: '<svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="16" height="12" rx="2"/><path d="M7 12V9M11 12V7M15 12v-2M8 19h6"/></svg>',
+  p: '<svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M11 2.5l7 3v5c0 4.3-3 7.4-7 9-4-1.6-7-4.7-7-9v-5z"/></svg>',
+  b: '<svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="3"/><path d="M11 2.5v3M11 16.5v3M2.5 11h3M16.5 11h3M5 5l2.1 2.1M14.9 14.9L17 17M5 17l2.1-2.1M14.9 7.1L17 5"/></svg>'
+};
+
+// [título, benefício, telas (c s p b), status opcional]
+const MODS = [
+  { id: '01', name: 'WhatsApp', status: 'disabled', note: 'Canal desativado desde 27/09/2026. O cidadão é atendido pelo canal web.', items: [
+    ['Recebimento de mensagens com conferência de autenticidade', 'Mensagem sem assinatura válida é recusada e nada é gravado.', 'b'],
+    ['Mensagem repetida gravada uma única vez', 'Se a mesma mensagem chega de novo, nada é duplicado.', 'b'],
+    ['Conteúdo das mensagens cifrado e apagado aos 90 dias', 'O conteúdo bruto é cifrado com a chave da cidade e apagado depois de 90 dias.', 'b'],
+    ['Direcionamento para a cidade certa pelo número', 'Cada mensagem vai para a cidade dona do número; na dúvida, nada é gravado.', 'b'],
+    ['Números desconhecidos mantidos à parte', 'Mensagens de números não cadastrados ficam separadas, numa tela da plataforma.', 'p'],
+    ['Envio de mensagens de texto', 'Cada resposta é enviada uma única vez, mesmo se o envio for repetido.', 'b'],
+    ['Envio de modelos aprovados fora da janela de 24 horas', 'Fora da janela do WhatsApp, o sistema usa sozinho o modelo aprovado de retomada.', 'b'],
+    ['Cadastro do canal por cidade', 'Cada cidade registra o próprio número, e a chave de acesso nunca é exibida.', 'p'],
+    ['Guarda e troca da chave de acesso', 'A chave de acesso pode ser trocada sem interromper o atendimento.', 'b'],
+    ['Painel de saúde do recebimento', 'Mostra o volume de mensagens e o que falta apagar dentro do prazo de 90 dias.', 's']
+  ]},
+  { id: '02', name: 'Conversação e consentimento', status: 'available', items: [
+    ['Conversa começa aguardando o consentimento', 'Nenhuma pergunta de triagem é feita antes do aceite do termo.', 'b'],
+    ['Conversa encerrada não volta atrás', 'Concluída, recusada, cancelada, abandonada ou revogada: o estado final é definitivo.', 'b'],
+    ['Uma conversa ativa por cidadão', 'O cidadão não abre duas triagens ao mesmo tempo.', 'b'],
+    ['Registro do consentimento na versão vigente do termo', 'O cidadão aceita o termo na tela, antes de informar o CPF, e o aceite guarda a versão do termo.', 'c'],
+    ['Revogação do consentimento pelo cidadão', 'O cidadão pode revogar o consentimento a qualquer momento, inclusive depois de concluir.', 'c'],
+    ['Sem consentimento, nada avança', 'Termo desatualizado ou resposta duvidosa nunca vira aceite.', 'b'],
+    ['Conversa parada é encerrada como abandonada', 'Conversa sem resposta há 24 horas é encerrada automaticamente.', 'b'],
+    ['Proteção contra resposta enviada duas vezes', 'Duas abas abertas ou um toque duplo não avançam a triagem duas vezes.', 'c'],
+    ['Painel de conversas para a secretaria', 'Funil, desfechos, taxa de abandono e tempo até concluir, sem dados do cidadão.', 's'],
+    ['Conversa pelo canal web', 'Consentimento, respostas, desfazer resposta e revogação, tudo pelo navegador.', 'c']
+  ]},
+  { id: '03', name: 'Triagem', status: 'available', items: [
+    ['Classificação previsível: mesmas respostas, mesmo resultado', 'As mesmas respostas, na mesma versão do protocolo, dão sempre o mesmo resultado, em qualquer dia.', 'b'],
+    ['Regras de decisão escritas sem programação', 'O protocolo combina condições como igual, maior, menor, todas e alguma, escritas pela própria equipe.', 'b'],
+    ['Perguntas adaptadas ao WhatsApp', 'Transforma cada pergunta num botão ou lista do WhatsApp.', '', 'disabled', 'Ligada ao canal WhatsApp, desativado em 27/09/2026.'],
+    ['Classificação por pontuação', 'Cada resposta soma pontos, e a faixa de urgência sai do total.', 'b'],
+    ['Classificação por tabela de decisão', 'A cidade descreve os casos em ordem, e vale a primeira regra que se aplica.', 'b'],
+    ['Sinais de alerta só aumentam a urgência', 'Uma regra de agravamento pode subir a prioridade, nunca reduzi-la.', 'b'],
+    ['Explicação registrada de cada classificação', 'Fica registrado por que cada triagem recebeu aquela urgência, sem guardar as respostas nessa explicação.', 'b'],
+    ['Histórico de versões e assinaturas', 'Versões, assinaturas e ativações ficam registradas, e nada é sobrescrito.', 'p'],
+    ['Conferência automática antes de publicar', 'Protocolo incompleto ou com erro de estrutura não sai do rascunho.', 's'],
+    ['Papéis separados para escrever, revisar e publicar', 'Quem escreve, quem revisa e quem publica são papéis diferentes, cada um com o que pode fazer.', 's'],
+    ['Confirmação com código nas ações do ciclo', 'Publicar, ativar e os demais atos do ciclo pedem um código recente do autenticador.', 's'],
+    ['Editor de protocolos com pré-visualização', 'A equipe testa o protocolo com respostas de exemplo antes de enviá-lo à revisão.', 's'],
+    ['Publicação com dupla revisão', 'Nenhum protocolo entra em uso sem duas assinaturas, e a publicação vai para a trilha de auditoria.', 'sp'],
+    ['Versões publicadas não se apagam', 'Depois de publicada, uma versão não pode ser editada nem apagada, só aposentada.', 's'],
+    ['Triagem presa à versão em que começou', 'Ativar uma versão nova não muda o resultado de quem já está respondendo.', 'c'],
+    ['Consulta da classificação no painel', 'A equipe vê como cada triagem foi classificada, sem acesso às respostas do cidadão.', 's'],
+    ['Resultado para o cidadão, sem as respostas', 'O cidadão vê urgência, prioridade e recomendação. As respostas não aparecem no link do resultado.', 'c'],
+    ['Ativação de versão com duas assinaturas', 'Uma única versão ativa por protocolo na cidade, ativada com duas assinaturas.', 'sp'],
+    ['Aposentadoria segura de versões', 'A versão em uso não pode ser aposentada, nem quando duas pessoas agem ao mesmo tempo.', 's']
+  ]},
+  { id: '04', name: 'Relatórios', status: 'available', items: [
+    ['Geração automática ao fim da triagem', 'Toda triagem concluída gera seu relatório, sem duplicar quando o aviso chega duas vezes.', 'b'],
+    ['Relatório congelado, que não muda depois de emitido', 'Guarda urgência, prioridade, recomendação e a versão do protocolo. Ninguém edita depois.', 'b'],
+    ['Link seguro e temporário (30 dias)', 'Link desconhecido, adulterado, de outra cidade ou vencido não abre.', 'c'],
+    ['Leitura sem recálculo', 'Mudar o protocolo depois não altera um relatório já emitido.', 'c'],
+    ['Tela do relatório para o cidadão', 'O cidadão vê o resultado de forma clara, sem as próprias respostas na tela.', 'c'],
+    ['Lista de relatórios da cidade no painel', 'A equipe vê os relatórios do período, com urgência, protocolo e validade do link.', 's'],
+    ['Link entregue ao cidadão na tela final da triagem', 'O link aparece na tela final da triagem, e a entrega espera o relatório estar pronto.', 'c']
+  ]},
+  { id: '05', name: 'Painel da secretaria', status: 'available', items: [
+    ['Painel em português, com navegação entre as telas', 'Todas as telas em português, com navegação entre os painéis e aviso quando a sessão expira.', 's'],
+    ['Acesso somente com login', 'Sem login ou sem vínculo com a cidade, nenhum painel responde.', 's'],
+    ['Hora da leitura em cada dado', 'Todo número mostra o instante em que foi lido.', 's'],
+    ['Visão geral', 'Resumo da cidade, com os casos urgentes contados pela régua do protocolo.', 's'],
+    ['Recebimento de mensagens', 'Volume do canal WhatsApp e prazo de retenção de 90 dias.', 's', 'disabled', 'Mostra dados do canal WhatsApp, desativado em 27/09/2026.'],
+    ['Conversas', 'Os cinco desfechos e a taxa de abandono, sem dado do cidadão.', 's'],
+    ['Consentimentos', 'Aceites, revogações e divisão por versão do termo.', 's'],
+    ['Triagens', 'Iniciadas, concluídas, taxa de conclusão e versão do protocolo, nunca as respostas.', 's'],
+    ['Classificação', 'Distribuição por faixa de urgência, usando as faixas do protocolo da própria cidade.', 's'],
+    ['Protocolos', 'Situação de cada protocolo, incluindo rascunhos reprovados na conferência.', 's'],
+    ['Filas', 'Tarefas da cidade, com destaque quando a fila urgente atrasa mais de 1 minuto.', 's'],
+    ['Eventos', 'A trilha de eventos da cidade: hora, nome, autor e referência, nunca o conteúdo.', 's'],
+    ['Atualização contínua dos indicadores', 'Os totais são atualizados a cada triagem concluída, sem contar nada duas vezes.', 'b'],
+    ['Reconstrução noturna dos indicadores', 'Toda madrugada os indicadores são recalculados para corrigir qualquer desvio.', 'b']
+  ]},
+  { id: '06', name: 'Identidade e acesso', status: 'available', items: [
+    ['Senha e sessão para servidores', 'A sessão vale só no endereço da cidade, com bloqueio após tentativas repetidas de login.', 's'],
+    ['Troca de senha por e-mail', 'O servidor redefine a senha por um link enviado por e-mail.', 's'],
+    ['Código do autenticador e códigos de recuperação', 'Segundo fator por aplicativo autenticador, com códigos de recuperação de uso único.', 's'],
+    ['Código do autenticador obrigatório para a equipe da plataforma', 'Ninguém da equipe da plataforma entra sem o código do autenticador.', 'p'],
+    ['Novo código para publicar protocolo', 'Publicar exige um código dos últimos 5 minutos; sem ele, nada muda.', 's'],
+    ['Vínculos registrados só por acréscimo', 'Papéis concedidos nunca são apagados; o fim do vínculo fica registrado com data.', 'b'],
+    ['Papéis da cidade, com a equipe da plataforma fora deles', 'A equipe da plataforma não recebe papéis dentro de uma cidade.', 'b'],
+    ['Permissões e banco da cidade definidos pelo endereço', 'Cada ação é conferida pelo papel, no banco da cidade do endereço acessado.', 'b'],
+    ['Convites para novos usuários', 'O convidado recebe o link por e-mail, e convites vencidos são recusados.', 'sp'],
+    ['Desativação de usuário', 'O administrador da cidade desativa um usuário com confirmação por código, e as sessões dele caem na hora.', 's'],
+    ['Criação de cidade em duas etapas', 'O banco da nova cidade é criado em segundo plano, sem duplicar se precisar retomar.', 'p'],
+    ['Guarda das chaves de cifra', 'O sistema não entra em produção sem as chaves de cifra configuradas.', 'b'],
+    ['Termos de consentimento por cidade', 'Cada cidade publica o próprio termo, e cada versão fica registrada.', 'b'],
+    ['Destinatário de alertas por cidade', 'Cada cidade define quem recebe os alertas; sem destinatário, o erro aparece em vez de o alerta sumir.', 'p'],
+    ['Duas revisoras para publicar, sem atalho da plataforma', 'Uma assinatura não basta, e a equipe da plataforma nunca assina.', 's'],
+    ['Link assinado para o paciente', 'Link de outra cidade, vencido ou adulterado não abre.', 'c'],
+    ['Registro de eventos da plataforma', 'Os eventos da plataforma recusam qualquer dado pessoal.', 'b'],
+    ['CPF e celular declarados pelo cidadão', 'CPF inválido é recusado, e um mesmo celular não acumula CPFs sem limite.', 'c'],
+    ['Código por SMS', 'Código de 6 dígitos, válido por 10 minutos, com limites de reenvio.', 'c'],
+    ['Sessão do cidadão pelo celular', 'Fica ativa por até 30 dias sem uso; sair encerra a sessão.', 'c'],
+    ['Papel de quem valida o cidadão', 'Conceder ou retirar esse papel exige confirmação por código.', 's'],
+    ['Validação presencial do cidadão', 'Na unidade, o atendente valida o cidadão só depois de conferir o documento.', 'cs'],
+    ['Desfazer a validação', 'Só o administrador da cidade desfaz, com motivo, e quem validou não desfaz a própria validação.', 's'],
+    ['Histórico por nível de validação', 'O mesmo CPF em outro celular não vê as triagens anteriores até ser validado.', 'c'],
+    ['Papel de profissional de saúde', 'Só o profissional chama o paciente e registra o desfecho; a recepção não.', 's']
+  ]},
+  { id: '07', name: 'LGPD e auditoria', status: 'available', items: [
+    ['Trilha de eventos só por acréscimo', 'O banco recusa editar ou apagar um evento antes de 12 meses.', 'b'],
+    ['Evento gravado junto com o ato', 'Se o ato falha, o evento também não fica; se é concluído, o evento é gravado.', 'b'],
+    ['Trilha guardada por 12 meses e depois apagada', 'Os eventos saem da trilha quando completam 12 meses.', 'b'],
+    ['Conteúdo bruto de mensagens cifrado', 'O conteúdo de uma cidade não pode ser lido com a chave de outra.', 'b'],
+    ['Conteúdo bruto apagado aos 90 dias', 'O conteúdo bruto das mensagens é apagado no prazo, mesmo se nunca foi processado.', 'b'],
+    ['Um banco e um acesso por cidade', 'Uma cidade não consegue se conectar ao banco de outra.', 'b'],
+    ['Acessos separados para cidade, plataforma e criação de cidades', 'Cada parte do sistema usa uma credencial própria, com o mínimo de permissão.', 'b'],
+    ['Cidade identificada pelo endereço antes do login', 'Uma sessão aberta numa cidade não vale em outra.', 'b'],
+    ['Tarefas na fila da própria cidade', 'As tarefas em segundo plano de cada cidade ficam separadas.', 'b'],
+    ['Eventos gravados no banco da cidade', 'Um evento de uma cidade nunca aparece em outra.', 'b'],
+    ['Eventos da plataforma sem dado pessoal', 'CPF, e-mail e telefone são recusados na trilha da plataforma.', 'b'],
+    ['Auditoria da plataforma para identidade', 'Cada evento de identidade da plataforma fica registrado na trilha.', 'b'],
+    ['Painel de eventos', 'A secretaria busca eventos por nome e período, com o filtro aplicado sempre visível.', 's'],
+    ['Console da plataforma sem visão entre cidades, com entrada auditada', 'A equipe entra numa cidade com autorização de uso único, registrada na cidade e na plataforma.', 'p'],
+    ['Revogação de consentimento', 'Ao revogar, a triagem interrompida é encerrada e a revogação entra nas métricas.', 'b']
+  ]},
+  { id: '08', name: 'Agendamento', status: 'available', items: [
+    ['Pedido criado a partir do retorno ou encaminhamento', 'Quando o atendimento termina em retorno ou encaminhamento, o pedido entra na fila da unidade de destino.', 's'],
+    ['Marcar, encerrar com justificativa e remarcar', 'A recepção marca na hora da cidade; remarcar cria um horário novo e mantém o antigo registrado.', 's'],
+    ['Agenda do dia da unidade', 'Os horários do dia de cada unidade, sem misturar unidades.', 's'],
+    ['Cidadão vê, confirma ou cancela o horário', 'O cidadão confirma ou cancela pelo navegador; depois do prazo, a tela avisa.', 'c'],
+    ['Expiração e falta registradas automaticamente', 'Horário sem confirmação expira no prazo, a falta é marcada depois da meia-noite, e o pedido volta à fila.', 'b'],
+    ['Check-in do horário vira atendimento', 'No dia, o check-in abre o atendimento e explica por que um horário não é aceito.', 'sc']
+  ]},
+  { id: '09', name: 'Unidades de saúde', status: 'available', items: [
+    ['Cadastro de unidades de saúde', 'O administrador da cidade cadastra e edita UBS, UPAs, hospitais e outras unidades.', 's'],
+    ['Desativar e reativar unidade', 'A desativação é recusada enquanto houver atendimento ou horário aberto na unidade.', 's']
+  ]},
+  { id: '10', name: 'Profissionais', status: 'validating', items: [
+    ['Cadastro do profissional ligado ao usuário', 'Em validação: perfil do profissional ligado ao usuário do sistema.', 's', 'validating'],
+    ['Vínculo com uma ou mais unidades', 'Em validação: o profissional pode estar ligado a uma ou mais unidades.', 's', 'validating'],
+    ['Ocupação (CBO) em cada vínculo', 'Em validação: a ocupação registrada em cada unidade onde o profissional atende.', 's', 'validating'],
+    ['Turnos com data', 'Em validação: registro de quem estava escalado em cada dia.', 's', 'validating'],
+    ['Chamada e desfecho só por profissional vinculado à unidade', 'Em validação: chamar paciente e registrar desfecho exigiriam vínculo ativo com a unidade.', 's', 'validating'],
+    ['Importação do cadastro nacional CNES', 'Planejado: trazer os dados do CNES para evitar o cadastro manual.', 's', 'planned'],
+    ['Alerta urgente para o profissional', 'Planejado: o alerta de um caso urgente poderia ser enviado ao profissional escalado.', 'b', 'planned']
+  ]}
+];
+
+const DESC = {
+  '01': 'Canal opcional pelo WhatsApp, desativado desde 27/09/2026. O cidadão é atendido pela web.',
+  '02': 'Conduz o cidadão do aceite do termo até o resultado, uma conversa por vez, e registra o consentimento.',
+  '03': 'Cada cidade escreve os próprios protocolos de triagem, e nenhum entra em uso sem dupla revisão.',
+  '04': 'Cada triagem vira um relatório que não muda depois de emitido, aberto por um link seguro e temporário.',
+  '05': 'Telas de acompanhamento da cidade, só de leitura, sem expor respostas clínicas ou a identidade do cidadão.',
+  '06': 'Define quem entra e o que pode fazer, com confirmação por código nas ações sensíveis.',
+  '07': 'Banco e chave próprios por cidade, trilha de auditoria que não se apaga e prazos de retenção cumpridos.',
+  '08': 'Leva o cidadão de volta à unidade: pedido na fila, horário marcado, confirmação e check-in.',
+  '09': 'Cadastro das UBS, UPAs e hospitais da cidade, base do check-in e do agendamento.',
+  '10': 'Em validação: cadastro de profissionais, vínculos com as unidades e registro de turnos.'
+};
+const OPEN = new Set();
+const FEATS = [];
+MODS.forEach((m) => m.items.forEach((it, i) => {
+  const f = { key: `f-${m.id}.${i + 1}`, ref: `F-${m.id}.${i + 1}`, mod: m, idx: i, title: it[0], benefit: it[1], surf: it[2].split('').filter(Boolean), status: it[3] || (m.status === 'disabled' ? 'disabled' : 'available'), note: it[4] || (m.status === 'disabled' ? m.note : '') };
+  m.feats = m.feats || []; m.feats.push(f); FEATS.push(f);
+}));
+const BY = Object.fromEntries(FEATS.map((f) => [f.key, f]));
+
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const badge = (st) => `<span class="badge b-${st}"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">${ST[st][1]}</svg>${ST[st][0]}</span>`;
+const brand = `<div class="brand"><svg width="28" height="28" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="8" fill="var(--accent)"/><circle cx="10" cy="24" r="3.2" fill="var(--accent-ink)"/><circle cx="24" cy="10" r="3.2" fill="var(--accent-ink)"/><path d="M10 24c0-7 14-7 14-14" fill="none" stroke="var(--accent-ink)" stroke-width="2.2" stroke-linecap="round"/></svg>Rota Saúde</div>`;
+const chev = '<svg class="chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5l4.5 4.5L6 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+function modMeta(m) {
+  const n = m.feats.length;
+  if (m.status === 'validating') return `${badge('validating')}<span>5 de ${n} entregues</span>`;
+  if (m.status === 'disabled') return `${badge('disabled')}<span>${n} funcionalidades</span>`;
+  return `${badge('available')}<span>${n} funcionalidades</span>`;
+}
+
+function renderList() {
+  document.title = 'Funcionalidades Rota Saúde';
+  return `
+    <header class="top">
+      ${brand}
+      <span class="cycle">Ciclo 1 · módulos 01 a 10</span>
+      <h1>Funcionalidades do Ciclo 1</h1>
+      <p class="lead">As funcionalidades do primeiro ciclo de desenvolvimento, separadas por módulo. Abra um módulo e toque numa funcionalidade para ver o que ela faz e onde aparece.</p>
+    </header>
+    <div class="mods">
+    ${MODS.map((m) => `
+      <details class="mod${m.status === 'disabled' ? ' off' : ''}" id="m-${m.id}" data-mod="${m.id}"${OPEN.has(m.id) ? ' open' : ''}>
+        <summary>
+          <span class="s-main">
+            <span class="s-title"><span class="num">Módulo ${m.id}</span><h2>${esc(m.name)}</h2></span>
+            <span class="s-desc">${esc(DESC[m.id])}</span>
+            <span class="meta">${modMeta(m)}</span>
+          </span>
+          <svg class="caret" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <ul class="items">
+          ${m.feats.map((f) => `<li><a href="#${f.key}"><span class="t">${esc(f.title)}</span>${f.status !== m.status || f.status === 'validating' ? `<span class="tag">${ST[f.status][0]}</span>` : ''}${chev}</a></li>`).join('')}
+        </ul>
+      </details>`).join('')}
+    </div>
+    <p class="foot">Conteúdo verificado até 28 set 2026. Os módulos 02 a 09 estão disponíveis e verificados; o 10 está em validação.</p>`;
+}
+
+function renderDetail(f) {
+  const m = f.mod, prev = m.feats[f.idx - 1], next = m.feats[f.idx + 1];
+  document.title = `${f.title} · Rota Saúde`;
+  const surf = f.surf.length
+    ? `<ul class="surfaces">${f.surf.map((k) => `<li>${ICON[k]}<div><b>${S[k][0]}</b><span>${S[k][1]}</span></div></li>`).join('')}</ul>`
+    : `<p class="d-note">Sem tela em uso: depende de um canal desativado.</p>`;
+  return `
+    ${brand}
+    <a class="back" href="#m-${m.id}"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Todas as funcionalidades</a>
+    <article class="detail">
+      <div class="d-card">
+        <div class="d-eyebrow"><span>Módulo ${m.id} · ${esc(m.name)}</span><span class="id">${f.ref}</span></div>
+        <h1 id="d-title" tabindex="-1">${esc(f.title)}</h1>
+        <div>${badge(f.status)}</div>
+        <p class="d-benefit">${esc(f.benefit)}</p>
+        ${f.note ? `<p class="d-note">${esc(f.note)}</p>` : ''}
+        <section class="d-sec" aria-labelledby="d-onde"><h2 id="d-onde">Onde aparece</h2>${surf}</section>
+      </div>
+      <nav class="pager" aria-label="Outras funcionalidades do módulo">
+        ${prev ? `<a class="prev" href="#${prev.key}"><small>← Anterior</small>${esc(prev.title)}</a>` : ''}
+        ${next ? `<a class="next" href="#${next.key}"><small>Próxima →</small>${esc(next.title)}</a>` : ''}
+      </nav>
+    </article>`;
+}
+
+let lastList = null;
+function route() {
+  const app = document.getElementById('app');
+  const h = decodeURIComponent(location.hash.slice(1));
+  const f = BY[h];
+  if (f) {
+    app.innerHTML = renderDetail(f);
+    window.scrollTo(0, 0);
+    const t = document.getElementById('d-title'); if (t) t.focus({ preventScroll: true });
+  } else {
+    if (/^m-\d\d$/.test(h)) OPEN.add(h.slice(2));
+    app.innerHTML = renderList();
+    app.querySelectorAll('details.mod').forEach((d) => d.addEventListener('toggle', () => {
+      if (d.open) OPEN.add(d.dataset.mod); else OPEN.delete(d.dataset.mod);
+    }));
+    const target = h && document.getElementById(h);
+    if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+  }
+}
+window.addEventListener('hashchange', route);
+route();
+</script>
