@@ -16,9 +16,10 @@ export function ModuleAccordion({ module: m, open, onToggle }: Props) {
   const anchor = moduleAnchor(m.id);
   const panelId = `${anchor}-itens`;
   const headingId = `${anchor}-titulo`;
+  const delivered = deliveredCount(m);
   const count =
-    m.status === "validating"
-      ? `${deliveredCount(m)} de ${m.features.length} entregues`
+    delivered < m.features.length
+      ? `${delivered} de ${m.features.length} entregues`
       : `${m.features.length} funcionalidades`;
 
   return (

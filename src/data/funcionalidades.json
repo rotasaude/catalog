@@ -1202,58 +1202,58 @@
     {
       "id": "10",
       "name": "Profissionais",
-      "status": "validating",
-      "description": "Em validação: cadastro de profissionais, vínculos com as unidades e registro de turnos.",
+      "status": "available",
+      "description": "Cadastro dos profissionais da cidade, com vínculo às unidades, ocupação e turnos com data.",
       "features": [
         {
           "id": "F-10.1",
           "slug": "f-10.1",
           "title": "Cadastro do profissional ligado ao usuário",
-          "benefit": "Em validação: perfil do profissional ligado ao usuário do sistema.",
+          "benefit": "O perfil do profissional (nome, conselho e registro, CNS) fica ligado ao usuário com papel de profissional de saúde.",
           "surfaces": [
             "secretaria"
           ],
-          "status": "validating"
+          "status": "available"
         },
         {
           "id": "F-10.2",
           "slug": "f-10.2",
           "title": "Vínculo com uma ou mais unidades",
-          "benefit": "Em validação: o profissional pode estar ligado a uma ou mais unidades.",
+          "benefit": "O profissional pode estar vinculado a uma ou mais unidades, e o histórico de vínculos é preservado.",
           "surfaces": [
             "secretaria"
           ],
-          "status": "validating"
+          "status": "available"
         },
         {
           "id": "F-10.3",
           "slug": "f-10.3",
           "title": "Ocupação (CBO) em cada vínculo",
-          "benefit": "Em validação: a ocupação registrada em cada unidade onde o profissional atende.",
+          "benefit": "Cada vínculo registra a ocupação do profissional naquela unidade, pelo código CBO da saúde.",
           "surfaces": [
             "secretaria"
           ],
-          "status": "validating"
+          "status": "available"
         },
         {
           "id": "F-10.4",
           "slug": "f-10.4",
           "title": "Turnos com data",
-          "benefit": "Em validação: registro de quem estava escalado em cada dia.",
+          "benefit": "Os turnos são registrados com data em cada vínculo e servem de base para a agenda de vagas.",
           "surfaces": [
             "secretaria"
           ],
-          "status": "validating"
+          "status": "available"
         },
         {
           "id": "F-10.5",
           "slug": "f-10.5",
           "title": "Chamada e desfecho só por profissional vinculado à unidade",
-          "benefit": "Em validação: chamar paciente e registrar desfecho exigiriam vínculo ativo com a unidade.",
+          "benefit": "Chamar o paciente e registrar o desfecho exigem vínculo ativo com a unidade, e o profissional fica gravado no atendimento.",
           "surfaces": [
             "secretaria"
           ],
-          "status": "validating"
+          "status": "available"
         },
         {
           "id": "F-10.6",
@@ -1263,7 +1263,8 @@
           "surfaces": [
             "secretaria"
           ],
-          "status": "planned"
+          "status": "planned",
+          "note": "Fora do Ciclo 1: fica para um próximo ciclo."
         },
         {
           "id": "F-10.7",
@@ -1273,7 +1274,8 @@
           "surfaces": [
             "bastidores"
           ],
-          "status": "planned"
+          "status": "planned",
+          "note": "Fora do Ciclo 1: fica para um próximo ciclo."
         }
       ]
     }
