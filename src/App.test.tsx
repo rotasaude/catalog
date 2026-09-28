@@ -34,7 +34,7 @@ describe("lista de módulos", () => {
     renderAt("/");
     const m10 = screen.getByRole("region", { name: /Profissionais/ });
     expect(within(m10).getByText("5 de 7 entregues")).toBeInTheDocument();
-    expect(within(m10).getAllByText("Em validação").length).toBeGreaterThan(0);
+    expect(within(m10).getByText("Disponível e verificado")).toBeInTheDocument();
     const m04 = screen.getByRole("region", { name: /Relatórios/ });
     expect(within(m04).getByText("7 funcionalidades")).toBeInTheDocument();
     expect(within(m04).getByText("Disponível e verificado")).toBeInTheDocument();
@@ -70,6 +70,14 @@ describe("lista de módulos", () => {
     const item = screen.getByRole("link", { name: /Perguntas adaptadas ao WhatsApp/ });
     expect(item).toHaveTextContent("Canal desativado");
     expect(screen.getByRole("link", { name: /Classificação por pontuação/ })).not.toHaveTextContent("Disponível");
+  });
+
+  it("marca os itens fora do ciclo dentro de um módulo disponível", async () => {
+    const user = userEvent.setup();
+    renderAt("/");
+    await user.click(moduleToggle(/Profissionais/));
+    expect(screen.getByRole("link", { name: /CNES/ })).toHaveTextContent("Planejado");
+    expect(screen.getByRole("link", { name: /Turnos com data/ })).not.toHaveTextContent("Planejado");
   });
 });
 
