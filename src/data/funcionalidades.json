@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-09-28",
+    "updatedAt": "2026-09-29",
     "cycle": {
       "id": 1,
       "label": "Ciclo 1",
-      "modules": "01 a 10"
+      "modules": "01 a 11"
     }
   },
   "statuses": {
@@ -1276,6 +1276,85 @@
           ],
           "status": "planned",
           "note": "Fora do Ciclo 1: fica para um próximo ciclo."
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Território",
+      "status": "available",
+      "description": "Organiza a cidade por bairros para indicar a cada cidadão a unidade de saúde de referência e permitir ao gestor acompanhar os números por bairro, sem identificar ninguém.",
+      "features": [
+        {
+          "id": "F-11.1",
+          "slug": "f-11.1",
+          "title": "Bairros da cidade",
+          "benefit": "A prefeitura começa com a lista oficial de bairros já carregada e ajusta quando precisar.",
+          "surfaces": [
+            "secretaria",
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-11.2",
+          "slug": "f-11.2",
+          "title": "Unidades que atendem cada bairro",
+          "benefit": "Define com clareza qual unidade é responsável por cada bairro.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-11.3",
+          "slug": "f-11.3",
+          "title": "Endereço da unidade com busca por CEP",
+          "benefit": "Cadastro de endereço mais rápido e sem erro de digitação.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-11.4",
+          "slug": "f-11.4",
+          "title": "Bairro informado pelo cidadão",
+          "benefit": "O cidadão informa o bairro uma única vez e pode trocar quando mudar.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-11.5",
+          "slug": "f-11.5",
+          "title": "Unidade de referência no resultado da triagem",
+          "benefit": "O cidadão sai da triagem sabendo a qual unidade ir, com o endereço.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-11.6",
+          "slug": "f-11.6",
+          "title": "Unidade de referência sugerida no encaminhamento",
+          "benefit": "O profissional encaminha mais rápido para a unidade certa do bairro do paciente.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-11.7",
+          "slug": "f-11.7",
+          "title": "Painéis por bairro com proteção de privacidade",
+          "benefit": "O gestor vê a demanda de cada bairro sem que números pequenos exponham pacientes.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
         }
       ]
     }
