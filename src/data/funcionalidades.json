@@ -44,6 +44,7 @@
           "slug": "f-01.1",
           "title": "Recebimento de mensagens com conferência de autenticidade",
           "benefit": "Mensagem sem assinatura válida é recusada e nada é gravado.",
+          "description": "Cada mensagem que chegava do WhatsApp passava por uma conferência de assinatura antes de qualquer processamento, provando que veio de fato do provedor oficial. Tentativas de envio forjado eram rejeitadas na entrada, sem deixar registro nem acionar a triagem. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [
             "bastidores"
           ],
@@ -55,6 +56,7 @@
           "slug": "f-01.2",
           "title": "Mensagem repetida gravada uma única vez",
           "benefit": "Se a mesma mensagem chega de novo, nada é duplicado.",
+          "description": "O provedor do WhatsApp às vezes reenvia a mesma mensagem, e o sistema reconhecia cada uma pelo seu identificador único. A repetição era descartada em silêncio, evitando respostas em dobro ao cidadão e passos da triagem contados duas vezes. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [
             "bastidores"
           ],
@@ -66,6 +68,7 @@
           "slug": "f-01.3",
           "title": "Conteúdo das mensagens cifrado e apagado aos 90 dias",
           "benefit": "O conteúdo bruto é cifrado com a chave da cidade e apagado depois de 90 dias.",
+          "description": "O texto original recebido pelo WhatsApp ficava guardado cifrado, com a chave exclusiva do município, e uma rotina recorrente apagava esse conteúdo ao completar 90 dias. Assim, a cidade mantinha só o necessário e pelo tempo definido, em linha com a LGPD. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [
             "bastidores"
           ],
@@ -77,6 +80,7 @@
           "slug": "f-01.4",
           "title": "Direcionamento para a cidade certa pelo número",
           "benefit": "Cada mensagem vai para a cidade dona do número; na dúvida, nada é gravado.",
+          "description": "Cada município tinha seu próprio número de WhatsApp, e a mensagem era entregue apenas ao ambiente da cidade dona daquele número. Se não fosse possível identificar a cidade, ou se o canal estivesse inativo, nada era gravado, evitando que dados de um município caíssem em outro. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [
             "bastidores"
           ],
@@ -88,6 +92,7 @@
           "slug": "f-01.5",
           "title": "Números desconhecidos mantidos à parte",
           "benefit": "Mensagens de números não cadastrados ficam separadas, numa tela da plataforma.",
+          "description": "Mensagens destinadas a números que ainda não estavam cadastrados em nenhuma cidade não entravam em atendimento. Elas ficavam registradas à parte, e a equipe da plataforma as consultava numa tela própria do console de operação, para identificar configurações pendentes. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [
             "plataforma"
           ],
@@ -99,6 +104,7 @@
           "slug": "f-01.6",
           "title": "Envio de mensagens de texto",
           "benefit": "Cada resposta é enviada uma única vez, mesmo se o envio for repetido.",
+          "description": "As respostas ao cidadão eram enviadas depois de gravado o passo da conversa, fora do trecho que protege o avanço da triagem. Se o envio precisasse ser repetido por alguma falha, o sistema reconhecia a mensagem já enviada e não mandava a mesma resposta duas vezes. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [
             "bastidores"
           ],
@@ -110,6 +116,7 @@
           "slug": "f-01.7",
           "title": "Envio de modelos aprovados fora da janela de 24 horas",
           "benefit": "Fora da janela do WhatsApp, o sistema usa sozinho o modelo aprovado de retomada.",
+          "description": "O WhatsApp só permite mensagem livre até 24 horas depois da última mensagem do cidadão. Passado esse prazo, o sistema trocava automaticamente o texto livre pelo modelo de retomada previamente aprovado, sem que a equipe precisasse intervir. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [
             "bastidores"
           ],
@@ -121,6 +128,7 @@
           "slug": "f-01.8",
           "title": "Cadastro do canal por cidade",
           "benefit": "Cada cidade registra o próprio número, e a chave de acesso nunca é exibida.",
+          "description": "A equipe da plataforma registrava o número de WhatsApp de cada município pelo console de operação, com acesso protegido por segunda etapa de autenticação. A chave de acesso ao provedor ficava guardada cifrada e não era exibida em nenhuma tela, nem nas de consulta. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [
             "plataforma"
           ],
@@ -132,6 +140,7 @@
           "slug": "f-01.9",
           "title": "Guarda e troca da chave de acesso",
           "benefit": "A chave de acesso pode ser trocada sem interromper o atendimento.",
+          "description": "A chave que autorizava o uso do WhatsApp de cada cidade ficava guardada cifrada, separada das demais. Quando precisava ser trocada, um administrador do próprio município fazia a substituição por um procedimento controlado, e as mensagens seguintes já usavam a chave nova. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [
             "bastidores"
           ],
@@ -143,6 +152,7 @@
           "slug": "f-01.10",
           "title": "Painel de saúde do recebimento",
           "benefit": "Mostra o volume de mensagens e o que falta apagar dentro do prazo de 90 dias.",
+          "description": "No painel da secretaria, a tela de recebimento mostrava quantas mensagens chegaram pelo WhatsApp no período e uma estimativa das confirmações de entrega. Também indicava quanto conteúdo ainda estava guardado e dentro do prazo de apagamento de 90 dias. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [
             "secretaria"
           ],
@@ -162,6 +172,7 @@
           "slug": "f-02.1",
           "title": "Conversa começa aguardando o consentimento",
           "benefit": "Nenhuma pergunta de triagem é feita antes do aceite do termo.",
+          "description": "Toda conversa nova nasce parada no termo de consentimento, e a triagem só é liberada depois do aceite. Isso garante que nenhuma informação de saúde seja pedida ao cidadão antes de ele concordar, de forma explícita, com o tratamento dos seus dados.",
           "surfaces": [
             "bastidores"
           ],
@@ -172,6 +183,7 @@
           "slug": "f-02.2",
           "title": "Conversa encerrada não volta atrás",
           "benefit": "Concluída, recusada, cancelada, abandonada ou revogada: o estado final é definitivo.",
+          "description": "Os cinco desfechos possíveis encerram a conversa de forma definitiva, e o sistema bloqueia qualquer tentativa de reabri-la. A única exceção é a revogação do consentimento, que o cidadão pode fazer sempre. Se ele voltar a procurar a secretaria, uma conversa nova é aberta do zero.",
           "surfaces": [
             "bastidores"
           ],
@@ -182,6 +194,7 @@
           "slug": "f-02.3",
           "title": "Uma conversa ativa por cidadão",
           "benefit": "O cidadão não abre duas triagens ao mesmo tempo.",
+          "description": "Cada cidadão tem no máximo uma conversa em andamento por vez; se ele volta ao site, retoma a triagem que já estava aberta. A regra vale mesmo quando dois acessos chegam ao mesmo tempo, o que evita triagens paralelas e números inflados nos painéis da secretaria.",
           "surfaces": [
             "bastidores"
           ],
@@ -192,6 +205,7 @@
           "slug": "f-02.4",
           "title": "Registro do consentimento na versão vigente do termo",
           "benefit": "O cidadão aceita o termo na tela, antes de informar o CPF, e o aceite guarda a versão do termo.",
+          "description": "No canal web, o termo de consentimento aparece na tela antes de o cidadão informar o CPF, e o aceite é gravado junto com a versão do termo em vigor naquele momento. Depois de gravado, o registro não pode ser alterado, o que dá à prefeitura uma prova clara do que foi aceito e quando.",
           "surfaces": [
             "cidadao"
           ],
@@ -202,6 +216,7 @@
           "slug": "f-02.5",
           "title": "Revogação do consentimento pelo cidadão",
           "benefit": "O cidadão pode revogar o consentimento a qualquer momento, inclusive depois de concluir.",
+          "description": "O cidadão pode retirar o consentimento pelo próprio navegador, com a triagem em andamento ou já concluída. Se houver triagem em curso, ela é interrompida e os dados dela são anonimizados. A revogação fica registrada com data e não pode ser desfeita nem apagada depois.",
           "surfaces": [
             "cidadao"
           ],
@@ -212,6 +227,7 @@
           "slug": "f-02.6",
           "title": "Sem consentimento, nada avança",
           "benefit": "Termo desatualizado ou resposta duvidosa nunca vira aceite.",
+          "description": "A regra padrão é recusar: se não há aceite válido na versão vigente do termo, a triagem não começa nem continua. Se a tela exibia uma versão do termo que já foi substituída pela prefeitura, o aceite é recusado e o cidadão precisa concordar com a versão atual antes de seguir.",
           "surfaces": [
             "bastidores"
           ],
@@ -222,6 +238,7 @@
           "slug": "f-02.7",
           "title": "Conversa parada é encerrada como abandonada",
           "benefit": "Conversa sem resposta há 24 horas é encerrada automaticamente.",
+          "description": "Uma rotina automática roda toda madrugada e encerra como abandonadas as conversas que estão paradas há mais de 24 horas, sem nenhuma resposta do cidadão. Isso libera o cidadão para começar de novo quando quiser e mantém os indicadores de abandono do painel fiéis à realidade.",
           "surfaces": [
             "bastidores"
           ],
@@ -232,6 +249,7 @@
           "slug": "f-02.8",
           "title": "Proteção contra resposta enviada duas vezes",
           "benefit": "Duas abas abertas ou um toque duplo não avançam a triagem duas vezes.",
+          "description": "Cada passo da conversa é processado um de cada vez, e o sistema reconhece quando a mesma resposta chega em duplicidade. Mesmo com o site aberto em duas abas ou um toque repetido no botão, a triagem avança uma única vez e a resposta registrada é a correta.",
           "surfaces": [
             "cidadao"
           ],
@@ -242,6 +260,7 @@
           "slug": "f-02.9",
           "title": "Painel de conversas para a secretaria",
           "benefit": "Funil, desfechos, taxa de abandono e tempo até concluir, sem dados do cidadão.",
+          "description": "A tela de Conversas do painel mostra quantas conversas estão em cada etapa, os cinco desfechos, a taxa de abandono, quantas estão ativas agora e o tempo médio até a conclusão. Gestores acompanham a adesão da população sem ver nome, CPF ou respostas de ninguém.",
           "surfaces": [
             "secretaria"
           ],
@@ -252,6 +271,7 @@
           "slug": "f-02.10",
           "title": "Conversa pelo canal web",
           "benefit": "Consentimento, respostas, desfazer resposta e revogação, tudo pelo navegador.",
+          "description": "Pelo navegador do celular ou do computador, o cidadão aceita o termo, responde a triagem em etapas, pode voltar para corrigir a última resposta e revogar o consentimento quando quiser. Não é preciso instalar aplicativo, e cada cidadão tem uma conversa ativa por vez.",
           "surfaces": [
             "cidadao"
           ],
@@ -270,6 +290,7 @@
           "slug": "f-03.1",
           "title": "Classificação previsível: mesmas respostas, mesmo resultado",
           "benefit": "As mesmas respostas, na mesma versão do protocolo, dão sempre o mesmo resultado, em qualquer dia.",
+          "description": "O motor que conduz a triagem segue apenas o que está escrito no protocolo da cidade: não depende de data, horário, sorteio nem de configuração do servidor. Isso torna cada classificação reproduzível e auditável, e uma bateria de testes permanentes confere essa regra a cada nova versão do sistema.",
           "surfaces": [
             "bastidores"
           ],
@@ -280,6 +301,7 @@
           "slug": "f-03.2",
           "title": "Regras de decisão escritas sem programação",
           "benefit": "O protocolo combina condições como igual, maior, menor, todas e alguma, escritas pela própria equipe.",
+          "description": "A lógica de cada pergunta e de cada regra é descrita como dado, em uma linguagem de condições simples (igual, está entre as opções, maior, menor, todas, alguma, não). A equipe técnica da secretaria monta o caminho da triagem e os critérios de urgência sem depender de desenvolvedor, e o mesmo protocolo vale igual no atendimento e na pré-visualização.",
           "surfaces": [
             "bastidores"
           ],
@@ -290,6 +312,7 @@
           "slug": "f-03.3",
           "title": "Perguntas adaptadas ao WhatsApp",
           "benefit": "Transforma cada pergunta num botão ou lista do WhatsApp.",
+          "description": "No canal WhatsApp, cada tipo de pergunta do protocolo era convertido automaticamente no elemento de conversa adequado, como botões de resposta ou lista de opções, para que o cidadão respondesse com um toque. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [],
           "status": "disabled",
           "note": "Ligada ao canal WhatsApp, desativado em 27/09/2026."
@@ -299,6 +322,7 @@
           "slug": "f-03.4",
           "title": "Classificação por pontuação",
           "benefit": "Cada resposta soma pontos, e a faixa de urgência sai do total.",
+          "description": "Neste modelo, a cidade atribui um peso a cada resposta do protocolo e define as faixas de pontuação que correspondem a cada nível de urgência. Ao fim da triagem, a plataforma soma os pontos do caminho percorrido e enquadra o total na faixa correspondente, de forma transparente e igual para todos os cidadãos.",
           "surfaces": [
             "bastidores"
           ],
@@ -309,6 +333,7 @@
           "slug": "f-03.5",
           "title": "Classificação por tabela de decisão",
           "benefit": "A cidade descreve os casos em ordem, e vale a primeira regra que se aplica.",
+          "description": "Alternativa à pontuação, a tabela de decisão lista casos em ordem de prioridade, cada um com suas condições e a urgência resultante. A plataforma confere as regras de cima para baixo e aplica a primeira que corresponder às respostas; se nenhuma servir, vale o resultado padrão definido pela própria cidade.",
           "surfaces": [
             "bastidores"
           ],
@@ -319,6 +344,7 @@
           "slug": "f-03.6",
           "title": "Sinais de alerta só aumentam a urgência",
           "benefit": "Uma regra de agravamento pode subir a prioridade, nunca reduzi-la.",
+          "description": "Além do modelo de classificação escolhido, o protocolo pode declarar sinais de alerta que marcam o caso como prioritário. Essas regras funcionam de forma independente e só atuam para escalar o atendimento, o que protege o cidadão: nenhuma combinação de respostas faz um sinal grave passar despercebido por causa da pontuação.",
           "surfaces": [
             "bastidores"
           ],
@@ -329,6 +355,7 @@
           "slug": "f-03.7",
           "title": "Explicação registrada de cada classificação",
           "benefit": "Fica registrado por que cada triagem recebeu aquela urgência, sem guardar as respostas nessa explicação.",
+          "description": "Toda triagem concluída guarda um registro do raciocínio: pontos somados em cada etapa, qual regra da tabela foi aplicada, qual sinal de alerta elevou a prioridade e a urgência final. O registro traz apenas referências às regras do protocolo, nunca o conteúdo das respostas, o que facilita auditoria e revisão clínica sem expor dados de saúde.",
           "surfaces": [
             "bastidores"
           ],
@@ -339,6 +366,7 @@
           "slug": "f-03.8",
           "title": "Histórico de versões e assinaturas",
           "benefit": "Versões, assinaturas e ativações ficam registradas, e nada é sobrescrito.",
+          "description": "Cada protocolo da cidade passa por rascunho, revisão, publicação, uso e aposentadoria, com uma única versão em uso por vez. Quem salvou cada rascunho, quem assinou e quando cada versão foi ativada fica guardado em registros que só recebem acréscimos, dando à secretaria e ao jurídico uma história completa e verificável de cada decisão.",
           "surfaces": [
             "plataforma"
           ],
@@ -349,6 +377,7 @@
           "slug": "f-03.9",
           "title": "Conferência automática antes de publicar",
           "benefit": "Protocolo incompleto ou com erro de estrutura não sai do rascunho.",
+          "description": "Antes de sair do rascunho, o protocolo passa por uma conferência automática no servidor: estrutura inválida, etapas que nunca são alcançadas ou que apontam para uma etapa inexistente e regras de classificação incoerentes são apontadas. Enquanto houver erro, a publicação é recusada, o que evita colocar em uso um protocolo quebrado.",
           "surfaces": [
             "secretaria"
           ],
@@ -359,6 +388,7 @@
           "slug": "f-03.10",
           "title": "Papéis separados para escrever, revisar e publicar",
           "benefit": "Quem escreve, quem revisa e quem publica são papéis diferentes, cada um com o que pode fazer.",
+          "description": "A secretaria distribui três papéis distintos na gestão de protocolos: autor, que escreve e edita rascunhos; revisor, que assina versões; e publicador, que conduz a publicação. Só o administrador municipal designa revisores, e quem ajudou a escrever uma versão não pode assiná-la, garantindo revisão independente.",
           "surfaces": [
             "secretaria"
           ],
@@ -369,6 +399,7 @@
           "slug": "f-03.11",
           "title": "Confirmação com código nas ações do ciclo",
           "benefit": "Publicar, ativar e os demais atos do ciclo pedem um código recente do autenticador.",
+          "description": "Assinar, publicar, ativar, aposentar e reverter versões de protocolo exigem que a pessoa confirme a identidade com o código do aplicativo autenticador pouco antes do ato. Assim, uma sessão esquecida aberta em um computador da unidade não basta para mudar o protocolo que classifica os cidadãos.",
           "surfaces": [
             "secretaria"
           ],
@@ -379,6 +410,7 @@
           "slug": "f-03.12",
           "title": "Editor de protocolos com pré-visualização",
           "benefit": "A equipe testa o protocolo com respostas de exemplo antes de enviá-lo à revisão.",
+          "description": "A equipe edita o protocolo no painel da secretaria e vê, ao lado, uma simulação ao vivo: responde às perguntas como um cidadão faria e confere o caminho percorrido, a urgência e a recomendação resultantes. A pré-visualização usa as mesmas regras do atendimento real, então o que se testa é o que vai valer depois.",
           "surfaces": [
             "secretaria"
           ],
@@ -389,6 +421,7 @@
           "slug": "f-03.13",
           "title": "Publicação com dupla revisão",
           "benefit": "Nenhum protocolo entra em uso sem duas assinaturas, e a publicação vai para a trilha de auditoria.",
+          "description": "Para publicar uma versão, dois revisores da cidade precisam assinar exatamente o mesmo conteúdo, e quem contribuiu com o texto não pode ser um deles. Cada publicação vira um registro na trilha de auditoria, com autoria e data, dando segurança clínica e jurídica à secretaria sobre o protocolo em uso.",
           "surfaces": [
             "secretaria",
             "plataforma"
@@ -400,6 +433,7 @@
           "slug": "f-03.14",
           "title": "Versões publicadas não se apagam",
           "benefit": "Depois de publicada, uma versão não pode ser editada nem apagada, só aposentada.",
+          "description": "Uma vez publicada, a versão do protocolo fica congelada: o próprio banco de dados da cidade recusa alterações de conteúdo e exclusões, mesmo fora da aplicação. Quando deixa de servir, a versão é aposentada e permanece guardada, preservando a referência de todas as triagens que foram feitas com ela.",
           "surfaces": [
             "secretaria"
           ],
@@ -410,6 +444,7 @@
           "slug": "f-03.15",
           "title": "Triagem presa à versão em que começou",
           "benefit": "Ativar uma versão nova não muda o resultado de quem já está respondendo.",
+          "description": "Cada triagem fica associada à versão exata do protocolo que estava em uso quando começou e termina com ela, mesmo que outra versão seja ativada no meio do caminho. O relatório do atendimento aponta essa versão, o que permite explicar qualquer resultado com as regras que valiam naquele momento.",
           "surfaces": [
             "cidadao"
           ],
@@ -420,6 +455,7 @@
           "slug": "f-03.16",
           "title": "Consulta da classificação no painel",
           "benefit": "A equipe vê como cada triagem foi classificada, sem acesso às respostas do cidadão.",
+          "description": "No painel de Classificação, gestores e equipe acompanham as triagens da cidade e abrem o detalhe de cada uma para ver a urgência, a prioridade e o raciocínio que levou a elas. O que aparece são as regras aplicadas, não as respostas clínicas do cidadão, respeitando a LGPD sem perder a capacidade de auditar.",
           "surfaces": [
             "secretaria"
           ],
@@ -430,6 +466,7 @@
           "slug": "f-03.17",
           "title": "Resultado para o cidadão, sem as respostas",
           "benefit": "O cidadão vê urgência, prioridade e recomendação. As respostas não aparecem no link do resultado.",
+          "description": "Ao concluir a triagem pela web, o cidadão recebe um link com o nível de urgência, se o caso é prioritário e a recomendação definida no protocolo da cidade. O link público mostra só o resultado, sem nenhuma das respostas dadas, reduzindo a exposição de informações de saúde caso ele seja compartilhado.",
           "surfaces": [
             "cidadao"
           ],
@@ -440,6 +477,7 @@
           "slug": "f-03.18",
           "title": "Ativação de versão com duas assinaturas",
           "benefit": "Uma única versão ativa por protocolo na cidade, ativada com duas assinaturas.",
+          "description": "Somente versões já publicadas podem entrar em uso, e a ativação exige duas novas assinaturas de revisores da cidade. Em caso de problema, a secretaria pode reverter em emergência para a versão anterior, com confirmação de identidade e motivo registrado. Cada ativação fica no histórico do protocolo.",
           "surfaces": [
             "secretaria",
             "plataforma"
@@ -451,6 +489,7 @@
           "slug": "f-03.19",
           "title": "Aposentadoria segura de versões",
           "benefit": "A versão em uso não pode ser aposentada, nem quando duas pessoas agem ao mesmo tempo.",
+          "description": "Aposentar tira de circulação uma versão que não será mais usada, sem apagá-la. A plataforma recusa aposentar a versão que está em uso, inclusive quando duas pessoas agem sobre o protocolo no mesmo instante, evitando que a cidade fique sem protocolo válido para classificar os cidadãos.",
           "surfaces": [
             "secretaria"
           ],
@@ -469,6 +508,7 @@
           "slug": "f-04.1",
           "title": "Geração automática ao fim da triagem",
           "benefit": "Toda triagem concluída gera seu relatório, sem duplicar quando o aviso chega duas vezes.",
+          "description": "Assim que a triagem termina, o sistema gera o relatório automaticamente, sem ação da equipe. Se o aviso de conclusão chegar mais de uma vez, o sistema reconhece que o relatório já existe e não cria uma cópia, mantendo um relatório por triagem.",
           "surfaces": [
             "bastidores"
           ],
@@ -479,6 +519,7 @@
           "slug": "f-04.2",
           "title": "Relatório congelado, que não muda depois de emitido",
           "benefit": "Guarda urgência, prioridade, recomendação e a versão do protocolo. Ninguém edita depois.",
+          "description": "O relatório registra o resultado da triagem e a versão exata do protocolo clínico usado naquele atendimento. Depois de emitido, fica protegido contra qualquer alteração, inclusive por quem tem acesso técnico ao sistema, e serve como registro fiel do que foi orientado ao cidadão.",
           "surfaces": [
             "bastidores"
           ],
@@ -489,6 +530,7 @@
           "slug": "f-04.3",
           "title": "Link seguro e temporário (30 dias)",
           "benefit": "Link desconhecido, adulterado, de outra cidade ou vencido não abre.",
+          "description": "O cidadão abre o relatório por um link pessoal, sem precisar de login, válido por 30 dias. O link é impossível de adivinhar e é conferido a cada acesso: se tiver sido alterado, pertencer a outro município ou estiver vencido, o relatório simplesmente não é exibido.",
           "surfaces": [
             "cidadao"
           ],
@@ -499,6 +541,7 @@
           "slug": "f-04.4",
           "title": "Leitura sem recálculo",
           "benefit": "Mudar o protocolo depois não altera um relatório já emitido.",
+          "description": "Quando o link é aberto, o sistema mostra exatamente o que foi gravado na emissão, sem refazer nenhum cálculo. A cidade pode atualizar ou publicar novas versões do protocolo com segurança: quem já foi atendido continua vendo a orientação que recebeu naquele dia.",
           "surfaces": [
             "cidadao"
           ],
@@ -509,6 +552,7 @@
           "slug": "f-04.5",
           "title": "Tela do relatório para o cidadão",
           "benefit": "O cidadão vê o resultado de forma clara, sem as próprias respostas na tela.",
+          "description": "O relatório é exibido no navegador, em linguagem simples, com a urgência e a orientação de onde e quando buscar atendimento. As respostas dadas pelo cidadão não aparecem na tela nem são devolvidas pelo link, o que reduz a exposição caso o aparelho seja compartilhado.",
           "surfaces": [
             "cidadao"
           ],
@@ -519,6 +563,7 @@
           "slug": "f-04.6",
           "title": "Lista de relatórios da cidade no painel",
           "benefit": "A equipe vê os relatórios do período, com urgência, protocolo e validade do link.",
+          "description": "No painel da secretaria, a equipe consulta os relatórios emitidos no período escolhido, com a faixa de urgência, a versão do protocolo aplicada e até quando o link de cada um continua válido. A lista é só de consulta e serve para acompanhar a demanda atendida.",
           "surfaces": [
             "secretaria"
           ],
@@ -529,6 +574,7 @@
           "slug": "f-04.7",
           "title": "Link entregue ao cidadão na tela final da triagem",
           "benefit": "O link aparece na tela final da triagem, e a entrega espera o relatório estar pronto.",
+          "description": "Ao concluir a triagem pela web, o cidadão recebe o link do relatório na própria tela final, sem depender de mensagem externa. Se o relatório ainda estiver sendo gerado, o sistema aguarda e tenta de novo até ele ficar pronto, para que o link nunca aponte para um relatório inexistente.",
           "surfaces": [
             "cidadao"
           ],
@@ -547,6 +593,7 @@
           "slug": "f-05.1",
           "title": "Painel em português, com navegação entre as telas",
           "benefit": "Todas as telas em português, com navegação entre os painéis e aviso quando a sessão expira.",
+          "description": "O painel da secretaria reúne as telas de acompanhamento do município em um só lugar, com menu para alternar entre elas e um filtro de período comum a todas. Todos os textos estão em português, e o usuário é avisado quando a sessão expira e precisa entrar de novo.",
           "surfaces": [
             "secretaria"
           ],
@@ -557,6 +604,7 @@
           "slug": "f-05.2",
           "title": "Acesso somente com login",
           "benefit": "Sem login ou sem vínculo com a cidade, nenhum painel responde.",
+          "description": "Somente pessoas autenticadas e vinculadas ao município conseguem ver os dados do painel, e cada acesso mostra apenas a cidade correspondente. Os perfis de administrador municipal e de visualização consultam as telas, que são apenas de leitura e não permitem alterar nada.",
           "surfaces": [
             "secretaria"
           ],
@@ -567,6 +615,7 @@
           "slug": "f-05.3",
           "title": "Hora da leitura em cada dado",
           "benefit": "Todo número mostra o instante em que foi lido.",
+          "description": "Cada indicador exibido no painel vem acompanhado da data e da hora em que foi consultado. Assim o gestor sabe exatamente a que momento se refere cada número, o que evita decisões baseadas em informação antiga e facilita comparar dados entre relatórios e reuniões.",
           "surfaces": [
             "secretaria"
           ],
@@ -577,6 +626,7 @@
           "slug": "f-05.4",
           "title": "Visão geral",
           "benefit": "Resumo da cidade, com os casos urgentes contados pela régua do protocolo.",
+          "description": "A tela inicial do painel resume o município no período escolhido: conversas, triagens, consentimentos e a saúde geral do sistema. Os casos urgentes são contados pelo mesmo critério que dispara os alertas no protocolo da cidade, para que o número bata com o que a equipe recebe.",
           "surfaces": [
             "secretaria"
           ],
@@ -587,6 +637,7 @@
           "slug": "f-05.5",
           "title": "Recebimento de mensagens",
           "benefit": "Volume do canal WhatsApp e prazo de retenção de 90 dias.",
+          "description": "A tela de recebimento do painel mostra quantas mensagens chegaram pelo WhatsApp no período, uma estimativa das confirmações de entrega e quanto conteúdo ainda aguarda o apagamento previsto para 90 dias. Ela mede apenas o canal WhatsApp; a entrada pela web aparece em Conversas. O canal WhatsApp está desativado desde 27/09/2026; o cidadão é atendido pela web.",
           "surfaces": [
             "secretaria"
           ],
@@ -598,6 +649,7 @@
           "slug": "f-05.6",
           "title": "Conversas",
           "benefit": "Os cinco desfechos e a taxa de abandono, sem dado do cidadão.",
+          "description": "A tela de Conversas mostra o funil das conversas em andamento, os cinco desfechos finais (concluída, recusada, cancelada, abandonada e revogada) e a taxa de abandono no período. Serve para o gestor medir a adesão da população ao atendimento, sem acesso a quem conversou.",
           "surfaces": [
             "secretaria"
           ],
@@ -608,6 +660,7 @@
           "slug": "f-05.7",
           "title": "Consentimentos",
           "benefit": "Aceites, revogações e divisão por versão do termo.",
+          "description": "A tela de Consentimentos mostra quantos aceites do termo foram registrados no período, quantos foram revogados depois e como eles se dividem entre as versões do termo publicadas pela prefeitura. Ajuda o jurídico a acompanhar a base legal do tratamento de dados.",
           "surfaces": [
             "secretaria"
           ],
@@ -618,6 +671,7 @@
           "slug": "f-05.8",
           "title": "Triagens",
           "benefit": "Iniciadas, concluídas, taxa de conclusão e versão do protocolo, nunca as respostas.",
+          "description": "A tela de Triagens mostra quantas foram iniciadas e concluídas no período, a taxa de conclusão e qual versão do protocolo clínico foi usada em cada uma. As respostas dadas pelo cidadão nunca aparecem, só os números agregados do atendimento.",
           "surfaces": [
             "secretaria"
           ],
@@ -628,6 +682,7 @@
           "slug": "f-05.9",
           "title": "Classificação",
           "benefit": "Distribuição por faixa de urgência, usando as faixas do protocolo da própria cidade.",
+          "description": "A tela de Classificação mostra como as triagens do período se distribuem pelas faixas de urgência. As faixas são as definidas no protocolo do próprio município, e não categorias genéricas, para que o painel fale a mesma língua da equipe clínica que redigiu o protocolo.",
           "surfaces": [
             "secretaria"
           ],
@@ -638,6 +693,7 @@
           "slug": "f-05.10",
           "title": "Protocolos",
           "benefit": "Situação de cada protocolo, incluindo rascunhos reprovados na conferência.",
+          "description": "A tela de Protocolos lista as versões do protocolo clínico da cidade e a situação de cada uma: rascunho, publicada, em uso ou aposentada. Mostra também o resultado das verificações automáticas de cada versão, deixando visíveis os rascunhos que não passaram na conferência.",
           "surfaces": [
             "secretaria"
           ],
@@ -648,6 +704,7 @@
           "slug": "f-05.11",
           "title": "Filas",
           "benefit": "Tarefas da cidade, com destaque quando a fila urgente atrasa mais de 1 minuto.",
+          "description": "A tela de Filas mostra as tarefas automáticas que o sistema executa para o município, com quantas estão aguardando, agendadas ou com falha, e quando rodaram as rotinas periódicas. A fila dos casos urgentes ganha destaque se o atraso passar de 1 minuto.",
           "surfaces": [
             "secretaria"
           ],
@@ -658,6 +715,7 @@
           "slug": "f-05.12",
           "title": "Eventos",
           "benefit": "A trilha de eventos da cidade: hora, nome, autor e referência, nunca o conteúdo.",
+          "description": "A tela de Eventos mostra, para o período escolhido, os registros do que aconteceu no município, com hora, tipo de evento, quem o originou e a referência do item envolvido. O conteúdo em si nunca é exibido, o que permite auditar a operação sem expor dados de cidadãos.",
           "surfaces": [
             "secretaria"
           ],
@@ -668,6 +726,7 @@
           "slug": "f-05.13",
           "title": "Atualização contínua dos indicadores",
           "benefit": "Os totais são atualizados a cada triagem concluída, sem contar nada duas vezes.",
+          "description": "A cada triagem concluída, os totais usados em relatórios de manutenção e no resumo de saúde do sistema são atualizados automaticamente. O processo reconhece quando o mesmo aviso chega duas vezes e não soma o caso de novo, mantendo os números corretos.",
           "surfaces": [
             "bastidores"
           ],
@@ -678,6 +737,7 @@
           "slug": "f-05.14",
           "title": "Reconstrução noturna dos indicadores",
           "benefit": "Toda madrugada os indicadores são recalculados para corrigir qualquer desvio.",
+          "description": "Todos os dias, às 3 da manhã, uma rotina automática refaz do zero os totais acumulados a partir dos registros originais do município. Se algum número tiver se desviado por falha pontual, ele é corrigido sem intervenção da equipe e sem perder o histórico anterior.",
           "surfaces": [
             "bastidores"
           ],
@@ -695,7 +755,8 @@
           "id": "F-06.1",
           "slug": "f-06.1",
           "title": "Senha e sessão para servidores",
-          "benefit": "A sessão vale só no endereço da cidade, com bloqueio após tentativas repetidas de login.",
+          "benefit": "A sessão vale só no endereço da cidade, e tentativas repetidas de login num curto intervalo são barradas.",
+          "description": "Os servidores da secretaria entram no painel da cidade com e-mail e senha, e a senha é guardada só de forma irreversível. A sessão aberta vale apenas no endereço daquela prefeitura e não serve em outra cidade. Tentativas de login em excesso num curto intervalo são barradas, o que dificulta a descoberta de senhas por tentativa e erro.",
           "surfaces": [
             "secretaria"
           ],
@@ -706,6 +767,7 @@
           "slug": "f-06.2",
           "title": "Troca de senha por e-mail",
           "benefit": "O servidor redefine a senha por um link enviado por e-mail.",
+          "description": "Quem esqueceu a senha pede a troca na tela de entrada e recebe um link por e-mail para definir uma nova. O link vale por poucos minutos e deixa de funcionar depois de usado, e os pedidos repetidos têm limite. A secretaria não precisa acionar o suporte para cada senha esquecida.",
           "surfaces": [
             "secretaria"
           ],
@@ -716,6 +778,7 @@
           "slug": "f-06.3",
           "title": "Código do autenticador e códigos de recuperação",
           "benefit": "Segundo fator por aplicativo autenticador, com códigos de recuperação de uso único.",
+          "description": "Além da senha, o servidor pode confirmar a entrada com um código do aplicativo autenticador instalado no celular. No cadastro ele recebe dez códigos de recuperação, cada um válido uma única vez, para o caso de perder o aparelho. Cadastrar ou trocar o autenticador gera aviso por e-mail ao próprio servidor.",
           "surfaces": [
             "secretaria"
           ],
@@ -726,6 +789,7 @@
           "slug": "f-06.4",
           "title": "Código do autenticador obrigatório para a equipe da plataforma",
           "benefit": "Ninguém da equipe da plataforma entra sem o código do autenticador.",
+          "description": "A equipe da plataforma, que cria cidades e dá suporte, tem acesso de maior alcance, por isso o segundo fator é obrigatório para ela em todo login. A conta dessa equipe já nasce com o aplicativo autenticador ativo, e sem o código a entrada é recusada. A tela explica quando as tentativas de login se esgotam.",
           "surfaces": [
             "plataforma"
           ],
@@ -736,6 +800,7 @@
           "slug": "f-06.5",
           "title": "Novo código para publicar protocolo",
           "benefit": "Publicar exige um código dos últimos 5 minutos; sem ele, nada muda.",
+          "description": "No momento de publicar um protocolo clínico, o sistema pede de novo o código do aplicativo autenticador, mesmo com a sessão aberta. A confirmação vale por poucos minutos; fora dessa janela a publicação é recusada e nada muda na versão em uso. Assim, uma sessão esquecida aberta não basta para alterar o protocolo que orienta a triagem.",
           "surfaces": [
             "secretaria"
           ],
@@ -746,6 +811,7 @@
           "slug": "f-06.6",
           "title": "Vínculos registrados só por acréscimo",
           "benefit": "Papéis concedidos nunca são apagados; o fim do vínculo fica registrado com data.",
+          "description": "Os papéis dados a cada servidor ficam registrados como histórico e nunca são sobrescritos nem apagados. Quando alguém deixa uma função, o vínculo recebe data de término e continua consultável. O próprio banco de dados recusa apagar esses registros, o que permite responder a qualquer tempo quem tinha qual permissão e quando.",
           "surfaces": [
             "bastidores"
           ],
@@ -756,6 +822,7 @@
           "slug": "f-06.7",
           "title": "Papéis da cidade, com a equipe da plataforma fora deles",
           "benefit": "A equipe da plataforma não recebe papéis dentro de uma cidade.",
+          "description": "Cada cidade distribui papéis próprios entre seus servidores, como administrador, autor, revisor e publicador de protocolo, validador de cidadão, profissional de saúde e consulta. A equipe da plataforma fica fora dessa lista: não recebe papel dentro da prefeitura e não decide pela secretaria.",
           "surfaces": [
             "bastidores"
           ],
@@ -766,6 +833,7 @@
           "slug": "f-06.8",
           "title": "Permissões e banco da cidade definidos pelo endereço",
           "benefit": "Cada ação é conferida pelo papel, no banco da cidade do endereço acessado.",
+          "description": "Toda ação no painel é conferida contra o papel de quem a pede, e a consulta roda sempre no banco da cidade do endereço acessado. São duas barreiras independentes: mesmo que uma regra de permissão falhasse, o pedido continuaria preso aos dados daquela prefeitura. Quem não tem o papel certo recebe recusa, sem ver o dado.",
           "surfaces": [
             "bastidores"
           ],
@@ -776,6 +844,7 @@
           "slug": "f-06.9",
           "title": "Convites para novos usuários",
           "benefit": "O convidado recebe o link por e-mail, e convites vencidos são recusados.",
+          "description": "O administrador da cidade convida novos servidores pelo painel, já indicando o papel, e o convite chega por e-mail com um link para criar a senha. O convite vence em alguns dias, e um novo convite ao mesmo e-mail substitui o anterior. No aceite, o sistema recusa convite vencido, senha curta e e-mail já cadastrado.",
           "surfaces": [
             "secretaria",
             "plataforma"
@@ -787,6 +856,7 @@
           "slug": "f-06.10",
           "title": "Desativação de usuário",
           "benefit": "O administrador da cidade desativa um usuário com confirmação por código, e as sessões dele caem na hora.",
+          "description": "Quando um servidor sai da secretaria, o administrador da cidade o desativa pelo painel, confirmando com o código do aplicativo autenticador. Os papéis ativos da pessoa são revogados e as sessões abertas deixam de valer imediatamente. O registro do usuário é mantido para a auditoria, sem ser apagado.",
           "surfaces": [
             "secretaria"
           ],
@@ -797,6 +867,7 @@
           "slug": "f-06.11",
           "title": "Criação de cidade em duas etapas",
           "benefit": "O banco da nova cidade é criado em segundo plano, sem duplicar se precisar retomar.",
+          "description": "A equipe da plataforma cadastra uma nova prefeitura em duas etapas: primeiro registra a cidade e depois o sistema monta em segundo plano o banco de dados exclusivo dela. Se o processo for interrompido, pode ser retomado sem criar nada em duplicidade. Cada prefeitura nasce com seu banco, seu acesso e sua chave de cifra próprios.",
           "surfaces": [
             "plataforma"
           ],
@@ -807,6 +878,7 @@
           "slug": "f-06.12",
           "title": "Guarda das chaves de cifra",
           "benefit": "O sistema não entra em produção sem as chaves de cifra configuradas.",
+          "description": "Os dados sensíveis são cifrados com chaves guardadas fora do código e do banco, separadas por ambiente. Se a instalação de produção não encontrar essas chaves, o sistema não inicia, em vez de funcionar sem proteção. Os procedimentos de guarda e troca das chaves ficam documentados para a equipe técnica.",
           "surfaces": [
             "bastidores"
           ],
@@ -817,6 +889,7 @@
           "slug": "f-06.13",
           "title": "Termos de consentimento por cidade",
           "benefit": "Cada cidade publica o próprio termo, e cada versão fica registrada.",
+          "description": "Cada prefeitura tem o próprio termo de consentimento, apresentado ao cidadão antes de qualquer coleta de dados. Cada nova versão do termo é registrada sem apagar as anteriores, e cada consentimento guarda uma impressão digital do texto aceito. Assim é possível provar exatamente qual texto cada cidadão aceitou.",
           "surfaces": [
             "bastidores"
           ],
@@ -827,6 +900,7 @@
           "slug": "f-06.14",
           "title": "Destinatário de alertas por cidade",
           "benefit": "Cada cidade define quem recebe os alertas; sem destinatário, o erro aparece em vez de o alerta sumir.",
+          "description": "Na criação da cidade, a plataforma registra quem da secretaria deve receber os alertas de casos urgentes. O aviso sai por e-mail para esse destinatário. Se a cidade não tiver destinatário configurado, o sistema registra o erro de forma visível, em vez de deixar o alerta se perder em silêncio.",
           "surfaces": [
             "plataforma"
           ],
@@ -837,6 +911,7 @@
           "slug": "f-06.15",
           "title": "Duas revisoras para publicar, sem atalho da plataforma",
           "benefit": "Uma assinatura não basta, e a equipe da plataforma nunca assina.",
+          "description": "Publicar ou ativar uma versão de protocolo exige a assinatura de duas revisoras da própria cidade, além da confirmação por código. A equipe da plataforma nunca assina nem pode suprir a falta de revisoras. A responsabilidade clínica pela mudança fica inteira com a secretaria, e cada assinatura fica registrada.",
           "surfaces": [
             "secretaria"
           ],
@@ -847,6 +922,7 @@
           "slug": "f-06.16",
           "title": "Link assinado para o paciente",
           "benefit": "Link de outra cidade, vencido ou adulterado não abre.",
+          "description": "Ao fim da triagem, o cidadão recebe um link para ver o próprio relatório, sem precisar de senha. O link é aleatório, impossível de adivinhar, e assinado com a chave da cidade; link vencido, de outra cidade ou alterado recebe a mesma recusa. O relatório mostrado é sempre o que foi gerado no dia da triagem.",
           "surfaces": [
             "cidadao"
           ],
@@ -857,6 +933,7 @@
           "slug": "f-06.17",
           "title": "Registro de eventos da plataforma",
           "benefit": "Os eventos da plataforma recusam qualquer dado pessoal.",
+          "description": "Acontecimentos da plataforma, como entradas, saídas e falhas de login, cadastro de autenticador e troca de senha, ficam gravados numa trilha própria, separada da trilha de cada cidade. Essa trilha guarda só referências e recusa qualquer registro que contenha dado pessoal.",
           "surfaces": [
             "bastidores"
           ],
@@ -867,6 +944,7 @@
           "slug": "f-06.18",
           "title": "CPF e celular declarados pelo cidadão",
           "benefit": "CPF inválido é recusado, e um mesmo celular não acumula CPFs sem limite.",
+          "description": "Na página do cidadão, a pessoa informa o CPF, conferido pelos dígitos verificadores, e o número do celular, depois de ver o termo de consentimento. Um celular pode atender uma família inteira, até um limite de CPFs por aparelho. CPF e celular ficam cifrados com a chave da cidade.",
           "surfaces": [
             "cidadao"
           ],
@@ -877,6 +955,7 @@
           "slug": "f-06.19",
           "title": "Código por SMS",
           "benefit": "Código de 6 dígitos, válido por 10 minutos, com limites de reenvio.",
+          "description": "Para confirmar que o celular é mesmo dele, o cidadão recebe por SMS um código que precisa digitar na página. O código tem prazo curto e poucas tentativas, e os reenvios têm intervalo mínimo e limite diário por celular e por rede, o que contém abuso e custo de envio. A resposta não revela se o número já tem cadastro.",
           "surfaces": [
             "cidadao"
           ],
@@ -887,6 +966,7 @@
           "slug": "f-06.20",
           "title": "Sessão do cidadão pelo celular",
           "benefit": "Fica ativa por até 30 dias sem uso; sair encerra a sessão.",
+          "description": "Depois de confirmado o código, o celular fica conectado e o cidadão não precisa de novo SMS a cada acesso; a sessão se renova com o uso e expira após 30 dias parada. No mesmo aparelho é possível escolher para qual pessoa da família é a triagem. A sessão do cidadão nunca dá acesso ao painel dos servidores.",
           "surfaces": [
             "cidadao"
           ],
@@ -897,6 +977,7 @@
           "slug": "f-06.21",
           "title": "Papel de quem valida o cidadão",
           "benefit": "Conceder ou retirar esse papel exige confirmação por código.",
+          "description": "O papel de validador, dado aos servidores que conferem a identidade do cidadão nas unidades, é concedido e retirado pelo administrador da cidade. Como é um papel sensível, cada concessão ou retirada exige o código do aplicativo autenticador de quem a faz, e o ato fica registrado.",
           "surfaces": [
             "secretaria"
           ],
@@ -907,6 +988,7 @@
           "slug": "f-06.22",
           "title": "Validação presencial do cidadão",
           "benefit": "Na unidade, o atendente valida o cidadão só depois de conferir o documento.",
+          "description": "No primeiro atendimento na unidade, o cidadão mostra na tela do celular um código de validação e apresenta um documento com foto. O servidor com papel de validador digita o código no painel, confere o documento e só então marca o cidadão como validado. A partir daí, o CPF declarado passa a ser identidade comprovada.",
           "surfaces": [
             "cidadao",
             "secretaria"
@@ -918,6 +1000,7 @@
           "slug": "f-06.23",
           "title": "Desfazer a validação",
           "benefit": "Só o administrador da cidade desfaz, com motivo, e quem validou não desfaz a própria validação.",
+          "description": "Se uma validação foi feita por engano, só o administrador da cidade pode desfazê-la, e precisa informar o motivo. Quem validou não pode desfazer a própria validação. O desfazimento é registrado como novo fato, sem apagar a validação original, o que preserva o histórico para auditoria.",
           "surfaces": [
             "secretaria"
           ],
@@ -928,6 +1011,7 @@
           "slug": "f-06.24",
           "title": "Histórico por nível de validação",
           "benefit": "O mesmo CPF em outro celular não vê as triagens anteriores até ser validado.",
+          "description": "Antes da validação presencial, cada combinação de CPF e celular vê apenas as triagens feitas naquele aparelho, porque um CPF digitado não prova identidade. Depois de validado na unidade, o cidadão passa a ver o histórico completo do CPF. Isso impede que alguém consulte triagens de outra pessoa apenas digitando o CPF dela.",
           "surfaces": [
             "cidadao"
           ],
@@ -938,6 +1022,7 @@
           "slug": "f-06.25",
           "title": "Papel de profissional de saúde",
           "benefit": "Só o profissional chama o paciente e registra o desfecho; a recepção não.",
+          "description": "O papel de profissional de saúde permite chamar o paciente para o atendimento e registrar o desfecho da consulta; a recepção não faz essas ações. O papel é concedido e retirado pelo administrador da cidade com confirmação pelo aplicativo autenticador, e cada ato fica registrado.",
           "surfaces": [
             "secretaria"
           ],
@@ -956,6 +1041,7 @@
           "slug": "f-07.1",
           "title": "Trilha de eventos só por acréscimo",
           "benefit": "O banco recusa editar ou apagar um evento antes de 12 meses.",
+          "description": "Tudo o que acontece na cidade, como triagens, consentimentos e mudanças de protocolo, gera um registro na trilha de auditoria. O próprio banco de dados recusa alterar ou apagar esses registros antes de completarem 12 meses, mesmo para quem administra o sistema. A trilha serve de prova em auditorias e questionamentos.",
           "surfaces": [
             "bastidores"
           ],
@@ -966,6 +1052,7 @@
           "slug": "f-07.2",
           "title": "Evento gravado junto com o ato",
           "benefit": "Se o ato falha, o evento também não fica; se é concluído, o evento é gravado.",
+          "description": "O registro na trilha de auditoria é gravado no mesmo passo que a ação que ele descreve. Se a ação falha no meio, nem ela nem o registro ficam; se ela se conclui, o registro existe. Assim a trilha nunca aponta um ato que não aconteceu nem deixa de mostrar um que aconteceu.",
           "surfaces": [
             "bastidores"
           ],
@@ -976,6 +1063,7 @@
           "slug": "f-07.3",
           "title": "Trilha guardada por 12 meses e depois apagada",
           "benefit": "Os eventos saem da trilha quando completam 12 meses.",
+          "description": "Uma tarefa automática e recorrente retira da trilha os registros que completaram 12 meses, cumprindo o prazo de retenção sem trabalho manual. A tarefa não aceita um prazo menor que 12 meses. Como cada cidade tem sua própria rotina, um atraso numa prefeitura não afeta as outras.",
           "surfaces": [
             "bastidores"
           ],
@@ -986,6 +1074,7 @@
           "slug": "f-07.4",
           "title": "Conteúdo bruto de mensagens cifrado",
           "benefit": "O conteúdo de uma cidade não pode ser lido com a chave de outra.",
+          "description": "O conteúdo original das mensagens recebidas e os números de telefone ligados a elas ficam cifrados com a chave exclusiva de cada cidade. Mesmo com uma cópia do banco de uma prefeitura, não é possível ler os dados de outra. A chave de cada cidade pode ser trocada quando necessário.",
           "surfaces": [
             "bastidores"
           ],
@@ -996,6 +1085,7 @@
           "slug": "f-07.5",
           "title": "Conteúdo bruto apagado aos 90 dias",
           "benefit": "O conteúdo bruto das mensagens é apagado no prazo, mesmo se nunca foi processado.",
+          "description": "O conteúdo original das mensagens recebidas é apagado automaticamente quando completa 90 dias, tenha sido processado ou não. A rotina roda sozinha, com corte exato no prazo, e pode ser executada de novo sem efeito colateral. Guarda-se só o necessário, pelo tempo necessário, como pede a LGPD.",
           "surfaces": [
             "bastidores"
           ],
@@ -1006,6 +1096,7 @@
           "slug": "f-07.6",
           "title": "Um banco e um acesso por cidade",
           "benefit": "Uma cidade não consegue se conectar ao banco de outra.",
+          "description": "Cada prefeitura tem um banco de dados exclusivo, com usuário de acesso próprio e limite de conexões. O acesso de uma cidade só abre o banco dela: a tentativa de conectar ao banco de outra é recusada pelo próprio servidor de banco de dados. É a base do isolamento entre municípios.",
           "surfaces": [
             "bastidores"
           ],
@@ -1016,6 +1107,7 @@
           "slug": "f-07.7",
           "title": "Acessos separados para cidade, plataforma e criação de cidades",
           "benefit": "Cada parte do sistema usa uma credencial própria, com o mínimo de permissão.",
+          "description": "As partes do sistema usam credenciais de banco diferentes: uma por cidade, uma para a plataforma e outra, restrita à rotina de criação de cidades, que só existe no processamento em segundo plano. Cada credencial recebe só as permissões de que precisa, o que limita o estrago caso uma delas vaze.",
           "surfaces": [
             "bastidores"
           ],
@@ -1026,6 +1118,7 @@
           "slug": "f-07.8",
           "title": "Cidade identificada pelo endereço antes do login",
           "benefit": "Uma sessão aberta numa cidade não vale em outra.",
+          "description": "O sistema identifica a prefeitura pelo endereço acessado antes mesmo de conferir o login, e endereço desconhecido é recusado de imediato. Toda a navegação passa a usar só o banco daquela cidade. Uma sessão aberta num município não é aceita em outro, mesmo que a pessoa trabalhe nos dois.",
           "surfaces": [
             "bastidores"
           ],
@@ -1036,6 +1129,7 @@
           "slug": "f-07.9",
           "title": "Tarefas na fila da própria cidade",
           "benefit": "As tarefas em segundo plano de cada cidade ficam separadas.",
+          "description": "As tarefas feitas em segundo plano, como envio de alertas, avisos e limpezas de prazo, ficam na fila do banco da própria cidade. Cada tarefa roda com os dados e a chave daquela prefeitura e não pode gravar em outra. Se uma cidade atrasar ou ficar fora do ar, as demais seguem normalmente.",
           "surfaces": [
             "bastidores"
           ],
@@ -1046,6 +1140,7 @@
           "slug": "f-07.10",
           "title": "Eventos gravados no banco da cidade",
           "benefit": "Um evento de uma cidade nunca aparece em outra.",
+          "description": "Os registros de auditoria de cada cidade são gravados no banco de dados dessa cidade, e não num repositório comum. Não há como um evento de uma prefeitura aparecer na trilha de outra. Cada secretaria consulta só a própria história, e os dados permanecem sob a guarda do município.",
           "surfaces": [
             "bastidores"
           ],
@@ -1056,6 +1151,7 @@
           "slug": "f-07.11",
           "title": "Eventos da plataforma sem dado pessoal",
           "benefit": "CPF, e-mail e telefone são recusados na trilha da plataforma.",
+          "description": "Os registros da equipe da plataforma ficam num banco separado dos bancos das cidades e apontam para a cidade só por referência. Qualquer tentativa de gravar CPF, e-mail ou telefone nessa trilha é recusada. Esses registros não podem ser alterados, e os de manutenção nunca são apagados.",
           "surfaces": [
             "bastidores"
           ],
@@ -1066,6 +1162,7 @@
           "slug": "f-07.12",
           "title": "Auditoria da plataforma para identidade",
           "benefit": "Cada evento de identidade da plataforma fica registrado na trilha.",
+          "description": "Entradas, saídas, falhas de login, cadastro de autenticador, troca de senha e demais eventos de identidade da equipe da plataforma e dos servidores são gravados na trilha de auditoria da plataforma. Assim fica registrado quem acessou, quando e de que forma, para consulta em auditorias de segurança.",
           "surfaces": [
             "bastidores"
           ],
@@ -1076,6 +1173,7 @@
           "slug": "f-07.13",
           "title": "Painel de eventos",
           "benefit": "A secretaria busca eventos por nome e período, com o filtro aplicado sempre visível.",
+          "description": "No painel da cidade, a secretaria consulta a trilha de auditoria filtrando por nome do evento e por período. O filtro aplicado fica sempre à vista, para não haver dúvida sobre o que está sendo mostrado. A tela exibe referências, sem expor dados pessoais dos cidadãos.",
           "surfaces": [
             "secretaria"
           ],
@@ -1086,6 +1184,7 @@
           "slug": "f-07.14",
           "title": "Console da plataforma sem visão entre cidades, com entrada auditada",
           "benefit": "A equipe entra numa cidade com autorização de uso único, registrada na cidade e na plataforma.",
+          "description": "O console da equipe da plataforma não oferece nenhuma tela que junte dados de várias cidades. Para dar suporte numa prefeitura, a equipe precisa de uma autorização de entrada de uso único e curta validade, e a sessão aberta é só de leitura. Cada entrada fica registrada tanto na trilha da cidade quanto na da plataforma.",
           "surfaces": [
             "plataforma"
           ],
@@ -1096,6 +1195,7 @@
           "slug": "f-07.15",
           "title": "Revogação de consentimento",
           "benefit": "Ao revogar, a triagem interrompida é encerrada e a revogação entra nas métricas.",
+          "description": "Quando o cidadão revoga o consentimento, a triagem em andamento é encerrada e o conteúdo clínico dela é apagado. A revogação passa a contar nas métricas da secretaria. O registro da revogação é mantido para mostrar que a vontade do cidadão foi respeitada.",
           "surfaces": [
             "bastidores"
           ],
@@ -1114,6 +1214,7 @@
           "slug": "f-08.1",
           "title": "Pedido criado a partir do retorno ou encaminhamento",
           "benefit": "Quando o atendimento termina em retorno ou encaminhamento, o pedido entra na fila da unidade de destino.",
+          "description": "Quando o profissional encerra o atendimento com retorno na mesma unidade ou encaminhamento para outra unidade da cidade, o sistema gera sozinho um pedido de agendamento. O pedido aparece na fila da unidade de destino, onde a recepção decide a data, sem depender de papel, telefonema ou planilha paralela.",
           "surfaces": [
             "secretaria"
           ],
@@ -1124,6 +1225,7 @@
           "slug": "f-08.2",
           "title": "Marcar, encerrar com justificativa e remarcar",
           "benefit": "A recepção marca na hora da cidade; remarcar cria um horário novo e mantém o antigo registrado.",
+          "description": "A recepção da unidade de destino escolhe data e hora para cada pedido ou o encerra registrando uma justificativa. Se for preciso mudar, o sistema cria um horário novo e guarda o anterior como estava, de modo que o histórico do que foi marcado nunca é apagado nem editado.",
           "surfaces": [
             "secretaria"
           ],
@@ -1134,6 +1236,7 @@
           "slug": "f-08.3",
           "title": "Agenda do dia da unidade",
           "benefit": "Os horários do dia de cada unidade, sem misturar unidades.",
+          "description": "A recepção consulta, em uma única tela, todos os horários marcados para o dia na sua própria unidade, com a situação de cada um. Cada unidade enxerga apenas a sua agenda, o que organiza o balcão e evita confusão entre equipes de unidades diferentes.",
           "surfaces": [
             "secretaria"
           ],
@@ -1144,6 +1247,7 @@
           "slug": "f-08.4",
           "title": "Cidadão vê, confirma ou cancela o horário",
           "benefit": "O cidadão confirma ou cancela pelo navegador; depois do prazo, a tela avisa.",
+          "description": "O cidadão acessa seus horários pelo navegador do celular, na área logada, e confirma a presença até 24 horas antes ou cancela informando o motivo. Quando o prazo de confirmação já passou, o botão deixa de aparecer e a tela explica a situação, em vez de aceitar uma ação que não vale mais.",
           "surfaces": [
             "cidadao"
           ],
@@ -1154,6 +1258,7 @@
           "slug": "f-08.5",
           "title": "Expiração e falta registradas automaticamente",
           "benefit": "Horário sem confirmação expira no prazo, a falta é marcada depois da meia-noite, e o pedido volta à fila.",
+          "description": "O sistema cuida sozinho dos horários parados: o que não foi confirmado no prazo é cancelado, e quem tinha horário confirmado e não compareceu tem a falta registrada ao fim do dia. Nos dois casos o pedido volta marcado para a fila da unidade, e ninguém sai dela sem que uma pessoa decida remarcar ou encerrar.",
           "surfaces": [
             "bastidores"
           ],
@@ -1164,6 +1269,7 @@
           "slug": "f-08.6",
           "title": "Check-in do horário vira atendimento",
           "benefit": "No dia, o check-in abre o atendimento e explica por que um horário não é aceito.",
+          "description": "No dia marcado, o cidadão faz check-in no mesmo balcão de sempre e o horário confirmado se transforma em atendimento, entrando na fila com a prioridade da triagem de origem. Se o horário não for aceito, a recepção vê o motivo exato, como data diferente de hoje ou unidade errada, com o nome da unidade correta.",
           "surfaces": [
             "secretaria",
             "cidadao"
@@ -1183,6 +1289,7 @@
           "slug": "f-09.1",
           "title": "Cadastro de unidades de saúde",
           "benefit": "O administrador da cidade cadastra e edita UBS, UPAs, hospitais e outras unidades.",
+          "description": "No painel da secretaria, o administrador municipal registra cada unidade da rede com nome, tipo e situação, e mais tarde com endereço e bairro. Esse cadastro é a base para o check-in do cidadão, a escolha da unidade no balcão de atendimento, e para os vínculos dos profissionais; só o administrador altera o cadastro.",
           "surfaces": [
             "secretaria"
           ],
@@ -1193,6 +1300,7 @@
           "slug": "f-09.2",
           "title": "Desativar e reativar unidade",
           "benefit": "A desativação é recusada enquanto houver atendimento ou horário aberto na unidade.",
+          "description": "Unidades que fecham ou entram em reforma podem ser desativadas sem apagar o histórico, e reativadas depois. A plataforma bloqueia a desativação enquanto houver cidadãos em atendimento ou pedidos de agendamento pendentes nela, e uma unidade inativa deixa de receber check-in, mesmo em tentativas simultâneas.",
           "surfaces": [
             "secretaria"
           ],
@@ -1211,6 +1319,7 @@
           "slug": "f-10.1",
           "title": "Cadastro do profissional ligado ao usuário",
           "benefit": "O perfil do profissional (nome, conselho e registro, CNS) fica ligado ao usuário com papel de profissional de saúde.",
+          "description": "O administrador municipal cadastra o perfil de cada profissional com nome, conselho de classe, UF e registro e CNS com dígito verificador validado, que é guardado cifrado e aparece mascarado na tela. O próprio profissional consulta a ficha em Meu perfil e pode ajustar apenas o nome e os dados de contato; os dados de registro ficam sob conferência da prefeitura.",
           "surfaces": [
             "secretaria"
           ],
@@ -1221,6 +1330,7 @@
           "slug": "f-10.2",
           "title": "Vínculo com uma ou mais unidades",
           "benefit": "O profissional pode estar vinculado a uma ou mais unidades, e o histórico de vínculos é preservado.",
+          "description": "O administrador abre e encerra vínculos entre o profissional e as unidades onde ele atua, com data de início e de fim, e essas ações pedem confirmação de identidade. Encerrar um vínculo não apaga nada: o registro fica guardado e os turnos futuros daquele vínculo são cancelados automaticamente.",
           "surfaces": [
             "secretaria"
           ],
@@ -1231,6 +1341,7 @@
           "slug": "f-10.3",
           "title": "Ocupação (CBO) em cada vínculo",
           "benefit": "Cada vínculo registra a ocupação do profissional naquela unidade, pelo código CBO da saúde.",
+          "description": "Ao abrir um vínculo, o administrador escolhe a ocupação a partir de uma lista de códigos CBO da área da saúde, a mesma para todas as cidades. A plataforma confere a coerência com o conselho do profissional, por exemplo impedindo vincular como enfermeiro quem não tem registro no conselho de enfermagem.",
           "surfaces": [
             "secretaria"
           ],
@@ -1241,6 +1352,7 @@
           "slug": "f-10.4",
           "title": "Turnos com data",
           "benefit": "Os turnos são registrados com data em cada vínculo e servem de base para a agenda de vagas.",
+          "description": "A unidade lança os turnos de cada vínculo com início e fim, de até 24 horas, e a plataforma recusa turnos que se sobreponham para o mesmo profissional em qualquer unidade. Turnos cancelados ficam registrados com motivo, e o turno serve de informação para a gestão, sem bloquear o atendimento clínico.",
           "surfaces": [
             "secretaria"
           ],
@@ -1251,6 +1363,7 @@
           "slug": "f-10.5",
           "title": "Chamada e desfecho só por profissional vinculado à unidade",
           "benefit": "Chamar o paciente e registrar o desfecho exigem vínculo ativo com a unidade, e o profissional fica gravado no atendimento.",
+          "description": "Na tela de Atendimento, só quem tem o papel de profissional de saúde e vínculo ativo com a unidade consegue chamar o próximo paciente e registrar o desfecho clínico; os demais recebem o motivo da recusa. O nome do profissional aparece na fila e fica gravado no atendimento, dando rastreabilidade de quem atendeu.",
           "surfaces": [
             "secretaria"
           ],
@@ -1261,6 +1374,7 @@
           "slug": "f-10.6",
           "title": "Importação do cadastro nacional CNES",
           "benefit": "Planejado: trazer os dados do CNES para evitar o cadastro manual.",
+          "description": "Planejado: integrar a plataforma ao cadastro nacional de estabelecimentos e profissionais de saúde, para consultar ou importar os dados em vez de digitá-los um a um. A fonte e o alcance dessa integração ainda estão em definição, e a funcionalidade fica para um próximo ciclo, fora do Ciclo 1.",
           "surfaces": [
             "secretaria"
           ],
@@ -1272,6 +1386,7 @@
           "slug": "f-10.7",
           "title": "Alerta urgente para o profissional",
           "benefit": "Planejado: o alerta de um caso urgente poderia ser enviado ao profissional escalado.",
+          "description": "Planejado: incluir o profissional escalado entre os destinatários do aviso quando uma triagem indicar caso urgente, para agilizar a resposta da unidade. Depende de definir como funciona o plantão na plataforma, e por isso fica para um próximo ciclo, fora do Ciclo 1.",
           "surfaces": [
             "bastidores"
           ],
@@ -1290,7 +1405,8 @@
           "id": "F-11.1",
           "slug": "f-11.1",
           "title": "Bairros da cidade",
-          "benefit": "A prefeitura começa com a lista oficial de bairros já carregada e ajusta quando precisar.",
+          "benefit": "A prefeitura começa com uma lista de bairros já carregada e ajusta quando precisar.",
+          "description": "Cada cidade começa com uma lista inicial de bairros preparada para ela, e o administrador municipal pode criar, renomear, desativar e reativar bairros pelo painel da secretaria. Bairro não é apagado: desativado, deixa de aparecer em escolhas novas, e as edições da prefeitura sempre prevalecem sobre a carga inicial.",
           "surfaces": [
             "secretaria",
             "bastidores"
@@ -1302,6 +1418,7 @@
           "slug": "f-11.2",
           "title": "Unidades que atendem cada bairro",
           "benefit": "Define com clareza qual unidade é responsável por cada bairro.",
+          "description": "O administrador municipal marca, no painel, quais unidades ativas atendem cada bairro da cidade. Essa cobertura define a unidade de referência mostrada ao cidadão e sugerida no encaminhamento, e serve de base para os recortes por área das campanhas. Unidade desativada nunca entra como referência.",
           "surfaces": [
             "secretaria"
           ],
@@ -1312,6 +1429,7 @@
           "slug": "f-11.3",
           "title": "Endereço da unidade com busca por CEP",
           "benefit": "Cadastro de endereço mais rápido e sem erro de digitação.",
+          "description": "Ao cadastrar ou editar uma unidade, a equipe digita o CEP e o próprio navegador busca logradouro e bairro para preencher o formulário. Se a consulta falhar, o preenchimento à mão continua disponível, e o bairro vindo do CEP é só uma sugestão: vale o bairro escolhido na lista da cidade.",
           "surfaces": [
             "secretaria"
           ],
@@ -1322,6 +1440,7 @@
           "slug": "f-11.4",
           "title": "Bairro informado pelo cidadão",
           "benefit": "O cidadão informa o bairro uma única vez e pode trocar quando mudar.",
+          "description": "Na área logada do navegador, o cidadão escolhe seu bairro entre os bairros ativos da cidade e pode trocá-lo quando se mudar. Cada triagem guarda o bairro vigente naquele momento, sem alteração posterior, o que mantém corretos os números por bairro mesmo depois de uma mudança de endereço.",
           "surfaces": [
             "cidadao"
           ],
@@ -1332,6 +1451,7 @@
           "slug": "f-11.5",
           "title": "Unidade de referência no resultado da triagem",
           "benefit": "O cidadão sai da triagem sabendo a qual unidade ir, com o endereço.",
+          "description": "Ao terminar a triagem, o cidadão vê na sua área logada as unidades ativas que atendem o seu bairro, com o endereço de cada uma. A indicação orienta, sem impedir que ele procure outra unidade, e nunca aparece no relatório público, que continua sem bairro nem unidade de referência.",
           "surfaces": [
             "cidadao"
           ],
@@ -1342,6 +1462,7 @@
           "slug": "f-11.6",
           "title": "Unidade de referência sugerida no encaminhamento",
           "benefit": "O profissional encaminha mais rápido para a unidade certa do bairro do paciente.",
+          "description": "Quando o profissional registra o desfecho \"encaminhado\", o sistema já deixa pré-selecionada a unidade que atende o bairro do paciente. A sugestão nunca é a própria unidade do atendimento nem uma unidade desativada, e o profissional pode trocá-la livremente antes de confirmar.",
           "surfaces": [
             "secretaria"
           ],
@@ -1352,6 +1473,7 @@
           "slug": "f-11.7",
           "title": "Painéis por bairro com proteção de privacidade",
           "benefit": "O gestor vê a demanda de cada bairro sem que números pequenos exponham pacientes.",
+          "description": "Os painéis da secretaria que envolvem cidadãos ganham um filtro por bairro, disponível a todos os perfis que já os consultam. Com o filtro ligado, contagens de 1 a 4 aparecem como \"< 5\" e taxas calculadas sobre elas ficam ocultas, para que grupos pequenos não permitam identificar pacientes.",
           "surfaces": [
             "secretaria"
           ],
@@ -1370,6 +1492,7 @@
           "slug": "f-12.1",
           "title": "Papel de gestor de campanhas e chave de SMS da cidade",
           "benefit": "Só quem tem o papel de gestor de campanhas cria avisos, e o SMS só funciona se o administrador da cidade ligar.",
+          "description": "O gestor de campanhas é um papel próprio, concedido pela equipe da cidade com confirmação por código do autenticador. O envio de SMS fica em uma chave da cidade que nasce desligada e só o administrador municipal liga ou desliga; sem ela, os avisos chegam apenas pelo aplicativo do cidadão.",
           "surfaces": [
             "secretaria"
           ],
@@ -1380,6 +1503,7 @@
           "slug": "f-12.2",
           "title": "Escolha do público da campanha",
           "benefit": "A secretaria combina a área (cidade, unidade de referência ou bairros) com critérios como falta em agendamento ou triagem não concluída e vê quantas pessoas serão alcançadas. Nenhuma campanha sai para menos de 5 telefones.",
+          "description": "No editor da campanha, a secretaria define a área e combina critérios como protocolo e período da triagem, faixa de prioridade, desfecho do atendimento, falta ou pedido de agendamento em aberto. A prévia mostra ao vivo quantas pessoas e telefones serão alcançados, e quem revogou o consentimento fica sempre de fora.",
           "surfaces": [
             "secretaria"
           ],
@@ -1390,6 +1514,7 @@
           "slug": "f-12.3",
           "title": "Envio agora ou agendado, com código de segurança",
           "benefit": "A campanha é enviada na hora ou agendada, e pode ser desagendada ou cancelada; enviar pede o código do autenticador.",
+          "description": "A campanha fica em rascunho até ser enviada imediatamente ou agendada para depois, com antecedência de pelo menos cinco minutos e até 90 dias. Antes do envio ela pode ser desagendada ou cancelada, e cada envio pede o código do autenticador de quem envia, o que impede disparos por engano ou por sessão esquecida aberta.",
           "surfaces": [
             "secretaria"
           ],
@@ -1400,6 +1525,7 @@
           "slug": "f-12.4",
           "title": "Avisos no app do cidadão",
           "benefit": "O aviso chega na caixa de avisos do cidadão, com selo de não lidos, e o público fica fixado no momento do envio.",
+          "description": "No momento do envio, o sistema fixa a lista de destinatários; se o público cair abaixo do mínimo nesse instante, a campanha não sai para ninguém. O aviso aparece na caixa de avisos do cidadão, atrás do login, do mais novo para o mais antigo, e é marcado como lido ao ser aberto.",
           "surfaces": [
             "cidadao",
             "bastidores"
@@ -1411,6 +1537,7 @@
           "slug": "f-12.5",
           "title": "Preferências do cidadão",
           "benefit": "O cidadão escolhe se aceita SMS e pode silenciar os avisos.",
+          "description": "Na tela de preferências, o cidadão decide se quer receber SMS avisando que há um aviso novo, opção que começa desligada e é conferida de novo a cada envio. Ele também pode silenciar os avisos: o selo de não lidos some, mas a lista continua disponível para consulta quando quiser.",
           "surfaces": [
             "cidadao"
           ],
@@ -1421,6 +1548,7 @@
           "slug": "f-12.6",
           "title": "Chamada de volta por SMS",
           "benefit": "Um SMS de texto fixo, sem dado pessoal, chama a pessoa de volta, só das 8h às 20h e só para quem aceitou.",
+          "description": "Depois do envio, quem aceitou recebe um SMS de texto fixo com a identificação da secretaria e um link para a caixa de avisos, sem nenhum dado pessoal. O disparo depende da contratação de um provedor de SMS pela cidade, e toda cidade começa com o SMS desligado; até lá, os avisos chegam apenas pelo aplicativo.",
           "surfaces": [
             "bastidores",
             "plataforma"
@@ -1433,6 +1561,7 @@
           "slug": "f-12.7",
           "title": "Painel da campanha",
           "benefit": "A secretaria acompanha cada campanha só com números agregados, incluindo alertas de falha no SMS.",
+          "description": "Para cada campanha, o painel mostra quantas pessoas e telefones foram alcançados, quantos leram o aviso e a situação dos SMS. Nenhuma tela exibe a lista de destinatários, só totais, e um alerta destacado avisa quando SMS não puderam ser enviados, por falha ou por falta de provedor contratado.",
           "surfaces": [
             "secretaria"
           ],
@@ -1451,6 +1580,7 @@
           "slug": "f-13.1",
           "title": "Código de chegada no app do cidadão",
           "benefit": "Nas triagens dos últimos 3 dias, o cidadão toca em \"Cheguei na unidade\" e recebe um código de 6 dígitos, válido por 10 minutos.",
+          "description": "Ao chegar à unidade, o cidadão abre uma triagem recente na área logada do navegador e toca em \"Cheguei na unidade\" para gerar um código de chegada. O código serve só para esse fim, separado do código de validação do cadastro, e é mostrado no balcão para agilizar a entrada na fila.",
           "surfaces": [
             "cidadao"
           ],
@@ -1461,6 +1591,7 @@
           "slug": "f-13.2",
           "title": "Check-in na recepção com código e documento",
           "benefit": "A recepção confirma a chegada com o código e o CPF do documento, e valida o cadastro do cidadão no mesmo passo.",
+          "description": "O atendente da recepção digita o código mostrado pelo cidadão e confere o CPF no documento apresentado. Com isso, a chegada é registrada, o atendimento entra na fila da unidade e o cadastro que o cidadão declarou pelo celular fica validado presencialmente, sem uma segunda etapa no balcão.",
           "surfaces": [
             "secretaria"
           ],
@@ -1471,6 +1602,7 @@
           "slug": "f-13.3",
           "title": "Check-in sem código, com motivo registrado",
           "benefit": "Sem o código, a recepção encontra o cidadão pelo CPF e registra o motivo, e cada consulta fica na trilha da LGPD.",
+          "description": "Para quem chega sem celular ou sem código, a recepção busca a triagem pelo CPF e informa obrigatoriamente o motivo da exceção. Cada busca fica registrada na trilha de auditoria, com quem consultou e em qual unidade, garantindo que o acesso sem código seja sempre justificado e rastreável.",
           "surfaces": [
             "secretaria"
           ],
@@ -1481,6 +1613,7 @@
           "slug": "f-13.4",
           "title": "Fila da unidade pela prioridade da triagem",
           "benefit": "Quem chega entra na fila da unidade pela gravidade apontada na triagem, separada entre aguardando e em atendimento.",
+          "description": "Cada atendimento entra na fila da unidade como aguardando e ordenado pela prioridade da triagem e pela hora de chegada. A equipe vê em separado quem aguarda e quem já está em atendimento, e o balcão enxerga a prioridade, mas não as respostas nem o relatório da triagem.",
           "surfaces": [
             "secretaria"
           ],
@@ -1491,6 +1624,7 @@
           "slug": "f-13.5",
           "title": "Chamada do paciente pelo profissional",
           "benefit": "O profissional chama o próximo da fila ou um paciente específico, sem dois profissionais chamarem a mesma pessoa.",
+          "description": "O profissional de saúde chama pelo painel o próximo paciente da fila, respeitando a prioridade, ou escolhe um paciente específico. O sistema garante que, mesmo com vários profissionais chamando ao mesmo tempo, cada pessoa seja chamada por apenas um deles, e o atendimento passa a constar como em atendimento.",
           "surfaces": [
             "secretaria"
           ],
@@ -1501,6 +1635,7 @@
           "slug": "f-13.6",
           "title": "Registro do desfecho do atendimento",
           "benefit": "O atendimento termina como atendido, encaminhado, retorno ou saída sem atendimento, e retorno ou encaminhamento já viram pedido de agendamento.",
+          "description": "Ao encerrar, o profissional registra o desfecho: atendido, encaminhado (para uma unidade da cidade ou com descrição livre), retorno ou saída sem atendimento de quem ainda aguardava. Retorno e encaminhamento para unidade da cidade geram automaticamente o pedido de agendamento, e atendimento encerrado não pode mais ser alterado.",
           "surfaces": [
             "secretaria"
           ],

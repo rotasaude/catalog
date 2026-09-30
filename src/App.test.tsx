@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { AppRoutes } from "./App";
+import { findFeature } from "./data/catalog";
 
 function renderAt(path: string) {
   return render(
@@ -111,6 +112,8 @@ describe("página da funcionalidade", () => {
     expect(screen.getByText("Disponível e verificado")).toBeInTheDocument();
     expect(screen.getByText(/Link desconhecido, adulterado/)).toBeInTheDocument();
     expect(screen.getByText("Tela do cidadão")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2, name: "O que faz" })).toBeInTheDocument();
+    expect(screen.getByText(findFeature("f-04.3")!.feature.description)).toBeInTheDocument();
     expect(document.title).toBe("Link seguro e temporário (30 dias) · Rota Saúde");
   });
 

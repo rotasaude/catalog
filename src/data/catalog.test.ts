@@ -22,6 +22,12 @@ describe("validateCatalog", () => {
     expect(validateCatalog(data)).toContain("F-02.1: tela desconhecida recepcao");
   });
 
+  it("acusa funcionalidade sem descrição", () => {
+    const data = clone();
+    data.modules[1].features[0].description = "  ";
+    expect(validateCatalog(data)).toContain("F-02.1: sem descrição");
+  });
+
   it("acusa status que não existe no mapa de statuses", () => {
     const data = clone();
     data.modules[2].status = "beta";

@@ -8,6 +8,7 @@ export interface Feature {
   slug: string;
   title: string;
   benefit: string;
+  description: string;
   surfaces: string[];
   status: string;
   note?: string;
