@@ -18,7 +18,9 @@ export function ModuleAccordion({ module: m, open, onToggle }: Props) {
   const headingId = `${anchor}-titulo`;
   const delivered = deliveredCount(m);
   const count =
-    delivered < m.features.length
+    m.features.length === 0
+      ? "Funcionalidades a definir"
+      : delivered < m.features.length
       ? `${delivered} de ${m.features.length} entregues`
       : `${m.features.length} funcionalidades`;
 
@@ -40,7 +42,12 @@ export function ModuleAccordion({ module: m, open, onToggle }: Props) {
         </div>
         <Chevron direction="down" className="caret" />
       </div>
-      {open && (
+      {open && m.features.length === 0 && (
+        <p className="items-empty" id={panelId}>
+          As funcionalidades deste módulo ainda estão sendo definidas.
+        </p>
+      )}
+      {open && m.features.length > 0 && (
         <ul className="items" id={panelId}>
           {m.features.map((f) => (
             <li key={f.slug}>

@@ -66,6 +66,7 @@ h1:focus-visible { outline: 3px solid var(--accent); }
 .mod.off .name, .mod.off .s-desc { color: var(--muted); }
 
 .items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); background: var(--paper); }
+.items-empty { margin: 0; padding: 14px 20px; border-top: 1px solid var(--line); background: var(--paper); color: var(--muted); font-size: 15px; }
 .items li + li { border-top: 1px solid var(--line); }
 .items a { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 16px 10px 20px; color: var(--ink); text-decoration: none; }
 .items a:hover { background: var(--surface-2); }

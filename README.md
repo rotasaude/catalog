@@ -1,6 +1,6 @@
 # Rota Saúde · Catálogo de funcionalidades
 
-App web estático e público que lista as funcionalidades do Ciclo 1 (módulos 01 a 12),
+App web estático e público que lista as funcionalidades do MVP — Ciclo 1 (os 14 módulos, 01 a 14),
 agrupadas por módulo, com uma página por funcionalidade. Não tem backend, login nem
 formulário.
 
