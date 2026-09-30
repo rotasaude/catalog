@@ -36,7 +36,7 @@ describe("lista de módulos", () => {
     expect(within(m10).getByText("5 de 7 entregues")).toBeInTheDocument();
     expect(within(m10).getByText("Disponível e verificado")).toBeInTheDocument();
     const m13 = screen.getByRole("region", { name: /Acompanhamento/ });
-    expect(within(m13).getByText("Em validação")).toBeInTheDocument();
+    expect(within(m13).getByText("Disponível e verificado")).toBeInTheDocument();
     expect(within(m13).getByText("6 funcionalidades")).toBeInTheDocument();
     const m14 = screen.getByRole("region", { name: /Analytics/ });
     expect(within(m14).getByText("Planejado")).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe("lista de módulos", () => {
   it("o rodapé resume o estado dos módulos", () => {
     renderAt("/");
     expect(screen.getByRole("contentinfo")).toHaveTextContent(
-      "Os módulos 02 a 12 estão disponíveis e verificados; o 13 está em validação; o 14 está planejado."
+      "Os módulos 02 a 13 estão disponíveis e verificados; o 14 está planejado."
     );
   });
 
