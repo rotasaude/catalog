@@ -59,6 +59,10 @@ export function FeaturePage() {
           </div>
           <p className="d-benefit">{f.benefit}</p>
           {f.note && <p className="d-note">{f.note}</p>}
+          <section className="d-sec" aria-labelledby="d-faz">
+            <h2 id="d-faz">O que faz</h2>
+            <p className="d-desc">{f.description}</p>
+          </section>
           <section className="d-sec" aria-labelledby="d-onde">
             <h2 id="d-onde">Onde aparece</h2>
             {f.surfaces.length > 0 ? (

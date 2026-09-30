@@ -15,6 +15,7 @@ export function validateCatalog(data: Catalog): string[] {
       if (seen.has(f.slug)) problems.push(`slug repetido: ${f.slug}`);
       seen.add(f.slug);
       if (!(f.status in data.statuses)) problems.push(`${f.id}: status desconhecido ${f.status}`);
+      if (!f.description?.trim()) problems.push(`${f.id}: sem descrição`);
       for (const s of f.surfaces) {
         if (!(s in data.surfaces)) problems.push(`${f.id}: tela desconhecida ${s}`);
       }
