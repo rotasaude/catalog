@@ -1443,68 +1443,68 @@
     {
       "id": "13",
       "name": "Acompanhamento",
-      "status": "validating",
-      "description": "Em validação: acompanha o cidadão na unidade, da chegada à fila, à chamada pelo profissional e ao desfecho do atendimento.",
+      "status": "available",
+      "description": "A triagem feita em casa vira atendimento na unidade: chegada com código, fila pela gravidade, chamada pelo profissional e desfecho registrado.",
       "features": [
         {
           "id": "F-13.1",
           "slug": "f-13.1",
           "title": "Código de chegada no app do cidadão",
-          "benefit": "Em validação: o cidadão mostra na recepção um código de chegada gerado no app.",
+          "benefit": "Nas triagens dos últimos 3 dias, o cidadão toca em \"Cheguei na unidade\" e recebe um código de 6 dígitos, válido por 10 minutos.",
           "surfaces": [
             "cidadao"
           ],
-          "status": "validating"
+          "status": "available"
         },
         {
           "id": "F-13.2",
           "slug": "f-13.2",
           "title": "Check-in na recepção com código e documento",
-          "benefit": "Em validação: a recepção confirma a chegada com o código e o CPF do documento, e aproveita para validar o cadastro.",
+          "benefit": "A recepção confirma a chegada com o código e o CPF do documento, e valida o cadastro do cidadão no mesmo passo.",
           "surfaces": [
             "secretaria"
           ],
-          "status": "validating"
+          "status": "available"
         },
         {
           "id": "F-13.3",
           "slug": "f-13.3",
           "title": "Check-in sem código, com motivo registrado",
-          "benefit": "Em validação: sem o código, a recepção encontra o cidadão pelo CPF e registra o motivo.",
+          "benefit": "Sem o código, a recepção encontra o cidadão pelo CPF e registra o motivo, e cada consulta fica na trilha da LGPD.",
           "surfaces": [
             "secretaria"
           ],
-          "status": "validating"
+          "status": "available"
         },
         {
           "id": "F-13.4",
           "slug": "f-13.4",
           "title": "Fila da unidade pela prioridade da triagem",
-          "benefit": "Em validação: quem chega entra na fila da unidade na ordem da urgência definida pela triagem.",
+          "benefit": "Quem chega entra na fila da unidade pela gravidade apontada na triagem, separada entre aguardando e em atendimento.",
           "surfaces": [
             "secretaria"
           ],
-          "status": "validating"
+          "status": "available"
         },
         {
           "id": "F-13.5",
           "slug": "f-13.5",
           "title": "Chamada do paciente pelo profissional",
-          "benefit": "Em validação: o profissional chama o próximo da fila ou um paciente específico.",
+          "benefit": "O profissional chama o próximo da fila ou um paciente específico, sem dois profissionais chamarem a mesma pessoa.",
           "surfaces": [
             "secretaria"
           ],
-          "status": "validating"
+          "status": "available"
         },
         {
           "id": "F-13.6",
           "slug": "f-13.6",
           "title": "Registro do desfecho do atendimento",
-          "benefit": "Em validação: o atendimento termina como atendido, encaminhado, retorno ou saída sem atendimento.",
+          "benefit": "O atendimento termina como atendido, encaminhado, retorno ou saída sem atendimento, e retorno ou encaminhamento já viram pedido de agendamento.",
           "surfaces": [
             "secretaria"
           ],
-          "status": "validating"
+          "status": "available"
         }
       ]
     },
