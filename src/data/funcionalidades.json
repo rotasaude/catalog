@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-09-29",
+    "updatedAt": "2026-09-30",
     "cycle": {
       "id": 1,
       "label": "Ciclo 1",
-      "modules": "01 a 11"
+      "modules": "01 a 12"
     }
   },
   "statuses": {
@@ -1351,6 +1351,87 @@
           "slug": "f-11.7",
           "title": "Painéis por bairro com proteção de privacidade",
           "benefit": "O gestor vê a demanda de cada bairro sem que números pequenos exponham pacientes.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Campanhas",
+      "status": "available",
+      "description": "Avisos da secretaria para grupos de cidadãos: chama de volta quem faltou, quem abandonou a triagem ou quem mora num bairro alvo de vacinação, sem expor ninguém.",
+      "features": [
+        {
+          "id": "F-12.1",
+          "slug": "f-12.1",
+          "title": "Papel de gestor de campanhas e chave de SMS da cidade",
+          "benefit": "Só quem tem o papel de gestor de campanhas cria avisos, e o SMS só funciona se o administrador da cidade ligar.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-12.2",
+          "slug": "f-12.2",
+          "title": "Escolha do público da campanha",
+          "benefit": "A secretaria combina a área (cidade, unidade de referência ou bairros) com critérios como falta em agendamento ou triagem não concluída e vê quantas pessoas serão alcançadas. Nenhuma campanha sai para menos de 5 telefones.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-12.3",
+          "slug": "f-12.3",
+          "title": "Envio agora ou agendado, com código de segurança",
+          "benefit": "A campanha é enviada na hora ou agendada, e pode ser desagendada ou cancelada; enviar pede o código do autenticador.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-12.4",
+          "slug": "f-12.4",
+          "title": "Avisos no app do cidadão",
+          "benefit": "O aviso chega na caixa de avisos do cidadão, com selo de não lidos, e o público fica fixado no momento do envio.",
+          "surfaces": [
+            "cidadao",
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-12.5",
+          "slug": "f-12.5",
+          "title": "Preferências do cidadão",
+          "benefit": "O cidadão escolhe se aceita SMS e pode silenciar os avisos.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-12.6",
+          "slug": "f-12.6",
+          "title": "Chamada de volta por SMS",
+          "benefit": "Um SMS de texto fixo, sem dado pessoal, chama a pessoa de volta, só das 8h às 20h e só para quem aceitou.",
+          "surfaces": [
+            "bastidores",
+            "plataforma"
+          ],
+          "status": "available",
+          "note": "Depende da contratação do provedor de SMS: hoje toda cidade começa com o SMS desligado, e os avisos chegam pelo app."
+        },
+        {
+          "id": "F-12.7",
+          "slug": "f-12.7",
+          "title": "Painel da campanha",
+          "benefit": "A secretaria acompanha cada campanha só com números agregados, incluindo alertas de falha no SMS.",
           "surfaces": [
             "secretaria"
           ],
