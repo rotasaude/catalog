@@ -24,8 +24,8 @@ describe("lista de módulos", () => {
   it("mostra o cabeçalho e um bloco por módulo, todos fechados", () => {
     renderAt("/");
     expect(screen.getByRole("heading", { level: 1, name: "Funcionalidades do Ciclo 1" })).toBeInTheDocument();
-    expect(screen.getByText("Ciclo 1 · módulos 01 a 11")).toBeInTheDocument();
-    expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(11);
+    expect(screen.getByText("Ciclo 1 · módulos 01 a 12")).toBeInTheDocument();
+    expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(12);
     expect(screen.queryAllByRole("link", { name: /Classificação previsível/ })).toHaveLength(0);
     expect(document.title).toBe("Funcionalidades Rota Saúde");
   });
