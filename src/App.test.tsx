@@ -4,6 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { AppRoutes } from "./App";
 import { findFeature } from "./data/catalog";
+import { ModuleAccordion } from "./components/ModuleAccordion";
 
 function renderAt(path: string) {
   return render(
@@ -40,24 +41,28 @@ describe("lista de módulos", () => {
     expect(within(m13).getByText("Disponível e verificado")).toBeInTheDocument();
     expect(within(m13).getByText("6 funcionalidades")).toBeInTheDocument();
     const m14 = screen.getByRole("region", { name: /Analytics/ });
-    expect(within(m14).getByText("Planejado")).toBeInTheDocument();
-    expect(within(m14).getByText("Funcionalidades a definir")).toBeInTheDocument();
+    expect(within(m14).getByText("Disponível e verificado")).toBeInTheDocument();
+    expect(within(m14).getByText("9 funcionalidades")).toBeInTheDocument();
     const m04 = screen.getByRole("region", { name: /Relatórios/ });
     expect(within(m04).getByText("7 funcionalidades")).toBeInTheDocument();
     expect(within(m04).getByText("Disponível e verificado")).toBeInTheDocument();
   });
 
-  it("módulo sem funcionalidades definidas mostra aviso ao abrir", async () => {
-    const user = userEvent.setup();
-    renderAt("/");
-    await user.click(moduleToggle(/Analytics/));
+  it("módulo sem funcionalidades definidas mostra aviso ao abrir", () => {
+    const empty = { id: "15", name: "Futuro", status: "planned", description: "Planejado: a definir.", features: [] };
+    render(
+      <MemoryRouter>
+        <ModuleAccordion module={empty} open onToggle={() => {}} />
+      </MemoryRouter>
+    );
+    expect(screen.getByText("Funcionalidades a definir")).toBeInTheDocument();
     expect(screen.getByText("As funcionalidades deste módulo ainda estão sendo definidas.")).toBeInTheDocument();
   });
 
   it("o rodapé resume o estado dos módulos", () => {
     renderAt("/");
     expect(screen.getByRole("contentinfo")).toHaveTextContent(
-      "Os módulos 02 a 13 estão disponíveis e verificados; o 14 está planejado."
+      "Os módulos 02 a 14 estão disponíveis e verificados."
     );
   });
 

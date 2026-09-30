@@ -1646,9 +1646,109 @@
     {
       "id": "14",
       "name": "Analytics",
-      "status": "planned",
-      "description": "Planejado: análises ao longo do tempo, como demanda por território, padrões epidemiológicos e qualidade clínica, com proteção de privacidade nos números agregados.",
-      "features": []
+      "status": "available",
+      "description": "Tendências da saúde da cidade ao longo do tempo, por território, qualidade, protocolo e sintomas, sempre sem identificar ninguém.",
+      "features": [
+        {
+          "id": "F-14.1",
+          "slug": "f-14.1",
+          "title": "Consolidação diária dos números da cidade",
+          "benefit": "A secretaria tem histórico de anos, mesmo depois que os registros detalhados são apagados.",
+          "description": "Toda madrugada o sistema resume o dia anterior em contagens anônimas, sem nome nem documento de ninguém. Esse resumo fica guardado por cinco anos e permite enxergar tendências e sazonalidade mesmo depois que os registros individuais já foram apagados pelas regras de privacidade.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-14.2",
+          "slug": "f-14.2",
+          "title": "Área de Analytics com acesso próprio",
+          "benefit": "Quem analisa os dados vê tendências sem ganhar acesso à operação da unidade.",
+          "description": "A secretaria pode dar a um técnico o papel de análise, que abre apenas a área de Analytics. Números muito pequenos, de uma a quatro pessoas, aparecem sempre como ocultos, e totais que permitiriam descobri-los por subtração também ficam ocultos, para que ninguém seja identificado.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-14.3",
+          "slug": "f-14.3",
+          "title": "Demanda por bairro e unidade",
+          "benefit": "Mostra onde e quando a procura por atendimento cresce.",
+          "description": "Mostra, semana a semana ou mês a mês, quantas triagens começaram, terminaram ou foram interrompidas, separadas por bairro, protocolo e gravidade, além da chegada de pessoas às unidades e dos pedidos de retorno e de encaminhamento. Ajuda a planejar equipe e horários onde a demanda aumenta.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-14.4",
+          "slug": "f-14.4",
+          "title": "Qualidade do atendimento",
+          "benefit": "Acompanha espera, faltas e desistências de cada unidade ao longo do tempo.",
+          "description": "Mostra quanto tempo as pessoas esperam entre a chegada e a chamada, quantas faltam aos horários marcados, quantas vão embora sem atendimento e como terminam os atendimentos, para a cidade inteira e para cada unidade. Permite comparar unidades e perceber quando a qualidade piora.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-14.5",
+          "slug": "f-14.5",
+          "title": "Calibração dos protocolos de triagem",
+          "benefit": "Mostra se cada versão do protocolo classifica bem a gravidade dos casos.",
+          "description": "Cruza a gravidade indicada pela triagem com o que aconteceu no atendimento: alta, encaminhamento, retorno ou saída sem atendimento. A comparação é feita por versão do protocolo, o que ajuda a equipe clínica a revisar perguntas e faixas de gravidade com base no que de fato ocorreu.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-14.6",
+          "slug": "f-14.6",
+          "title": "Perguntas escolhidas para análise",
+          "benefit": "A equipe clínica decide quais respostas podem virar estatística.",
+          "description": "Quem escreve o protocolo marca quais perguntas de sim ou não e de lista podem entrar nas estatísticas. A marcação passa pela mesma revisão com duas assinaturas de qualquer mudança no protocolo, e perguntas de texto livre ou de número nunca entram, para não expor informação sensível.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-14.7",
+          "slug": "f-14.7",
+          "title": "Vigilância por sintomas e bairro",
+          "benefit": "Ajuda a perceber aumento de sintomas em um bairro antes que vire surto.",
+          "description": "Mostra ao longo do tempo quantas pessoas responderam cada opção das perguntas marcadas, como febre ou manchas na pele, separadas por bairro. Só entram triagens concluídas e de quem não revogou o consentimento, e grupos muito pequenos aparecem sempre como ocultos.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-14.8",
+          "slug": "f-14.8",
+          "title": "Indicadores das cidades para a plataforma",
+          "benefit": "A operação da plataforma acompanha todas as cidades sem ver dado de ninguém.",
+          "description": "Cada cidade publica seis indicadores semanais da cidade inteira: triagens iniciadas e concluídas, atendimentos encerrados, espera de até 30 minutos, faltas e saídas sem atendimento. A equipe da plataforma compara as cidades lado a lado, só com semanas completas e sem nunca abrir os dados de uma cidade.",
+          "surfaces": [
+            "plataforma"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-14.9",
+          "slug": "f-14.9",
+          "title": "Acompanhamento técnico das estatísticas",
+          "benefit": "A equipe técnica sabe na hora se as estatísticas de uma cidade pararam de ser atualizadas.",
+          "description": "Na ficha de cada cidade, a equipe técnica vê quando as estatísticas foram atualizadas pela última vez, se a última atualização falhou e se os números estão atrasados, junto com os indicadores das últimas semanas. Assim um problema aparece antes que a secretaria perceba números parados.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "available"
+        }
+      ]
     }
   ]
 }
