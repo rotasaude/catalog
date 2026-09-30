@@ -38,15 +38,18 @@ export function ModuleList() {
 
   const available = modules.filter((m) => m.status === "available").map((m) => m.id);
   const validating = modules.filter((m) => m.status === "validating").map((m) => m.id);
+  const planned = modules.filter((m) => m.status === "planned").map((m) => m.id);
 
   return (
     <>
       <header className="top">
         <Brand />
         <span className="cycle">
-          {meta.cycle.label} · módulos {meta.cycle.modules}
+          {meta.cycle.scope} · {meta.cycle.label} · módulos {meta.cycle.modules}
         </span>
-        <h1>Funcionalidades do {meta.cycle.label}</h1>
+        <h1>
+          Funcionalidades do {meta.cycle.scope} · {meta.cycle.label}
+        </h1>
         <p className="lead">
           As funcionalidades do primeiro ciclo de desenvolvimento, separadas por módulo. Abra um módulo e toque numa
           funcionalidade para ver o que ela faz e onde aparece.
@@ -59,7 +62,8 @@ export function ModuleList() {
       </main>
       <footer className="foot">
         Conteúdo verificado até {formatDate(meta.updatedAt)}. Os módulos {available[0]} a {available[available.length - 1]}{" "}
-        estão disponíveis e verificados{validating.length > 0 && `; o ${validating.join(", ")} está em validação`}.
+        estão disponíveis e verificados{validating.length > 0 && `; o ${validating.join(", ")} está em validação`}
+        {planned.length > 0 && `; o ${planned.join(", ")} está planejado`}.
       </footer>
     </>
   );

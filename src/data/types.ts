@@ -22,7 +22,7 @@ export interface Module {
 }
 
 export interface Catalog {
-  meta: { updatedAt: string; cycle: { id: number; label: string; modules: string } };
+  meta: { updatedAt: string; cycle: { id: number; label: string; scope: string; modules: string } };
   statuses: Record<string, string>;
   surfaces: Record<string, { label: string; text: string }>;
   modules: Module[];

@@ -23,9 +23,9 @@ beforeEach(() => {
 describe("lista de módulos", () => {
   it("mostra o cabeçalho e um bloco por módulo, todos fechados", () => {
     renderAt("/");
-    expect(screen.getByRole("heading", { level: 1, name: "Funcionalidades do Ciclo 1" })).toBeInTheDocument();
-    expect(screen.getByText("Ciclo 1 · módulos 01 a 12")).toBeInTheDocument();
-    expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(12);
+    expect(screen.getByRole("heading", { level: 1, name: "Funcionalidades do MVP · Ciclo 1" })).toBeInTheDocument();
+    expect(screen.getByText("MVP · Ciclo 1 · módulos 01 a 14")).toBeInTheDocument();
+    expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(14);
     expect(screen.queryAllByRole("link", { name: /Classificação previsível/ })).toHaveLength(0);
     expect(document.title).toBe("Funcionalidades Rota Saúde");
   });
@@ -35,9 +35,29 @@ describe("lista de módulos", () => {
     const m10 = screen.getByRole("region", { name: /Profissionais/ });
     expect(within(m10).getByText("5 de 7 entregues")).toBeInTheDocument();
     expect(within(m10).getByText("Disponível e verificado")).toBeInTheDocument();
+    const m13 = screen.getByRole("region", { name: /Acompanhamento/ });
+    expect(within(m13).getByText("Em validação")).toBeInTheDocument();
+    expect(within(m13).getByText("6 funcionalidades")).toBeInTheDocument();
+    const m14 = screen.getByRole("region", { name: /Analytics/ });
+    expect(within(m14).getByText("Planejado")).toBeInTheDocument();
+    expect(within(m14).getByText("Funcionalidades a definir")).toBeInTheDocument();
     const m04 = screen.getByRole("region", { name: /Relatórios/ });
     expect(within(m04).getByText("7 funcionalidades")).toBeInTheDocument();
     expect(within(m04).getByText("Disponível e verificado")).toBeInTheDocument();
+  });
+
+  it("módulo sem funcionalidades definidas mostra aviso ao abrir", async () => {
+    const user = userEvent.setup();
+    renderAt("/");
+    await user.click(moduleToggle(/Analytics/));
+    expect(screen.getByText("As funcionalidades deste módulo ainda estão sendo definidas.")).toBeInTheDocument();
+  });
+
+  it("o rodapé resume o estado dos módulos", () => {
+    renderAt("/");
+    expect(screen.getByRole("contentinfo")).toHaveTextContent(
+      "Os módulos 02 a 12 estão disponíveis e verificados; o 13 está em validação; o 14 está planejado."
+    );
   });
 
   it("abre e fecha um módulo", async () => {
@@ -122,7 +142,7 @@ describe("página da funcionalidade", () => {
     renderAt("/funcionalidades/f-99.9");
     expect(screen.getByRole("heading", { level: 1, name: "Funcionalidade não encontrada" })).toBeInTheDocument();
     await user.click(screen.getByRole("link", { name: /Todas as funcionalidades/ }));
-    expect(screen.getByRole("heading", { level: 1, name: "Funcionalidades do Ciclo 1" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "Funcionalidades do MVP · Ciclo 1" })).toBeInTheDocument();
   });
 });
 

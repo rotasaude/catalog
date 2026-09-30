@@ -4,7 +4,8 @@
     "cycle": {
       "id": 1,
       "label": "Ciclo 1",
-      "modules": "01 a 12"
+      "scope": "MVP",
+      "modules": "01 a 14"
     }
   },
   "statuses": {
@@ -1438,6 +1439,81 @@
           "status": "available"
         }
       ]
+    },
+    {
+      "id": "13",
+      "name": "Acompanhamento",
+      "status": "validating",
+      "description": "Em validação: acompanha o cidadão na unidade, da chegada à fila, à chamada pelo profissional e ao desfecho do atendimento.",
+      "features": [
+        {
+          "id": "F-13.1",
+          "slug": "f-13.1",
+          "title": "Código de chegada no app do cidadão",
+          "benefit": "Em validação: o cidadão mostra na recepção um código de chegada gerado no app.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "validating"
+        },
+        {
+          "id": "F-13.2",
+          "slug": "f-13.2",
+          "title": "Check-in na recepção com código e documento",
+          "benefit": "Em validação: a recepção confirma a chegada com o código e o CPF do documento, e aproveita para validar o cadastro.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating"
+        },
+        {
+          "id": "F-13.3",
+          "slug": "f-13.3",
+          "title": "Check-in sem código, com motivo registrado",
+          "benefit": "Em validação: sem o código, a recepção encontra o cidadão pelo CPF e registra o motivo.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating"
+        },
+        {
+          "id": "F-13.4",
+          "slug": "f-13.4",
+          "title": "Fila da unidade pela prioridade da triagem",
+          "benefit": "Em validação: quem chega entra na fila da unidade na ordem da urgência definida pela triagem.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating"
+        },
+        {
+          "id": "F-13.5",
+          "slug": "f-13.5",
+          "title": "Chamada do paciente pelo profissional",
+          "benefit": "Em validação: o profissional chama o próximo da fila ou um paciente específico.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating"
+        },
+        {
+          "id": "F-13.6",
+          "slug": "f-13.6",
+          "title": "Registro do desfecho do atendimento",
+          "benefit": "Em validação: o atendimento termina como atendido, encaminhado, retorno ou saída sem atendimento.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Analytics",
+      "status": "planned",
+      "description": "Planejado: análises ao longo do tempo, como demanda por território, padrões epidemiológicos e qualidade clínica, com proteção de privacidade nos números agregados.",
+      "features": []
     }
   ]
 }
