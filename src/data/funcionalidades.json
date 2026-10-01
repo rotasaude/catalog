@@ -1033,8 +1033,8 @@
     {
       "id": "07",
       "name": "LGPD e auditoria",
-      "status": "available",
-      "description": "Banco e chave próprios por cidade, trilha de auditoria que não se apaga e prazos de retenção cumpridos.",
+      "status": "validating",
+      "description": "Banco e chave próprios por cidade, trilha de auditoria que não se apaga e prazos de retenção cumpridos. A revogação e a exclusão do cadastro estão em validação.",
       "features": [
         {
           "id": "F-07.1",
@@ -1194,12 +1194,12 @@
           "id": "F-07.15",
           "slug": "f-07.15",
           "title": "Revogação de consentimento",
-          "benefit": "Ao revogar, as respostas das triagens que não viraram atendimento são apagadas.",
-          "description": "Quando o cidadão revoga o consentimento, a triagem em andamento é encerrada e as respostas, a classificação e o bairro das triagens que não viraram atendimento são apagados, estejam concluídas ou não. O que virou atendimento no posto fica guardado como registro de saúde, e a revogação entra nas métricas.",
+          "benefit": "Em validação: ao revogar, as respostas das triagens que não viraram atendimento são apagadas.",
+          "description": "Em validação: quando o cidadão revoga o consentimento, a triagem em andamento é encerrada e as respostas, a classificação e o bairro das triagens que não viraram atendimento são apagados, estejam concluídas ou não. O que virou atendimento no posto fica guardado como registro de saúde, e a revogação entra nas métricas.",
           "surfaces": [
             "bastidores"
           ],
-          "status": "available"
+          "status": "validating"
         },
         {
           "id": "F-07.16",

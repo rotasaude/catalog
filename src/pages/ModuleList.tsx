@@ -7,6 +7,18 @@ import { catalog, moduleAnchor } from "../data/catalog";
 
 const { meta, modules } = catalog;
 
+// "02 a 06 e 08 a 14": ids consecutivos viram faixas.
+export function formatRanges(ids: string[]): string {
+  const ranges: string[][] = [];
+  for (const id of ids) {
+    const last = ranges[ranges.length - 1];
+    if (last && Number(id) === Number(last[last.length - 1]) + 1) last.push(id);
+    else ranges.push([id]);
+  }
+  const parts = ranges.map((r) => (r.length === 1 ? r[0] : `${r[0]} a ${r[r.length - 1]}`));
+  return parts.length > 1 ? `${parts.slice(0, -1).join(", ")} e ${parts[parts.length - 1]}` : parts[0] ?? "";
+}
+
 function formatDate(iso: string): string {
   const [y, m, d] = iso.split("-").map(Number);
   return new Date(y, m - 1, d).toLocaleDateString("pt-BR", { day: "numeric", month: "short", year: "numeric" }).replace(".", "");
@@ -61,7 +73,7 @@ export function ModuleList() {
         ))}
       </main>
       <footer className="foot">
-        Conteúdo verificado até {formatDate(meta.updatedAt)}. Os módulos {available[0]} a {available[available.length - 1]}{" "}
+        Conteúdo verificado até {formatDate(meta.updatedAt)}. Os módulos {formatRanges(available)}{" "}
         estão disponíveis e verificados{validating.length > 0 && `; o ${validating.join(", ")} está em validação`}
         {planned.length > 0 && `; o ${planned.join(", ")} está planejado`}.
       </footer>

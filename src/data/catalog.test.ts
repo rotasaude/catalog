@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import raw from "./funcionalidades.json";
 import { catalog, deliveredCount, findFeature, neighbours, validateCatalog } from "./catalog";
 import type { Catalog } from "./types";
+import { formatRanges } from "../pages/ModuleList";
 
 const clone = (): Catalog => JSON.parse(JSON.stringify(raw));
 
@@ -62,5 +63,13 @@ describe("consultas", () => {
     const m10 = catalog.modules.find((m) => m.id === "10")!;
     expect(deliveredCount(m10)).toBe(5);
     expect(m10.features).toHaveLength(7);
+  });
+});
+
+describe("formatRanges", () => {
+  it("junta ids consecutivos em faixas", () => {
+    expect(formatRanges(["02", "03", "04"])).toBe("02 a 04");
+    expect(formatRanges(["02", "03", "05", "07", "08"])).toBe("02 a 03, 05 e 07 a 08");
+    expect(formatRanges(["09"])).toBe("09");
   });
 });
