@@ -477,7 +477,7 @@
           "slug": "f-03.18",
           "title": "Ativação de versão com duas assinaturas",
           "benefit": "Uma única versão ativa por protocolo na cidade, ativada com duas assinaturas.",
-          "description": "Somente versões já publicadas podem entrar em uso, e a ativação exige duas novas assinaturas de revisores da cidade. Em caso de problema, a secretaria pode reverter em emergência para a versão anterior, com confirmação de identidade e motivo registrado. Cada ativação fica no histórico do protocolo.",
+          "description": "Somente versões já publicadas podem entrar em uso, e a ativação exige duas novas assinaturas de revisores da cidade. Em caso de problema, a secretaria pode reverter em emergência para a versão anterior, com confirmação de identidade e motivo registrado, e a reversão só acontece se a versão em uso ainda for a que a tela mostrava. Cada ativação fica no histórico do protocolo.",
           "surfaces": [
             "secretaria",
             "plataforma"
