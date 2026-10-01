@@ -44,7 +44,8 @@ describe("lista de módulos", () => {
     expect(within(m14).getByText("Disponível e verificado")).toBeInTheDocument();
     expect(within(m14).getByText("9 funcionalidades")).toBeInTheDocument();
     const m07 = screen.getByRole("region", { name: /LGPD/ });
-    expect(within(m07).getAllByText("Em validação").length).toBeGreaterThan(0);
+    expect(within(m07).getByText("Disponível e verificado")).toBeInTheDocument();
+    expect(within(m07).getByText("16 funcionalidades")).toBeInTheDocument();
     const m04 = screen.getByRole("region", { name: /Relatórios/ });
     expect(within(m04).getByText("7 funcionalidades")).toBeInTheDocument();
     expect(within(m04).getByText("Disponível e verificado")).toBeInTheDocument();
@@ -64,7 +65,7 @@ describe("lista de módulos", () => {
   it("o rodapé resume o estado dos módulos", () => {
     renderAt("/");
     expect(screen.getByRole("contentinfo")).toHaveTextContent(
-      "Os módulos 02 a 06 e 08 a 14 estão disponíveis e verificados; o 07 está em validação."
+      "Os módulos 02 a 14 estão disponíveis e verificados."
     );
   });
 
