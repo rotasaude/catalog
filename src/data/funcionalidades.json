@@ -1033,8 +1033,8 @@
     {
       "id": "07",
       "name": "LGPD e auditoria",
-      "status": "validating",
-      "description": "Banco e chave próprios por cidade, trilha de auditoria que não se apaga e prazos de retenção cumpridos. A revogação e a exclusão do cadastro estão em validação.",
+      "status": "available",
+      "description": "Banco e chave próprios por cidade, trilha de auditoria que não se apaga, prazos de retenção cumpridos e exclusão do cadastro a pedido do cidadão.",
       "features": [
         {
           "id": "F-07.1",
@@ -1194,23 +1194,23 @@
           "id": "F-07.15",
           "slug": "f-07.15",
           "title": "Revogação de consentimento",
-          "benefit": "Em validação: ao revogar, as respostas das triagens que não viraram atendimento são apagadas.",
-          "description": "Em validação: quando o cidadão revoga o consentimento, a triagem em andamento é encerrada e as respostas, a classificação e o bairro das triagens que não viraram atendimento são apagados, estejam concluídas ou não. O que virou atendimento no posto fica guardado como registro de saúde, e a revogação entra nas métricas.",
+          "benefit": "Ao revogar, as respostas das triagens que não viraram atendimento são apagadas.",
+          "description": "Quando o cidadão revoga o consentimento, a triagem em andamento é encerrada e as respostas, a classificação e o bairro das triagens que não viraram atendimento são apagados, estejam concluídas ou não. O que virou atendimento no posto fica guardado como registro de saúde, e a revogação entra nas métricas.",
           "surfaces": [
             "bastidores"
           ],
-          "status": "validating"
+          "status": "available"
         },
         {
           "id": "F-07.16",
           "slug": "f-07.16",
           "title": "Exclusão do cadastro do cidadão",
-          "benefit": "Em validação: a pedido do cidadão, a prefeitura exclui o cadastro no posto, com o documento conferido.",
-          "description": "Em validação: no posto, o servidor que valida cidadãos registra o pedido depois de conferir o documento, e o administrador da cidade confirma com o código do autenticador. CPF e celular deixam de existir no sistema; só o registro de quem já foi atendido fica guardado por base legal.",
+          "benefit": "A pedido do cidadão, a prefeitura exclui o cadastro no posto, com o documento conferido.",
+          "description": "No posto, o servidor que valida cidadãos registra o pedido depois de conferir o documento, e o administrador da cidade confirma com o código do autenticador. CPF e celular deixam de existir no sistema; só o registro de quem já foi atendido fica guardado por base legal.",
           "surfaces": [
             "secretaria"
           ],
-          "status": "validating"
+          "status": "available"
         }
       ]
     },
