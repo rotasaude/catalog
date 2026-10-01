@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-09-30",
+    "updatedAt": "2026-10-01",
     "cycle": {
       "id": 1,
       "label": "Ciclo 1",
@@ -1194,12 +1194,23 @@
           "id": "F-07.15",
           "slug": "f-07.15",
           "title": "Revogação de consentimento",
-          "benefit": "Ao revogar, a triagem interrompida é encerrada e a revogação entra nas métricas.",
-          "description": "Quando o cidadão revoga o consentimento, a triagem em andamento é encerrada e o conteúdo clínico dela é apagado. A revogação passa a contar nas métricas da secretaria. O registro da revogação é mantido para mostrar que a vontade do cidadão foi respeitada.",
+          "benefit": "Ao revogar, as respostas das triagens que não viraram atendimento são apagadas.",
+          "description": "Quando o cidadão revoga o consentimento, a triagem em andamento é encerrada e as respostas, a classificação e o bairro das triagens que não viraram atendimento são apagados, estejam concluídas ou não. O que virou atendimento no posto fica guardado como registro de saúde, e a revogação entra nas métricas.",
           "surfaces": [
             "bastidores"
           ],
           "status": "available"
+        },
+        {
+          "id": "F-07.16",
+          "slug": "f-07.16",
+          "title": "Exclusão do cadastro do cidadão",
+          "benefit": "Em validação: a pedido do cidadão, a prefeitura exclui o cadastro no posto, com o documento conferido.",
+          "description": "Em validação: no posto, o servidor que valida cidadãos registra o pedido depois de conferir o documento, e o administrador da cidade confirma com o código do autenticador. CPF e celular deixam de existir no sistema; só o registro de quem já foi atendido fica guardado por base legal.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating"
         }
       ]
     },
