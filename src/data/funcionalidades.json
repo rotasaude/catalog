@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-01",
+    "updatedAt": "2026-10-02",
     "cycle": {
       "id": 1,
       "label": "Ciclo 1",
@@ -1235,8 +1235,8 @@
           "id": "F-08.2",
           "slug": "f-08.2",
           "title": "Marcar, encerrar com justificativa e remarcar",
-          "benefit": "A recepção marca na hora da cidade; remarcar cria um horário novo e mantém o antigo registrado.",
-          "description": "A recepção da unidade de destino escolhe data e hora para cada pedido ou o encerra registrando uma justificativa. Se for preciso mudar, o sistema cria um horário novo e guarda o anterior como estava, de modo que o histórico do que foi marcado nunca é apagado nem editado.",
+          "benefit": "A recepção marca o retorno sem colocar dois cidadãos no mesmo horário por engano.",
+          "description": "A recepção marca data e hora do retorno ou do encaminhamento, ou encerra o pedido com justificativa. Se a unidade já tem alguém naquele horário, a tela avisa quantos e só marca como encaixe se a recepção confirmar. Remarcar cria um horário novo, sem apagar o anterior.",
           "surfaces": [
             "secretaria"
           ],
