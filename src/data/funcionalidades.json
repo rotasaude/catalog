@@ -1218,7 +1218,7 @@
       "id": "08",
       "name": "Agendamento",
       "status": "available",
-      "description": "Leva o cidadão de volta à unidade: pedido na fila, horário marcado, confirmação e check-in.",
+      "description": "Leva o cidadão de volta à unidade: pedido na fila, horário marcado, lembrete e confirmação, e check-in.",
       "features": [
         {
           "id": "F-08.1",
@@ -1286,6 +1286,19 @@
             "cidadao"
           ],
           "status": "available"
+        },
+        {
+          "id": "F-08.7",
+          "slug": "f-08.7",
+          "title": "Lembrete de confirmação do horário",
+          "benefit": "O cidadão é lembrado de confirmar o retorno antes que o horário seja cancelado por falta de confirmação.",
+          "description": "Um dia antes do prazo para confirmar um horário ainda pendente, a secretaria manda um SMS de texto fixo, sem local nem motivo, chamando para o canal do cidadão, onde ele vê os horários a confirmar e o prazo de cada um. Quem não quiser pode desligar o lembrete. O SMS só sai quando a cidade liga o SMS e o provedor está contratado.",
+          "surfaces": [
+            "cidadao",
+            "bastidores"
+          ],
+          "status": "available",
+          "note": "O envio do SMS depende da contratação do provedor: hoje toda cidade começa com o SMS desligado, e o aviso aparece só no canal do cidadão."
         }
       ]
     },
