@@ -65,7 +65,7 @@ describe("lista de módulos", () => {
   it("o rodapé resume o estado dos módulos", () => {
     renderAt("/");
     expect(screen.getByRole("contentinfo")).toHaveTextContent(
-      "Os módulos 02 a 08 e 10 a 14 estão disponíveis e verificados; o 09 está em validação."
+      "Os módulos 02 a 14 estão disponíveis e verificados."
     );
   });
 
