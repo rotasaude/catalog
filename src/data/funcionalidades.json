@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-02",
+    "updatedAt": "2026-10-04",
     "cycle": {
       "id": 1,
       "label": "Ciclo 1",
@@ -1306,7 +1306,7 @@
       "id": "09",
       "name": "Unidades de saúde",
       "status": "available",
-      "description": "Cadastro das UBS, UPAs e hospitais da cidade, base do check-in e do agendamento.",
+      "description": "Cadastro das UBS, UPAs e hospitais da cidade, base do check-in e do agendamento, com a opção de esvaziar uma unidade que precisa fechar.",
       "features": [
         {
           "id": "F-09.1",
@@ -1327,6 +1327,18 @@
           "description": "Unidades que fecham ou entram em reforma podem ser desativadas sem apagar o histórico, e reativadas depois. A plataforma bloqueia a desativação enquanto houver cidadãos em atendimento ou pedidos de agendamento pendentes nela, e uma unidade inativa deixa de receber check-in, mesmo em tentativas simultâneas.",
           "surfaces": [
             "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-09.3",
+          "slug": "f-09.3",
+          "title": "Esvaziar unidade",
+          "benefit": "Quando uma unidade precisa fechar, os cidadãos com retorno ou horário marcado vão todos para outra unidade, de uma vez, sem perder o atendimento.",
+          "description": "O administrador da cidade escolhe a unidade de destino e registra o motivo, que não pode ser alterado. Pedidos abertos e horários marcados mudam para lá, mantendo data e hora; se faltarem 48 horas ou mais, o cidadão confirma de novo e vê no canal dele que o local mudou. Depois disso, a unidade pode ser desativada.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
           ],
           "status": "available"
         }
