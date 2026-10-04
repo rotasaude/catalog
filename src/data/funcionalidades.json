@@ -670,8 +670,8 @@
           "id": "F-05.8",
           "slug": "f-05.8",
           "title": "Triagens",
-          "benefit": "Iniciadas, concluídas, taxa de conclusão e versão do protocolo, nunca as respostas.",
-          "description": "A tela de Triagens mostra quantas foram iniciadas e concluídas no período, a taxa de conclusão e qual versão do protocolo clínico foi usada em cada uma. As respostas dadas pelo cidadão nunca aparecem, só os números agregados do atendimento.",
+          "benefit": "A taxa de conclusão reflete só o que o cidadão manteve.",
+          "description": "Acompanha as triagens iniciadas e concluídas e a taxa de conclusão do período, por protocolo. As revogadas contam entre as iniciadas, mas não entre as concluídas nem na taxa, e aparecem à parte como contagem, com a mesma regra do Analytics; com filtro de bairro, essa contagem não aparece.",
           "surfaces": [
             "secretaria"
           ],
@@ -681,8 +681,8 @@
           "id": "F-05.9",
           "slug": "f-05.9",
           "title": "Classificação",
-          "benefit": "Distribuição por faixa de urgência, usando as faixas do protocolo da própria cidade.",
-          "description": "A tela de Classificação mostra como as triagens do período se distribuem pelas faixas de urgência. As faixas são as definidas no protocolo do próprio município, e não categorias genéricas, para que o painel fale a mesma língua da equipe clínica que redigiu o protocolo.",
+          "benefit": "A gestão vê a gravidade da demanda sem contar quem desistiu.",
+          "description": "Mostra as triagens concluídas por faixa de gravidade, urgência e protocolo, com uma amostra recente sem dado do cidadão. As triagens revogadas pelo cidadão ficam fora das faixas e aparecem à parte, como contagem do período, com a mesma regra do Analytics; com filtro de bairro, essa contagem não aparece.",
           "surfaces": [
             "secretaria"
           ],
