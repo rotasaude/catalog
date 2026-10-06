@@ -1,5 +1,5 @@
 import raw from "./funcionalidades.json";
-import type { Catalog, Feature, FeatureHit, Module } from "./types";
+import type { Catalog, Cycle, Feature, FeatureHit, Module } from "./types";
 
 export const catalog = raw as Catalog;
 
@@ -11,6 +11,7 @@ export function validateCatalog(data: Catalog): string[] {
 
   for (const mod of data.modules) {
     if (!(mod.status in data.statuses)) problems.push(`módulo ${mod.id}: status desconhecido ${mod.status}`);
+    if (!data.meta.cycles.some((c) => c.id === mod.cycle)) problems.push(`módulo ${mod.id}: ciclo desconhecido ${mod.cycle}`);
     for (const f of mod.features) {
       if (seen.has(f.slug)) problems.push(`slug repetido: ${f.slug}`);
       seen.add(f.slug);
@@ -40,6 +41,10 @@ export function neighbours({ module, index }: FeatureHit): { prev?: Feature; nex
 // "Entregue" = já implementada, verificada ou em validação; só "planned" fica de fora.
 export function deliveredCount(module: Module): number {
   return module.features.filter((f) => f.status !== "planned").length;
+}
+
+export function cycleTitle(c: Cycle): string {
+  return c.scope ? `${c.label} · ${c.scope}` : c.label;
 }
 
 export function featurePath(slug: string): string {

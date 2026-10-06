@@ -1,12 +1,19 @@
 {
   "meta": {
-    "updatedAt": "2026-10-04",
-    "cycle": {
-      "id": 1,
-      "label": "Ciclo 1",
-      "scope": "MVP",
-      "modules": "01 a 14"
-    }
+    "updatedAt": "2026-10-06",
+    "cycles": [
+      {
+        "id": 1,
+        "label": "Ciclo 1",
+        "scope": "MVP",
+        "modules": "01 a 14"
+      },
+      {
+        "id": 2,
+        "label": "Ciclo 2",
+        "modules": "15 a 17"
+      }
+    ]
   },
   "statuses": {
     "available": "Disponível e verificado",
@@ -35,6 +42,7 @@
   "modules": [
     {
       "id": "01",
+      "cycle": 1,
       "name": "WhatsApp",
       "status": "disabled",
       "description": "Canal opcional pelo WhatsApp, desativado desde 27/09/2026. O cidadão é atendido pela web.",
@@ -163,6 +171,7 @@
     },
     {
       "id": "02",
+      "cycle": 1,
       "name": "Conversação e consentimento",
       "status": "available",
       "description": "Conduz o cidadão do aceite do termo até o resultado, uma conversa por vez, e registra o consentimento.",
@@ -271,7 +280,7 @@
           "slug": "f-02.10",
           "title": "Conversa pelo canal web",
           "benefit": "Consentimento, respostas, desfazer resposta e revogação, tudo pelo navegador.",
-          "description": "Pelo navegador do celular ou do computador, o cidadão aceita o termo, responde a triagem em etapas, pode voltar para corrigir a última resposta e revogar o consentimento quando quiser. Não é preciso instalar aplicativo, e cada cidadão tem uma conversa ativa por vez.",
+          "description": "Pelo navegador do celular ou do computador, o cidadão aceita o termo, escolhe a triagem entre as oferecidas a ele, responde em etapas, pode voltar para corrigir a última resposta e revogar o consentimento quando quiser. Não é preciso instalar aplicativo, e cada cidadão tem uma conversa ativa por vez.",
           "surfaces": [
             "cidadao"
           ],
@@ -281,6 +290,7 @@
     },
     {
       "id": "03",
+      "cycle": 1,
       "name": "Triagem",
       "status": "available",
       "description": "Cada cidade escreve os próprios protocolos de triagem, e nenhum entra em uso sem dupla revisão.",
@@ -300,8 +310,8 @@
           "id": "F-03.2",
           "slug": "f-03.2",
           "title": "Regras de decisão escritas sem programação",
-          "benefit": "O protocolo combina condições como igual, maior, menor, todas e alguma, escritas pela própria equipe.",
-          "description": "A lógica de cada pergunta e de cada regra é descrita como dado, em uma linguagem de condições simples (igual, está entre as opções, maior, menor, todas, alguma, não). A equipe técnica da secretaria monta o caminho da triagem e os critérios de urgência sem depender de desenvolvedor, e o mesmo protocolo vale igual no atendimento e na pré-visualização.",
+          "benefit": "O protocolo combina condições como igual, maior, menor, maior ou igual, todas e alguma, escritas pela própria equipe.",
+          "description": "A lógica de cada pergunta e de cada regra é descrita como dado, numa linguagem de condições simples (igual, está entre as opções, maior, menor, maior ou igual, menor ou igual, todas, alguma, não). A equipe monta o caminho da triagem e os critérios de urgência sem depender de desenvolvedor, e desde o Ciclo 2 pode usar a idade e o sexo da pessoa.",
           "surfaces": [
             "bastidores"
           ],
@@ -410,7 +420,7 @@
           "slug": "f-03.12",
           "title": "Editor de protocolos com pré-visualização",
           "benefit": "A equipe testa o protocolo com respostas de exemplo antes de enviá-lo à revisão.",
-          "description": "A equipe edita o protocolo no painel da secretaria e vê, ao lado, uma simulação ao vivo: responde às perguntas como um cidadão faria e confere o caminho percorrido, a urgência e a recomendação resultantes. A pré-visualização usa as mesmas regras do atendimento real, então o que se testa é o que vai valer depois.",
+          "description": "A equipe edita o protocolo no painel da secretaria e vê, ao lado, uma simulação ao vivo: responde às perguntas como um cidadão faria e confere o caminho, a urgência e a recomendação resultantes. Desde o Ciclo 2, as regras de público são montadas visualmente e um simulador de perfil mostra a quem a triagem seria oferecida.",
           "surfaces": [
             "secretaria"
           ],
@@ -499,6 +509,7 @@
     },
     {
       "id": "04",
+      "cycle": 1,
       "name": "Relatórios",
       "status": "available",
       "description": "Cada triagem vira um relatório que não muda depois de emitido, aberto por um link seguro e temporário.",
@@ -584,6 +595,7 @@
     },
     {
       "id": "05",
+      "cycle": 1,
       "name": "Painel da secretaria",
       "status": "available",
       "description": "Telas de acompanhamento da cidade, só de leitura, sem expor respostas clínicas ou a identidade do cidadão.",
@@ -693,7 +705,7 @@
           "slug": "f-05.10",
           "title": "Protocolos",
           "benefit": "Situação de cada protocolo, incluindo rascunhos reprovados na conferência.",
-          "description": "A tela de Protocolos lista as versões do protocolo clínico da cidade e a situação de cada uma: rascunho, publicada, em uso ou aposentada. Mostra também o resultado das verificações automáticas de cada versão, deixando visíveis os rascunhos que não passaram na conferência.",
+          "description": "A tela de Protocolos lista os protocolos clínicos da cidade e, para cada um, as versões e a situação de cada uma: rascunho, publicada, em uso ou aposentada. Mostra também o resultado das verificações automáticas de cada versão, deixando visíveis os rascunhos que não passaram na conferência.",
           "surfaces": [
             "secretaria"
           ],
@@ -747,6 +759,7 @@
     },
     {
       "id": "06",
+      "cycle": 1,
       "name": "Identidade e acesso",
       "status": "available",
       "description": "Define quem entra e o que pode fazer, com confirmação por código nas ações sensíveis.",
@@ -988,7 +1001,7 @@
           "slug": "f-06.22",
           "title": "Validação presencial do cidadão",
           "benefit": "Na unidade, o atendente valida o cidadão só depois de conferir o documento.",
-          "description": "No primeiro atendimento na unidade, o cidadão mostra na tela do celular um código de validação e apresenta um documento com foto. O servidor com papel de validador digita o código no painel, confere o documento e só então marca o cidadão como validado. A partir daí, o CPF declarado passa a ser identidade comprovada.",
+          "description": "No primeiro atendimento na unidade, o cidadão mostra na tela do celular um código de validação e apresenta um documento com foto. O servidor com papel de validador digita o código, confere o documento e só então marca o cidadão como validado; o CPF passa a ser identidade comprovada e o perfil de idade e sexo fica conferido.",
           "surfaces": [
             "cidadao",
             "secretaria"
@@ -1032,6 +1045,7 @@
     },
     {
       "id": "07",
+      "cycle": 1,
       "name": "LGPD e auditoria",
       "status": "available",
       "description": "Banco e chave próprios por cidade, trilha de auditoria que não se apaga, prazos de retenção cumpridos e exclusão do cadastro a pedido do cidadão.",
@@ -1216,6 +1230,7 @@
     },
     {
       "id": "08",
+      "cycle": 1,
       "name": "Agendamento",
       "status": "available",
       "description": "Leva o cidadão de volta à unidade: pedido na fila, horário marcado, lembrete e confirmação, e check-in.",
@@ -1225,7 +1240,7 @@
           "slug": "f-08.1",
           "title": "Pedido criado a partir do retorno ou encaminhamento",
           "benefit": "Quando o atendimento termina em retorno ou encaminhamento, o pedido entra na fila da unidade de destino.",
-          "description": "Quando o profissional encerra o atendimento com retorno na mesma unidade ou encaminhamento para outra unidade da cidade, o sistema gera sozinho um pedido de agendamento. O pedido aparece na fila da unidade de destino, onde a recepção decide a data, sem depender de papel, telefonema ou planilha paralela.",
+          "description": "Quando o profissional encerra o atendimento com retorno na mesma unidade ou encaminhamento para outra unidade da cidade, o sistema gera sozinho um pedido de agendamento, com tipo, prioridade e prazo. O pedido aparece na fila da unidade de destino, onde a recepção decide a data, sem depender de papel, telefonema ou planilha paralela.",
           "surfaces": [
             "secretaria"
           ],
@@ -1235,8 +1250,8 @@
           "id": "F-08.2",
           "slug": "f-08.2",
           "title": "Marcar, encerrar com justificativa e remarcar",
-          "benefit": "A recepção marca o retorno sem colocar dois cidadãos no mesmo horário por engano.",
-          "description": "A recepção marca data e hora do retorno ou do encaminhamento, ou encerra o pedido com justificativa. Se a unidade já tem alguém naquele horário, a tela avisa quantos e só marca como encaixe se a recepção confirmar. Remarcar cria um horário novo, sem apagar o anterior.",
+          "benefit": "A recepção marca o retorno numa vaga livre do profissional, sem colocar dois cidadãos no mesmo horário.",
+          "description": "A recepção marca data e hora do retorno ou do encaminhamento, ou encerra o pedido com justificativa. Nos dias em que a unidade tem turnos cadastrados, a marcação é feita numa vaga calculada da agenda, com encaixe controlado à parte; nos demais, vale a marcação livre, com aviso de horário ocupado. Remarcar cria um horário novo, sem apagar o anterior.",
           "surfaces": [
             "secretaria"
           ],
@@ -1247,7 +1262,7 @@
           "slug": "f-08.3",
           "title": "Agenda do dia da unidade",
           "benefit": "Os horários do dia de cada unidade, sem misturar unidades.",
-          "description": "A recepção consulta, em uma única tela, todos os horários marcados para o dia na sua própria unidade, com a situação de cada um. Cada unidade enxerga apenas a sua agenda, o que organiza o balcão e evita confusão entre equipes de unidades diferentes.",
+          "description": "A recepção consulta, em uma única tela, todos os horários marcados para o dia na sua própria unidade, com a situação de cada um e, onde há agenda, o profissional e o tipo de atendimento. Cada unidade enxerga apenas a sua agenda, o que organiza o balcão e evita confusão entre equipes de unidades diferentes.",
           "surfaces": [
             "secretaria"
           ],
@@ -1304,6 +1319,7 @@
     },
     {
       "id": "09",
+      "cycle": 1,
       "name": "Unidades de saúde",
       "status": "available",
       "description": "Cadastro das UBS, UPAs e hospitais da cidade, base do check-in e do agendamento, com a opção de esvaziar uma unidade que precisa fechar.",
@@ -1346,6 +1362,7 @@
     },
     {
       "id": "10",
+      "cycle": 1,
       "name": "Profissionais",
       "status": "available",
       "description": "Cadastro dos profissionais da cidade, com vínculo às unidades, ocupação e turnos com data.",
@@ -1388,7 +1405,7 @@
           "slug": "f-10.4",
           "title": "Turnos com data",
           "benefit": "Os turnos são registrados com data em cada vínculo e servem de base para a agenda de vagas.",
-          "description": "A unidade lança os turnos de cada vínculo com início e fim, de até 24 horas, e a plataforma recusa turnos que se sobreponham para o mesmo profissional em qualquer unidade. Turnos cancelados ficam registrados com motivo, e o turno serve de informação para a gestão, sem bloquear o atendimento clínico.",
+          "description": "A unidade lança os turnos de cada vínculo com início e fim, de até 24 horas, e a plataforma recusa turnos que se sobreponham para o mesmo profissional em qualquer unidade. Turnos cancelados ficam registrados com motivo. Desde o Ciclo 2, o turno é a base da agenda de vagas do profissional, e cancelar um turno nunca apaga horário já marcado.",
           "surfaces": [
             "secretaria"
           ],
@@ -1409,13 +1426,14 @@
           "id": "F-10.6",
           "slug": "f-10.6",
           "title": "Importação do cadastro nacional CNES",
-          "benefit": "Planejado: trazer os dados do CNES para evitar o cadastro manual.",
-          "description": "Planejado: integrar a plataforma ao cadastro nacional de estabelecimentos e profissionais de saúde, para consultar ou importar os dados em vez de digitá-los um a um. A fonte e o alcance dessa integração ainda estão em definição, e a funcionalidade fica para um próximo ciclo, fora do Ciclo 1.",
+          "benefit": "Unidades, equipes e profissionais ligados ao CNES sem digitar código a código.",
+          "description": "A base mensal do CNES, o cadastro nacional de estabelecimentos e profissionais de saúde, é importada pela equipe da plataforma, e o painel da secretaria propõe ligar unidades, equipes e profissionais ao cadastro da cidade. O administrador municipal confirma cada proposta, e nada é aplicado sozinho. Entregue no Ciclo 2, pelo módulo de prontuário e exportação.",
           "surfaces": [
-            "secretaria"
+            "secretaria",
+            "plataforma"
           ],
-          "status": "planned",
-          "note": "Fora do Ciclo 1: fica para um próximo ciclo."
+          "status": "available",
+          "note": "Entregue no Ciclo 2 (F-16.5). A cidade precisa ter o código IBGE registrado para receber a importação."
         },
         {
           "id": "F-10.7",
@@ -1433,6 +1451,7 @@
     },
     {
       "id": "11",
+      "cycle": 1,
       "name": "Território",
       "status": "available",
       "description": "Organiza a cidade por bairros para indicar a cada cidadão a unidade de saúde de referência e permitir ao gestor acompanhar os números por bairro, sem identificar ninguém.",
@@ -1519,6 +1538,7 @@
     },
     {
       "id": "12",
+      "cycle": 1,
       "name": "Campanhas",
       "status": "available",
       "description": "Avisos da secretaria para grupos de cidadãos: chama de volta quem faltou, quem abandonou a triagem ou quem mora num bairro alvo de vacinação, sem expor ninguém.",
@@ -1607,6 +1627,7 @@
     },
     {
       "id": "13",
+      "cycle": 1,
       "name": "Acompanhamento",
       "status": "available",
       "description": "A triagem feita em casa vira atendimento na unidade: chegada com código, fila pela gravidade, chamada pelo profissional e desfecho registrado.",
@@ -1681,6 +1702,7 @@
     },
     {
       "id": "14",
+      "cycle": 1,
       "name": "Analytics",
       "status": "available",
       "description": "Tendências da saúde da cidade ao longo do tempo, por território, qualidade, protocolo e sintomas, sempre sem identificar ninguém.",
@@ -1781,6 +1803,324 @@
           "description": "Na ficha de cada cidade, a equipe técnica vê quando as estatísticas foram atualizadas pela última vez, se a última atualização falhou e se os números estão atrasados, junto com os indicadores das últimas semanas. Assim um problema aparece antes que a secretaria perceba números parados.",
           "surfaces": [
             "bastidores"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "cycle": 2,
+      "name": "Triagem por perfil",
+      "status": "available",
+      "description": "Cada cidadão vê só as triagens que se aplicam à sua idade e sexo, e o fim de uma triagem pode recomendar outra, com o público definido pela equipe clínica e controlado pela secretaria.",
+      "features": [
+        {
+          "id": "F-15.1",
+          "slug": "f-15.1",
+          "title": "Perfil de quem faz a triagem",
+          "benefit": "Com data de nascimento e sexo informados uma vez, cada pessoa recebe as triagens certas para ela.",
+          "description": "Depois de escolher para quem é a triagem, o cidadão informa data de nascimento e sexo, e pode declarar a identidade de gênero, que nunca decide a oferta. O perfil fica cifrado com a chave da cidade e pode ser corrigido pelo próprio cidadão até ser conferido com documento na unidade; daí em diante, só muda no posto.",
+          "surfaces": [
+            "cidadao",
+            "secretaria"
+          ],
+          "status": "available",
+          "note": "Antes de oferecer triagens por perfil, cada cidade precisa publicar uma versão do termo de consentimento que cubra esses dados."
+        },
+        {
+          "id": "F-15.2",
+          "slug": "f-15.2",
+          "title": "Regras por idade e sexo nos protocolos",
+          "benefit": "A equipe clínica escreve regras como \"60 anos ou mais\" de forma direta, sem truque de redação.",
+          "description": "A linguagem de condições dos protocolos ganhou \"maior ou igual\" e \"menor ou igual\" e passou a enxergar a idade e o sexo da pessoa e o resultado da triagem. Assim a regra fica escrita do jeito que se lê, o que facilita a revisão de quem assina, e uma informação que falte nunca libera uma triagem por engano.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-15.3",
+          "slug": "f-15.3",
+          "title": "Público de cada triagem definido no protocolo assinado",
+          "benefit": "Quem pode fazer cada triagem é decisão clínica, revisada e assinada como o restante do protocolo.",
+          "description": "Cada protocolo pode declarar para quem se destina, o título e o resumo que o cidadão vê e o intervalo mínimo antes de repetir a mesma triagem. Essas definições fazem parte do conteúdo que passa pelas duas assinaturas de revisores da cidade, ficam guardadas com a versão e não podem ser mudadas sem uma nova revisão.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-15.4",
+          "slug": "f-15.4",
+          "title": "Catálogo de triagens da cidade",
+          "benefit": "A gestão pausa, ordena, restringe e programa as triagens oferecidas, sem nunca ampliar o público definido pela equipe clínica.",
+          "description": "No painel da secretaria, o administrador municipal decide quais triagens ficam disponíveis, em que ordem, em que período e para quais bairros ou faixas, e pode deixar uma triagem só por sugestão. A restrição da cidade sempre se soma à regra assinada, nunca a amplia; cada mudança pede o código do autenticador e fica registrada.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-15.5",
+          "slug": "f-15.5",
+          "title": "Escolha da triagem pelo cidadão",
+          "benefit": "O cidadão vê só as triagens que se aplicam a ele e começa pela que escolher.",
+          "description": "No canal do cidadão, cada pessoa vê as triagens sugeridas para ela, as disponíveis e as feitas recentemente, conforme o próprio perfil e o catálogo da cidade. A triagem começa pelo protocolo escolhido, e a plataforma confere de novo, no início, se ele continua oferecido àquela pessoa naquele momento.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-15.6",
+          "slug": "f-15.6",
+          "title": "Sugestão de outra triagem ao final",
+          "benefit": "O fim de uma triagem pode recomendar outra, sem competir com uma orientação de urgência.",
+          "description": "O protocolo assinado pode indicar outra triagem a sugerir conforme o perfil, as respostas e o resultado. A sugestão aparece em \"Recomendamos também\" e fica pendente no catálogo do cidadão, que decide se faz agora ou depois. Resultado urgente nunca gera sugestão, e um protocolo nunca sugere a si mesmo.",
+          "surfaces": [
+            "cidadao",
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-15.7",
+          "slug": "f-15.7",
+          "title": "Montagem visual das regras, com simulação",
+          "benefit": "A equipe monta as regras de público sem escrever código e confere o efeito antes de enviar à revisão.",
+          "description": "No editor de protocolos do painel da secretaria, as condições são montadas em grupos de \"todas\" e \"alguma\". Um simulador de perfil mostra se a triagem seria oferecida a uma pessoa de determinada idade e sexo e quais sugestões ela receberia, e a pré-visualização reproduz como o cidadão verá a triagem no canal dele.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-15.8",
+          "slug": "f-15.8",
+          "title": "Números de cada triagem do catálogo",
+          "benefit": "A gestão vê quantas vezes cada triagem foi oferecida, iniciada, concluída e quantas vieram de sugestão.",
+          "description": "O painel da secretaria mostra, para cada protocolo do catálogo, quantas vezes ele foi oferecido, iniciado e concluído e quantas triagens começaram a partir de uma sugestão. São só totais, sem identificar ninguém, e contagens de 1 a 4 aparecem como \"< 5\" para que grupos pequenos não permitam reconhecer pessoas.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "cycle": 2,
+      "name": "Prontuário e exportação ao e-SUS",
+      "status": "available",
+      "description": "Prepara a cidade para usar o Rota Saúde como prontuário ou ao lado do e-SUS PEC, entregando a produção da atenção primária pelo caminho oficial do Ministério da Saúde.",
+      "features": [
+        {
+          "id": "F-16.1",
+          "slug": "f-16.1",
+          "title": "Funcionalidades ligadas cidade a cidade",
+          "benefit": "Cada integração que depende de credenciamento externo é liberada por cidade, só quando ela está pronta.",
+          "description": "Funcionalidades como a exportação ao e-SUS e a consulta ao CADSUS têm um interruptor por cidade, que nasce desligado e só a equipe técnica de manutenção liga, com registro na auditoria. A tela mostra o que falta para cada uma funcionar, e o sistema recusa qualquer uso de uma funcionalidade desligada.",
+          "surfaces": [
+            "plataforma",
+            "bastidores"
+          ],
+          "status": "available",
+          "note": "Os interruptores são ligados pela equipe técnica de manutenção, hoje disponível só nos ambientes de desenvolvimento e homologação; em produção, essas integrações ficam desligadas até essa liberação."
+        },
+        {
+          "id": "F-16.2",
+          "slug": "f-16.2",
+          "title": "Modo de prontuário da cidade",
+          "benefit": "Define se a cidade usa o próprio e-SUS PEC como prontuário ou o Rota Saúde, e por onde a produção sai.",
+          "description": "No console da plataforma, a equipe registra o modo contratado pela cidade (sem exportação, integrado ao e-SUS PEC, o Prontuário Eletrônico do Cidadão, ou com o Rota Saúde como prontuário), o código IBGE do município e o endereço seguro do PEC da cidade. Toda cidade começa sem exportação, e cada mudança fica registrada.",
+          "surfaces": [
+            "plataforma"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-16.3",
+          "slug": "f-16.3",
+          "title": "Credenciais de integração da prefeitura",
+          "benefit": "A prefeitura cadastra e testa as próprias credenciais de integração, guardadas cifradas e nunca exibidas.",
+          "description": "O administrador municipal cadastra no painel da secretaria as credenciais do e-SUS PEC e do CADSUS, com confirmação por código do autenticador, e testa a conexão na hora. O segredo fica cifrado com a chave da cidade e nunca aparece em tela, registro ou aviso; se o PEC recusar a credencial, a exportação pausa e o aviso aparece ali.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-16.4",
+          "slug": "f-16.4",
+          "title": "Tabelas oficiais do SUS sempre atualizadas",
+          "benefit": "CID-10, CIAP-2 e a tabela de procedimentos SIGTAP ficam na plataforma, com a versão de cada uma registrada.",
+          "description": "A equipe da plataforma importa dos arquivos oficiais a CID-10, a CIAP-2 (classificação da atenção primária) e a SIGTAP, tabela de procedimentos do SUS atualizada todo mês, sem depender de nova versão do sistema. Uma versão só entra em uso quando a importação termina sem erro, nunca é apagada, e o console avisa quando falta a SIGTAP do mês.",
+          "surfaces": [
+            "plataforma",
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-16.5",
+          "slug": "f-16.5",
+          "title": "Importação do CNES com confirmação da cidade",
+          "benefit": "Unidades, equipes e profissionais são ligados ao CNES sem digitar código a código, e nada muda sem a cidade confirmar.",
+          "description": "A base mensal do CNES, o Cadastro Nacional de Estabelecimentos de Saúde, é importada só para os municípios atendidos. O painel da secretaria propõe ligar unidades pelo código CNES, equipes pelo código INE e profissionais pelo CPF ou CNS, e o administrador confirma cada proposta. Isso reduz o erro de digitação, principal causa de recusa no envio.",
+          "surfaces": [
+            "secretaria",
+            "plataforma"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-16.6",
+          "slug": "f-16.6",
+          "title": "Envio contínuo da produção ao e-SUS",
+          "benefit": "Cada registro segue para o e-SUS PEC da cidade assim que nasce, e o erro aparece dentro do mês, enquanto dá para corrigir.",
+          "description": "A plataforma gera as fichas no formato LEDI APS, o padrão do Ministério da Saúde para sistemas de terceiros, e as envia ao PEC da cidade, que as repassa ao governo federal. Falhas momentâneas são reenviadas sozinhas; recusas ficam à espera de correção, e o conteúdo enviado é apagado depois do aceite.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "available",
+          "note": "O envio foi provado tecnicamente contra um PEC de teste; antes da primeira cidade real faltam o aceite num PEC com CNES real, um ajuste de privacidade na fila de envio e a liberação do interruptor. As primeiras fichas clínicas chegam com os próximos módulos."
+        },
+        {
+          "id": "F-16.7",
+          "slug": "f-16.7",
+          "title": "Acompanhamento da produção e dos prazos",
+          "benefit": "A secretaria vê a situação de cada mês de produção e é alertada quando o prazo de envio se aproxima.",
+          "description": "No painel da secretaria, a tela de produção mostra as fichas de cada competência mensal, os motivos de recusa e o reenvio, que pede o código do autenticador. O prazo segue a tabela oficial de envio, e o alerta sobe quando há pendências perto do fim. O console da plataforma acompanha as competências de todas as cidades.",
+          "surfaces": [
+            "secretaria",
+            "plataforma"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-16.8",
+          "slug": "f-16.8",
+          "title": "Consulta ao CADSUS na validação presencial",
+          "benefit": "No balcão, a data de nascimento e o sexo informados pelo cidadão são conferidos no cadastro nacional, e o CNS vem junto.",
+          "description": "Durante a validação presencial, o servidor consulta o CADSUS, o Cadastro Nacional de Usuários do SUS, para conferir os dados declarados e trazer o Cartão Nacional de Saúde (CNS). Do retorno, a plataforma guarda apenas o CNS e a marca da conferência, e cada consulta fica registrada na trilha de auditoria.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available",
+          "note": "Depende da autorização do DATASUS e da credencial da secretaria; até lá, a consulta só roda em modo simulado. Também depende do interruptor da cidade."
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "cycle": 2,
+      "name": "Agenda dos profissionais",
+      "status": "available",
+      "description": "Agenda de cada profissional a partir dos turnos, com vagas, encaixes controlados e pedidos de consulta gerados pela própria triagem, sempre marcados pela recepção.",
+      "features": [
+        {
+          "id": "F-17.1",
+          "slug": "f-17.1",
+          "title": "Tipos de atendimento",
+          "benefit": "A cidade define os tipos de consulta, com duração e as ocupações que atendem cada um.",
+          "description": "Cada cidade começa com tipos básicos, como consulta médica, de enfermagem, odontológica e retorno, e o administrador municipal ajusta a duração, desativa os que não usa e cria os próprios. Cada tipo indica quais ocupações (CBO) podem atendê-lo, e desativar um tipo nunca afeta pedidos ou horários já existentes.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-17.2",
+          "slug": "f-17.2",
+          "title": "Modelos de agenda por turno",
+          "benefit": "A unidade divide cada turno entre demanda do dia, horários agendáveis e bloqueios, sem montar grade do zero.",
+          "description": "O administrador municipal cria modelos que dividem o turno em faixas de demanda do dia, agendáveis por tipo de atendimento ou bloqueadas, e definem quantos encaixes cabem. Turno sem modelo vira vagas do tipo padrão do vínculo do profissional. Uma pré-visualização mostra o resultado antes de salvar, e mudar o modelo nunca move horário marcado.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-17.3",
+          "slug": "f-17.3",
+          "title": "Marcação em vaga, sem horário duplicado",
+          "benefit": "A recepção marca o cidadão numa vaga livre do profissional, e o sistema impede dois pacientes no mesmo horário.",
+          "description": "As vagas são calculadas a partir dos turnos, dos modelos e dos horários já ocupados, então refletem sempre a escala atual. A recepção escolhe o dia e a vaga do tipo pedido, e o próprio banco de dados recusa dois horários sobrepostos para o mesmo profissional ou para o mesmo cidadão, mesmo com duas recepções marcando ao mesmo tempo.",
+          "surfaces": [
+            "secretaria",
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-17.4",
+          "slug": "f-17.4",
+          "title": "Encaixe com justificativa e limite",
+          "benefit": "O encaixe, prática real da unidade, passa a ter justificativa registrada e um teto por turno.",
+          "description": "Quando não há vaga, a recepção pode encaixar o cidadão dentro de um turno, escrevendo uma justificativa que não pode ser alterada depois. Cada turno tem um limite de encaixes, conferido mesmo quando duas pessoas encaixam ao mesmo tempo, e o encaixe aparece destacado na agenda, em vez de virar um furo invisível.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-17.5",
+          "slug": "f-17.5",
+          "title": "Pedido de consulta gerado pela triagem",
+          "benefit": "Quando o protocolo indica consulta, a triagem já gera o pedido com tipo, prioridade e prazo.",
+          "description": "O protocolo assinado pode definir, conforme o resultado, que tipo de consulta o cidadão precisa e em quanto tempo. O pedido vai para a unidade de referência do bairro e aparece para o cidadão no resultado e em seus horários; não duplica pedido aberto do mesmo tipo, e resultado urgente nunca gera pedido, pois segue a orientação de urgência.",
+          "surfaces": [
+            "cidadao",
+            "secretaria",
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-17.6",
+          "slug": "f-17.6",
+          "title": "Fila de pedidos por prazo e prioridade",
+          "benefit": "A recepção vê primeiro os pedidos atrasados, depois os de prazo mais curto e maior prioridade.",
+          "description": "Todos os pedidos, venham da triagem, de retorno ou de encaminhamento, têm tipo, prioridade e prazo, e a fila da unidade os ordena por atraso, prazo e prioridade, com marcas de falta e de remarcação pedida. Pedidos de quem mora em bairro sem unidade de referência caem numa fila própria, onde a recepção atribui a unidade.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-17.7",
+          "slug": "f-17.7",
+          "title": "\"Não posso nesse horário\"",
+          "benefit": "O cidadão avisa que não pode comparecer e o pedido volta à fila, sem perder o prazo.",
+          "description": "No canal do cidadão, a pessoa pode recusar o horário marcado escolhendo um motivo de uma lista e o período que prefere. O horário é cancelado e o pedido volta para a fila da unidade com o mesmo prazo e essas informações à vista da recepção, que marca de novo. O cidadão nunca escolhe a vaga sozinho.",
+          "surfaces": [
+            "cidadao",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-17.8",
+          "slug": "f-17.8",
+          "title": "Lembrete na véspera do horário",
+          "benefit": "Na véspera do horário confirmado, o cidadão recebe um lembrete no canal dele e, se aceitou, por SMS.",
+          "description": "Na véspera, no fim da tarde, cada horário confirmado gera um aviso na caixa de avisos do canal do cidadão, uma única vez. Onde a cidade ligou o SMS e a pessoa aceitou recebê-lo, também sai um SMS de texto fixo, sem local nem motivo, chamando para o canal. Quem não quiser pode desligar os lembretes.",
+          "surfaces": [
+            "cidadao",
+            "bastidores"
+          ],
+          "status": "available",
+          "note": "O envio do SMS depende da contratação do provedor: hoje toda cidade começa com o SMS desligado, e o lembrete aparece só no canal do cidadão."
+        },
+        {
+          "id": "F-17.9",
+          "slug": "f-17.9",
+          "title": "Agenda da unidade e do profissional",
+          "benefit": "A recepção vê a agenda da unidade por profissional, e cada profissional vê a própria.",
+          "description": "No painel da secretaria, a recepção consulta a agenda da unidade com os horários de cada profissional, separando vagas, encaixes e marcações antigas. O profissional de saúde acompanha a própria agenda em Minha agenda. Dias em que a unidade ainda não tem turnos cadastrados continuam com a marcação livre de antes, sem interromper o atendimento.",
+          "surfaces": [
+            "secretaria"
           ],
           "status": "available"
         }

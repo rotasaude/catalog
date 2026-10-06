@@ -29,6 +29,12 @@ describe("validateCatalog", () => {
     expect(validateCatalog(data)).toContain("F-02.1: sem descrição");
   });
 
+  it("acusa módulo de ciclo que não existe", () => {
+    const data = clone();
+    data.modules[0].cycle = 9;
+    expect(validateCatalog(data)).toContain("módulo 01: ciclo desconhecido 9");
+  });
+
   it("acusa status que não existe no mapa de statuses", () => {
     const data = clone();
     data.modules[2].status = "beta";
@@ -61,7 +67,7 @@ describe("consultas", () => {
 
   it("conta como entregues as funcionalidades que não estão planejadas", () => {
     const m10 = catalog.modules.find((m) => m.id === "10")!;
-    expect(deliveredCount(m10)).toBe(5);
+    expect(deliveredCount(m10)).toBe(6);
     expect(m10.features).toHaveLength(7);
   });
 });

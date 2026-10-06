@@ -16,14 +16,22 @@ export interface Feature {
 
 export interface Module {
   id: string;
+  cycle: number;
   name: string;
   status: string;
   description: string;
   features: Feature[];
 }
 
+export interface Cycle {
+  id: number;
+  label: string;
+  scope?: string;
+  modules: string;
+}
+
 export interface Catalog {
-  meta: { updatedAt: string; cycle: { id: number; label: string; scope: string; modules: string } };
+  meta: { updatedAt: string; cycles: Cycle[] };
   statuses: Record<string, string>;
   surfaces: Record<string, { label: string; text: string }>;
   modules: Module[];

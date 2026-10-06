@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { ModuleAccordion } from "../components/ModuleAccordion";
 import { useOpenModules } from "../components/OpenModules";
 import { Brand } from "../components/icons";
-import { catalog, moduleAnchor } from "../data/catalog";
+import { catalog, cycleTitle, moduleAnchor } from "../data/catalog";
 
 const { meta, modules } = catalog;
 
@@ -56,20 +56,34 @@ export function ModuleList() {
     <>
       <header className="top">
         <Brand />
-        <span className="cycle">
-          {meta.cycle.scope} · {meta.cycle.label} · módulos {meta.cycle.modules}
-        </span>
-        <h1>
-          Funcionalidades do {meta.cycle.scope} · {meta.cycle.label}
-        </h1>
+        <div className="cycle-pills">
+          {meta.cycles.map((c) => (
+            <span key={c.id} className="cycle">
+              {cycleTitle(c)} · módulos {c.modules}
+            </span>
+          ))}
+        </div>
+        <h1>Funcionalidades do Rota Saúde</h1>
         <p className="lead">
-          As funcionalidades do primeiro ciclo de desenvolvimento, separadas por módulo. Abra um módulo e toque numa
+          As funcionalidades entregues, separadas por ciclo de desenvolvimento e por módulo. Abra um módulo e toque numa
           funcionalidade para ver o que ela faz e onde aparece.
         </p>
       </header>
-      <main className="mods">
-        {modules.map((m) => (
-          <ModuleAccordion key={m.id} module={m} open={isOpen(m.id)} onToggle={(v) => setOpen(m.id, v)} />
+      <main className="cycles">
+        {meta.cycles.map((c) => (
+          <section key={c.id} className="cycle-sec" aria-labelledby={`ciclo-${c.id}`}>
+            <div className="cycle-head">
+              <h2 id={`ciclo-${c.id}`}>{cycleTitle(c)}</h2>
+              <p>módulos {c.modules}</p>
+            </div>
+            <div className="mods">
+              {modules
+                .filter((m) => m.cycle === c.id)
+                .map((m) => (
+                  <ModuleAccordion key={m.id} module={m} open={isOpen(m.id)} onToggle={(v) => setOpen(m.id, v)} />
+                ))}
+            </div>
+          </section>
         ))}
       </main>
       <footer className="foot">

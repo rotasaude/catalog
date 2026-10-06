@@ -28,12 +28,12 @@ export function ModuleAccordion({ module: m, open, onToggle }: Props) {
     <section id={anchor} className={`mod${open ? " open" : ""}${m.status === "disabled" ? " off" : ""}`} aria-labelledby={headingId}>
       <div className="summary" onClick={(e) => { if (!(e.target as HTMLElement).closest("button")) onToggle(!open); }}>
         <div className="s-main">
-          <h2 id={headingId} className="s-title">
+          <h3 id={headingId} className="s-title">
             <button type="button" aria-expanded={open} aria-controls={panelId} onClick={() => onToggle(!open)}>
               <span className="num">Módulo {m.id}</span>{" "}
               <span className="name">{m.name}</span>
             </button>
-          </h2>
+          </h3>
           <p className="s-desc">{m.description}</p>
           <p className="meta">
             <StatusBadge status={m.status} />
