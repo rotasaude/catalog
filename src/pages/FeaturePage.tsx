@@ -34,7 +34,7 @@ export function FeaturePage() {
         <BackLink />
         <main className="d-card">
           <h1 ref={titleRef} tabIndex={-1}>Funcionalidade não encontrada</h1>
-          <p>O endereço não corresponde a nenhuma funcionalidade do {catalog.meta.cycle.label}.</p>
+          <p>O endereço não corresponde a nenhuma funcionalidade do catálogo.</p>
         </main>
       </>
     );

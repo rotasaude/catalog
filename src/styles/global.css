@@ -44,6 +44,14 @@ h1:focus-visible { outline: 3px solid var(--accent); }
 .lead { font-size: 18px; max-width: 62ch; }
 .cycle { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-family: var(--display); font-weight: 700; font-size: 14px; }
 
+/* Ciclos */
+.cycle-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.cycles { display: flex; flex-direction: column; gap: 36px; }
+.cycle-sec { display: flex; flex-direction: column; gap: 14px; }
+.cycle-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.cycle-head h2 { font-size: 24px; }
+.cycle-head p { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+
 /* Módulos */
 .mods { display: flex; flex-direction: column; gap: 12px; }
 .mod { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; scroll-margin-top: 20px; }
@@ -52,7 +60,7 @@ h1:focus-visible { outline: 3px solid var(--accent); }
 .mod .summary:hover { background: var(--surface-2); }
 .mod .summary:hover .name { text-decoration: underline; text-underline-offset: 3px; }
 .s-main { flex-grow: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.s-title { font-size: 22px; }
+.s-title { font-size: 22px; margin: 0; }
 .s-title button {
   all: unset; cursor: pointer; display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px;
   border-radius: 6px;

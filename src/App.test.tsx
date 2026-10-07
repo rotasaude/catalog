@@ -25,9 +25,12 @@ beforeEach(() => {
 describe("lista de módulos", () => {
   it("mostra o cabeçalho e um bloco por módulo, todos fechados", () => {
     renderAt("/");
-    expect(screen.getByRole("heading", { level: 1, name: "Funcionalidades do MVP · Ciclo 1" })).toBeInTheDocument();
-    expect(screen.getByText("MVP · Ciclo 1 · módulos 01 a 14")).toBeInTheDocument();
-    expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(14);
+    expect(screen.getByRole("heading", { level: 1, name: "Funcionalidades do Rota Saúde" })).toBeInTheDocument();
+    expect(screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent)).toEqual([
+      "Ciclo 1 · MVP",
+      "Ciclo 2"
+    ]);
+    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(17);
     expect(screen.queryAllByRole("link", { name: /Classificação previsível/ })).toHaveLength(0);
     expect(document.title).toBe("Funcionalidades Rota Saúde");
   });
@@ -35,7 +38,7 @@ describe("lista de módulos", () => {
   it("mostra status e contagem de cada módulo", () => {
     renderAt("/");
     const m10 = screen.getByRole("region", { name: /Profissionais/ });
-    expect(within(m10).getByText("5 de 7 entregues")).toBeInTheDocument();
+    expect(within(m10).getByText("6 de 7 entregues")).toBeInTheDocument();
     expect(within(m10).getByText("Disponível e verificado")).toBeInTheDocument();
     const m13 = screen.getByRole("region", { name: /Acompanhamento/ });
     expect(within(m13).getByText("Disponível e verificado")).toBeInTheDocument();
@@ -52,7 +55,7 @@ describe("lista de módulos", () => {
   });
 
   it("módulo sem funcionalidades definidas mostra aviso ao abrir", () => {
-    const empty = { id: "15", name: "Futuro", status: "planned", description: "Planejado: a definir.", features: [] };
+    const empty = { id: "99", cycle: 1, name: "Futuro", status: "planned", description: "Planejado: a definir.", features: [] };
     render(
       <MemoryRouter>
         <ModuleAccordion module={empty} open onToggle={() => {}} />
@@ -65,14 +68,25 @@ describe("lista de módulos", () => {
   it("o rodapé resume o estado dos módulos", () => {
     renderAt("/");
     expect(screen.getByRole("contentinfo")).toHaveTextContent(
-      "Os módulos 02 a 14 estão disponíveis e verificados."
+      "Os módulos 02 a 17 estão disponíveis e verificados."
     );
+  });
+
+  it("agrupa os módulos pelo ciclo", () => {
+    renderAt("/");
+    const c1 = screen.getByRole("region", { name: "Ciclo 1 · MVP" });
+    const c2 = screen.getByRole("region", { name: "Ciclo 2" });
+    expect(within(c1).getByText("módulos 01 a 14")).toBeInTheDocument();
+    expect(within(c2).getByText("módulos 15 a 17")).toBeInTheDocument();
+    expect(within(c1).getByRole("region", { name: /Módulo 14/ })).toBeInTheDocument();
+    expect(within(c2).getByRole("region", { name: /Módulo 15/ })).toBeInTheDocument();
+    expect(within(c1).queryByRole("region", { name: /Módulo 15/ })).not.toBeInTheDocument();
   });
 
   it("abre e fecha um módulo", async () => {
     const user = userEvent.setup();
     renderAt("/");
-    const toggle = moduleToggle(/Triagem/);
+    const toggle = moduleToggle(/Módulo 03/);
     expect(toggle).toHaveAttribute("aria-expanded", "false");
 
     await user.click(toggle);
@@ -87,15 +101,15 @@ describe("lista de módulos", () => {
   it("abre pelo teclado", async () => {
     const user = userEvent.setup();
     renderAt("/");
-    moduleToggle(/Triagem/).focus();
+    moduleToggle(/Módulo 03/).focus();
     await user.keyboard("{Enter}");
-    expect(moduleToggle(/Triagem/)).toHaveAttribute("aria-expanded", "true");
+    expect(moduleToggle(/Módulo 03/)).toHaveAttribute("aria-expanded", "true");
   });
 
   it("mostra o status do item quando difere do módulo", async () => {
     const user = userEvent.setup();
     renderAt("/");
-    await user.click(moduleToggle(/Triagem/));
+    await user.click(moduleToggle(/Módulo 03/));
     const item = screen.getByRole("link", { name: /Perguntas adaptadas ao WhatsApp/ });
     expect(item).toHaveTextContent("Canal desativado");
     expect(screen.getByRole("link", { name: /Classificação por pontuação/ })).not.toHaveTextContent("Disponível");
@@ -105,7 +119,8 @@ describe("lista de módulos", () => {
     const user = userEvent.setup();
     renderAt("/");
     await user.click(moduleToggle(/Profissionais/));
-    expect(screen.getByRole("link", { name: /CNES/ })).toHaveTextContent("Planejado");
+    expect(screen.getByRole("link", { name: /Alerta urgente/ })).toHaveTextContent("Planejado");
+    expect(screen.getByRole("link", { name: /CNES/ })).not.toHaveTextContent("Planejado");
     expect(screen.getByRole("link", { name: /Turnos com data/ })).not.toHaveTextContent("Planejado");
   });
 });
@@ -153,7 +168,7 @@ describe("página da funcionalidade", () => {
     renderAt("/funcionalidades/f-99.9");
     expect(screen.getByRole("heading", { level: 1, name: "Funcionalidade não encontrada" })).toBeInTheDocument();
     await user.click(screen.getByRole("link", { name: /Todas as funcionalidades/ }));
-    expect(screen.getByRole("heading", { level: 1, name: "Funcionalidades do MVP · Ciclo 1" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "Funcionalidades do Rota Saúde" })).toBeInTheDocument();
   });
 });
 
@@ -169,7 +184,7 @@ describe("ida e volta", () => {
     await user.click(screen.getByRole("link", { name: /Todas as funcionalidades/ }));
 
     expect(moduleToggle(/Relatórios/)).toHaveAttribute("aria-expanded", "true");
-    expect(moduleToggle(/Triagem/)).toHaveAttribute("aria-expanded", "false");
+    expect(moduleToggle(/Módulo 03/)).toHaveAttribute("aria-expanded", "false");
     await waitFor(() => expect(Element.prototype.scrollIntoView).toHaveBeenCalled());
   });
 
