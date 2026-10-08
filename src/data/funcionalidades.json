@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-06",
+    "updatedAt": "2026-10-08",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 17"
+        "modules": "15 a 18"
       }
     ]
   },
@@ -1670,7 +1670,7 @@
           "slug": "f-13.4",
           "title": "Fila da unidade pela prioridade da triagem",
           "benefit": "Quem chega entra na fila da unidade pela gravidade apontada na triagem, separada entre aguardando e em atendimento.",
-          "description": "Cada atendimento entra na fila da unidade como aguardando e ordenado pela prioridade da triagem e pela hora de chegada. A equipe vê em separado quem aguarda e quem já está em atendimento, e o balcão enxerga a prioridade, mas não as respostas nem o relatório da triagem.",
+          "description": "Cada atendimento entra na fila da unidade como aguardando e ordenado pela prioridade da triagem e pela hora de chegada. A equipe vê em separado quem aguarda e quem já está em atendimento, e o balcão enxerga a prioridade, mas não as respostas nem o relatório da triagem. Onde a unidade faz o acolhimento do módulo 18, quem passou pela escuta e ficou para consulta no dia vem primeiro na fila do profissional, ordenado pela cor da classificação de risco.",
           "surfaces": [
             "secretaria"
           ],
@@ -1692,7 +1692,7 @@
           "slug": "f-13.6",
           "title": "Registro do desfecho do atendimento",
           "benefit": "O atendimento termina como atendido, encaminhado, retorno ou saída sem atendimento, e retorno ou encaminhamento já viram pedido de agendamento.",
-          "description": "Ao encerrar, o profissional registra o desfecho: atendido, encaminhado (para uma unidade da cidade ou com descrição livre), retorno ou saída sem atendimento de quem ainda aguardava. Retorno e encaminhamento para unidade da cidade geram automaticamente o pedido de agendamento, e atendimento encerrado não pode mais ser alterado.",
+          "description": "Ao encerrar, o profissional registra o desfecho: atendido, encaminhado (para uma unidade da cidade ou com descrição livre), retorno ou saída sem atendimento de quem ainda aguardava. Retorno e encaminhamento para unidade da cidade geram automaticamente o pedido de agendamento, e atendimento encerrado não pode mais ser alterado. Pelo acolhimento do módulo 18, o atendimento também pode se encerrar já na escuta, como agendado ou orientado.",
           "surfaces": [
             "secretaria"
           ],
@@ -1979,19 +1979,19 @@
           "slug": "f-16.6",
           "title": "Envio contínuo da produção ao e-SUS",
           "benefit": "Cada registro segue para o e-SUS PEC da cidade assim que nasce, e o erro aparece dentro do mês, enquanto dá para corrigir.",
-          "description": "A plataforma gera as fichas no formato LEDI APS, o padrão do Ministério da Saúde para sistemas de terceiros, e as envia ao PEC da cidade, que as repassa ao governo federal. Falhas momentâneas são reenviadas sozinhas; recusas ficam à espera de correção, e o conteúdo enviado é apagado depois do aceite.",
+          "description": "A plataforma gera as fichas no formato LEDI APS, o padrão do Ministério da Saúde para sistemas de terceiros, e as envia ao PEC da cidade, que as repassa ao governo federal. Falhas momentâneas são reenviadas sozinhas; recusas ficam à espera de correção, e o conteúdo enviado é apagado depois do aceite ou, nas fichas recusadas ou com falha, 90 dias depois da última tentativa.",
           "surfaces": [
             "bastidores"
           ],
           "status": "available",
-          "note": "O envio foi provado tecnicamente contra um PEC de teste; antes da primeira cidade real faltam o aceite num PEC com CNES real, um ajuste de privacidade na fila de envio e a liberação do interruptor. As primeiras fichas clínicas chegam com os próximos módulos."
+          "note": "O envio foi provado tecnicamente contra um PEC de teste; antes da primeira cidade real faltam o aceite num PEC com CNES real e a liberação do interruptor. A primeira ficha clínica, a da escuta inicial, chegou com o módulo 18."
         },
         {
           "id": "F-16.7",
           "slug": "f-16.7",
           "title": "Acompanhamento da produção e dos prazos",
           "benefit": "A secretaria vê a situação de cada mês de produção e é alertada quando o prazo de envio se aproxima.",
-          "description": "No painel da secretaria, a tela de produção mostra as fichas de cada competência mensal, os motivos de recusa e o reenvio, que pede o código do autenticador. O prazo segue a tabela oficial de envio, e o alerta sobe quando há pendências perto do fim. O console da plataforma acompanha as competências de todas as cidades.",
+          "description": "No painel da secretaria, a tela de produção mostra as fichas de cada competência mensal, os motivos de recusa por campo e código, as fichas que não puderam ser geradas e o reenvio, que pede o código do autenticador. O prazo segue a tabela oficial de envio, e o alerta sobe quando há pendências perto do fim. O console da plataforma acompanha as competências de todas as cidades.",
           "surfaces": [
             "secretaria",
             "plataforma"
@@ -2082,7 +2082,7 @@
           "slug": "f-17.6",
           "title": "Fila de pedidos por prazo e prioridade",
           "benefit": "A recepção vê primeiro os pedidos atrasados, depois os de prazo mais curto e maior prioridade.",
-          "description": "Todos os pedidos, venham da triagem, de retorno ou de encaminhamento, têm tipo, prioridade e prazo, e a fila da unidade os ordena por atraso, prazo e prioridade, com marcas de falta e de remarcação pedida. Pedidos de quem mora em bairro sem unidade de referência caem numa fila própria, onde a recepção atribui a unidade.",
+          "description": "Todos os pedidos, venham da triagem, do acolhimento, de retorno ou de encaminhamento, têm tipo, prioridade e prazo, e a fila da unidade os ordena por atraso, prazo e prioridade, com marcas de falta e de remarcação pedida. Pedidos de quem mora em bairro sem unidade de referência caem numa fila própria, onde a recepção atribui a unidade.",
           "surfaces": [
             "secretaria"
           ],
@@ -2121,6 +2121,105 @@
           "description": "No painel da secretaria, a recepção consulta a agenda da unidade com os horários de cada profissional, separando vagas, encaixes e marcações antigas. O profissional de saúde acompanha a própria agenda em Minha agenda. Dias em que a unidade ainda não tem turnos cadastrados continuam com a marcação livre de antes, sem interromper o atendimento.",
           "surfaces": [
             "secretaria"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "cycle": 2,
+      "name": "Acolhimento",
+      "status": "available",
+      "description": "A escuta inicial na unidade, entre a chegada e a chamada do profissional: queixa, sinais vitais, classificação de risco pelas cores do Ministério da Saúde e o destino de cada pessoa, com a ficha seguindo para o e-SUS.",
+      "features": [
+        {
+          "id": "F-18.1",
+          "slug": "f-18.1",
+          "title": "Escuta inicial na unidade",
+          "benefit": "Quem chega à unidade é ouvido antes da consulta, com a queixa codificada e os sinais vitais registrados.",
+          "description": "Entre a chegada e a chamada do profissional, médicos, enfermeiros e técnicos ou auxiliares de enfermagem com vínculo na unidade registram a queixa pela classificação CIAP-2, com texto opcional, e sinais vitais como pressão, temperatura, saturação e glicemia. Valores impossíveis são recusados, os fora da faixa ficam destacados e o IMC é calculado. Cada unidade escolhe se faz a escuta só de quem chega sem horário marcado, o padrão, ou de todos.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-18.2",
+          "slug": "f-18.2",
+          "title": "Classificação de risco por cores, sugerida por protocolo assinado",
+          "benefit": "A cor de risco do Caderno de Atenção Básica nº 28 é sugerida por regras revisadas pela equipe clínica, e a decisão final é do profissional.",
+          "description": "A classificação usa as quatro cores do Caderno de Atenção Básica nº 28, referência do Ministério da Saúde para a demanda espontânea: vermelho, amarelo, verde e azul. Regras da cidade, montadas no editor de protocolos e aprovadas pelas duas assinaturas de revisores, sugerem a cor a partir da queixa, dos sinais vitais e do perfil, e vale a mais grave. O profissional confirma ou muda a cor, com justificativa obrigatória ao mudar; sem protocolo de acolhimento ativo, não há sugestão.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available",
+          "note": "A plataforma oferece um modelo inicial de regras apenas como ponto de partida, sem revisão clínica: cada cidade revisa e assina as próprias regras antes de usar."
+        },
+        {
+          "id": "F-18.3",
+          "slug": "f-18.3",
+          "title": "Destino definido no acolhimento",
+          "benefit": "A escuta já decide o caminho: consulta no mesmo dia, agendamento, orientação ou encaminhamento.",
+          "description": "Ao concluir a escuta, o profissional escolhe o destino. Consulta no dia mantém a pessoa na fila do profissional; agendar gera o pedido de consulta na fila da unidade, com prazo sugerido pela cor; orientação registra o que foi orientado; encaminhar segue o fluxo de encaminhamento já existente. Nos três últimos casos o atendimento se encerra ali, e o sistema só permite esse encerramento quando há escuta concluída com aquele destino.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-18.4",
+          "slug": "f-18.4",
+          "title": "Filas do acolhimento e do profissional por cor",
+          "benefit": "Quem aguarda a escuta tem fila própria, e a fila do profissional coloca os casos vermelhos no topo.",
+          "description": "A fila do acolhimento mostra, por ordem de chegada, quem ainda precisa da escuta. Na fila do profissional, quem passou pela escuta e ficou para consulta no dia vem primeiro, ordenado pela cor e pela chegada; com o protocolo de acolhimento ativo, quem ainda aguarda a escuta fica por último e marcado. Enquanto a pessoa espera, a escuta pode ser reavaliada e a cor atualizada, e a recepção vê só a cor, o destino e o tempo de espera, nunca a queixa ou os sinais vitais.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-18.5",
+          "slug": "f-18.5",
+          "title": "Fichas da escuta enviadas ao e-SUS",
+          "benefit": "Cada escuta vira a ficha certa para o e-SUS conforme a ocupação de quem a fez, inclusive a do técnico de enfermagem.",
+          "description": "Feita por profissional de nível superior, a escuta segue como atendimento individual de escuta inicial; feita por técnico ou auxiliar de enfermagem, como ficha de procedimentos com as aferições, para que essa prática comum nas unidades não fique sem registro. A ficha nasce no fechamento do atendimento, com a versão mais recente da escuta, e só onde a exportação ao e-SUS está ligada. Se a exportação estava indisponível nesse momento, uma rotina noturna gera depois a ficha que faltou, dentro do mês atual ou do anterior.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "available",
+          "note": "O envio da ficha da escuta ainda não foi aceito por um e-SUS PEC real, e os códigos SIGTAP das aferições estão em conferência: as duas confirmações são pendência antes do go-live."
+        },
+        {
+          "id": "F-18.6",
+          "slug": "f-18.6",
+          "title": "Fichas não geradas, com motivo e \"gerar de novo\"",
+          "benefit": "Quando falta um dado de identificação, a secretaria vê qual é e gera a ficha de novo depois de corrigir o cadastro.",
+          "description": "Se falta o CNES da unidade, a equipe ou o CNS do profissional, a data de nascimento ou o sexo do cidadão, ou se o código da queixa não é reconhecido, a ficha não é gerada e aparece na tela de Produção e-SUS, em \"Fichas que não puderam ser geradas\", com o motivo. Depois de corrigir o cadastro, a secretaria usa \"Gerar de novo\", que pede o código do autenticador. Assim nenhuma escuta deixa de virar ficha sem explicação.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-18.7",
+          "slug": "f-18.7",
+          "title": "Proteção de dados na fila de fichas",
+          "benefit": "A fila de envio ao e-SUS guarda só códigos de erro, apaga o conteúdo parado depois de 90 dias e é limpa na exclusão do cidadão.",
+          "description": "Quando o e-SUS recusa uma ficha, a plataforma guarda apenas o campo e o código do problema, que é o que a secretaria precisa para corrigir; a resposta do e-SUS, que pode repetir nome e data de nascimento, nunca é gravada. O conteúdo de fichas recusadas ou com falha é apagado 90 dias depois da última tentativa, e a exclusão confirmada de um cidadão apaga também o conteúdo e os códigos das fichas dele.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-18.8",
+          "slug": "f-18.8",
+          "title": "Registro de quem abriu cada escuta",
+          "benefit": "Toda abertura da escuta de uma pessoa fica registrada, com quem a abriu.",
+          "description": "Abrir a escuta de alguém, no detalhe ou ao chamar a pessoa, gera um registro na trilha de auditoria com a escuta e o usuário que a abriu. É a primeira trilha de leitura de dado clínico da plataforma e serve de padrão para o prontuário. Os textos livres da escuta, como queixa, justificativa e orientação, nunca vão para eventos, registros técnicos ou estatísticas.",
+          "surfaces": [
+            "bastidores"
           ],
           "status": "available"
         }

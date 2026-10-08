@@ -72,6 +72,17 @@ describe("consultas", () => {
   });
 });
 
+describe("módulo 18", () => {
+  it("entra no ciclo 2 com as 8 funcionalidades e a nota de go-live da ficha da escuta", () => {
+    const m18 = catalog.modules.find((m) => m.id === "18")!;
+    expect(m18.cycle).toBe(2);
+    expect(m18.features.map((f) => f.id)).toEqual(
+      ["F-18.1", "F-18.2", "F-18.3", "F-18.4", "F-18.5", "F-18.6", "F-18.7", "F-18.8"]
+    );
+    expect(findFeature("f-18.5")?.feature.note).toMatch(/SIGTAP/);
+  });
+});
+
 describe("formatRanges", () => {
   it("junta ids consecutivos em faixas", () => {
     expect(formatRanges(["02", "03", "04"])).toBe("02 a 04");
