@@ -2376,7 +2376,7 @@
           "slug": "f-19.13",
           "title": "Conferência e exportação da assinatura",
           "benefit": "Cada documento assinado mostra quem assinou e quando, e pode ser conferido e exportado.",
-          "description": "A consulta assinada mostra o signatário, a data e a situação da validação, e pode ser revalidada a qualquer momento. A autora baixa o PDF assinado e o pacote com a assinatura, que podem ser conferidos fora do sistema. O administrador da cidade vê o conteúdo assinado só para leitura.",
+          "description": "A consulta assinada mostra o signatário, a data e a situação da validação, e pode ser revalidada a qualquer momento. A autora baixa o PDF assinado, que traz em cada página o nome de quem assinou, a data e o endereço do validador do ITI, e o pacote com a assinatura, que podem ser conferidos fora do sistema. O administrador da cidade vê o conteúdo assinado só para leitura.",
           "surfaces": [
             "secretaria"
           ],
