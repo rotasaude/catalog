@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-08",
+    "updatedAt": "2026-10-09",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 18"
+        "modules": "15 a 19"
       }
     ]
   },
@@ -2222,6 +2222,190 @@
             "bastidores"
           ],
           "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "cycle": 2,
+      "name": "Consulta e prontuário",
+      "status": "validating",
+      "description": "O prontuário da atenção primária: a consulta registrada no formato SOAP, a lista de problemas do paciente, o acesso controlado e registrado, a ficha enviada ao e-SUS e a assinatura digital ICP-Brasil em nuvem, esta em validação.",
+      "features": [
+        {
+          "id": "F-19.1",
+          "slug": "f-19.1",
+          "title": "Paciente identificado pelo CPF e nome completo no cadastro",
+          "benefit": "O prontuário é um só por pessoa, pelo CPF, e a validação no balcão passa a registrar o nome completo.",
+          "description": "O prontuário reúne, pelo CPF, os cadastros da mesma pessoa que já foram validados presencialmente. Na validação, a recepção registra o nome completo, o nome social e o nome da mãe; quem foi validado antes completa os nomes no check-in. A fila mostra só o nome de exibição, que é o nome social quando existe.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-19.2",
+          "slug": "f-19.2",
+          "title": "Lista de problemas do paciente",
+          "benefit": "Cada consulta atualiza a lista de problemas de saúde do paciente, com o histórico do que mudou.",
+          "description": "A lista de problemas e condições do paciente, em CIAP-2 ou CID-10, é alimentada pelas consultas: incluir, avaliar, resolver ou corrigir a data de início. Cada mudança fica registrada como um evento, o que preserva o histórico. O CID-10 é usado pelos médicos, como no e-SUS PEC; os demais profissionais usam a CIAP-2.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-19.3",
+          "slug": "f-19.3",
+          "title": "Consulta no formato SOAP",
+          "benefit": "O profissional registra a consulta com subjetivo, objetivo, avaliação e plano, além de condutas e exames.",
+          "description": "A consulta começa como rascunho, salvo sozinho enquanto o profissional escreve, e reúne sinais vitais, problemas avaliados, condutas e pedidos de exame da tabela SIGTAP. Ao finalizar, a consulta encerra o atendimento com o desfecho escolhido e não pode mais ser alterada. O texto clínico é cifrado com a chave da cidade.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-19.4",
+          "slug": "f-19.4",
+          "title": "Adendos e impresso da consulta",
+          "benefit": "Correções entram como adendos, sem alterar o registro original, e a consulta sai impressa para assinatura.",
+          "description": "Depois de finalizada, a consulta só recebe acréscimos por adendo, com motivo, feitos pela própria autora. A autora pode ler e imprimir a consulta quando precisar, pela tela Minhas consultas. O impresso em PDF sai com espaço para a assinatura à mão enquanto a assinatura digital não estiver em uso.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-19.5",
+          "slug": "f-19.5",
+          "title": "Acesso ao prontuário com regra e registro",
+          "benefit": "Cada leitura do prontuário tem motivo e fica registrada, e a gestão acompanha quem abriu fora do atendimento.",
+          "description": "O profissional lê o prontuário de quem está em atendimento com ele. Fora disso, abre com justificativa e confirmação de identidade, por 30 minutos. O administrador da cidade consulta as consultas de cada profissional só para leitura, também com confirmação de identidade. Toda leitura fica registrada, e o relatório mostra as aberturas justificadas e as leituras administrativas.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-19.6",
+          "slug": "f-19.6",
+          "title": "Ficha de atendimento individual enviada ao e-SUS",
+          "benefit": "A consulta registrada no Rota Saúde vira a ficha de atendimento individual do e-SUS, sem digitar de novo.",
+          "description": "Ao finalizar a consulta, nasce a ficha de atendimento individual no layout oficial do e-SUS, com problemas, condutas e exames. Adendos atualizam a ficha; se ela já foi aceita, a correção fica separada à espera do reenvio. Se a exportação estava indisponível, uma rotina noturna gera a ficha que faltou, dentro do mês atual ou do anterior.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "available",
+          "note": "O envio da ficha ainda não foi aceito por um e-SUS PEC real: a confirmação é pendência antes do go-live."
+        },
+        {
+          "id": "F-19.7",
+          "slug": "f-19.7",
+          "title": "Prontuário ligado por cidade",
+          "benefit": "Cada cidade passa a usar o prontuário quando estiver pronta, sem afetar as demais.",
+          "description": "O prontuário é ligado por cidade, pela equipe da plataforma, e só funciona quando a cidade registra o prontuário no próprio Rota Saúde. A tela mostra o que falta para ele funcionar. Desligado, nada do prontuário aparece para a equipe da cidade.",
+          "surfaces": [
+            "plataforma"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-19.8",
+          "slug": "f-19.8",
+          "title": "Assinatura digital ligada por cidade",
+          "benefit": "A assinatura digital é ligada por cidade, e a equipe da plataforma acompanha os prestadores de certificado.",
+          "description": "A equipe da plataforma liga a assinatura digital em cada cidade que já usa o prontuário e vê quais prestadores de certificado em nuvem estão habilitados e se o serviço de assinatura está no ar. Fora de produção, um prestador simulado permite testar o fluxo inteiro, com aviso visível de que a assinatura não tem validade jurídica.",
+          "surfaces": [
+            "plataforma"
+          ],
+          "status": "validating",
+          "note": "Verificada com um prestador de certificado simulado, sem validade jurídica. A prova com certificado ICP-Brasil real, aprovada no validador do ITI, é pendência antes do go-live; até lá, o registro segue impresso e assinado à mão."
+        },
+        {
+          "id": "F-19.9",
+          "slug": "f-19.9",
+          "title": "Certificado em nuvem do profissional",
+          "benefit": "O profissional vincula o próprio certificado ICP-Brasil em nuvem, sem token nem cartão.",
+          "description": "O profissional procura, pelo CPF, o certificado em nuvem nos prestadores habilitados e o vincula com confirmação de identidade e autorização no aplicativo do prestador. O CPF do certificado é conferido com o do cadastro. Quem não tem certificado continua assinando no papel.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Verificada com um prestador de certificado simulado, sem validade jurídica. A prova com certificado ICP-Brasil real, aprovada no validador do ITI, é pendência antes do go-live; até lá, o registro segue impresso e assinado à mão."
+        },
+        {
+          "id": "F-19.10",
+          "slug": "f-19.10",
+          "title": "Sessão de assinatura do turno",
+          "benefit": "Uma autorização no início do turno basta para assinar as consultas do dia.",
+          "description": "No começo do turno, o profissional abre a sessão de assinatura com uma autorização no aplicativo do prestador, válida por até 12 horas. Um selo no topo do painel mostra se a sessão está ativa e quantos documentos esperam assinatura.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Verificada com um prestador de certificado simulado, sem validade jurídica. A prova com certificado ICP-Brasil real, aprovada no validador do ITI, é pendência antes do go-live; até lá, o registro segue impresso e assinado à mão."
+        },
+        {
+          "id": "F-19.11",
+          "slug": "f-19.11",
+          "title": "Consulta e adendo assinados automaticamente",
+          "benefit": "Com a sessão aberta, a consulta é assinada sozinha ao ser finalizada.",
+          "description": "Ao finalizar a consulta, ou ao registrar um adendo, a assinatura é pedida na hora e feita em seguida, sem passo a mais para o profissional. O documento recebe duas assinaturas no padrão ICP-Brasil: uma do conteúdo da consulta e outra do PDF. Finalizar a consulta nunca depende de o prestador estar no ar.",
+          "surfaces": [
+            "secretaria",
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "Verificada com um prestador de certificado simulado, sem validade jurídica. A prova com certificado ICP-Brasil real, aprovada no validador do ITI, é pendência antes do go-live; até lá, o registro segue impresso e assinado à mão."
+        },
+        {
+          "id": "F-19.12",
+          "slug": "f-19.12",
+          "title": "Pendentes de assinatura, em lote ou de volta ao papel",
+          "benefit": "O que não foi assinado na hora fica numa lista e é assinado de uma vez, ou volta ao papel com motivo.",
+          "description": "Sem sessão aberta, os documentos vão para a lista de pendentes do profissional, que assina todos com uma única autorização no prestador. Se preferir, devolve um documento ao papel, com motivo registrado, e o impresso volta a ter espaço para a assinatura à mão.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Verificada com um prestador de certificado simulado, sem validade jurídica. A prova com certificado ICP-Brasil real, aprovada no validador do ITI, é pendência antes do go-live; até lá, o registro segue impresso e assinado à mão."
+        },
+        {
+          "id": "F-19.13",
+          "slug": "f-19.13",
+          "title": "Conferência e exportação da assinatura",
+          "benefit": "Cada documento assinado mostra quem assinou e quando, e pode ser conferido e exportado.",
+          "description": "A consulta assinada mostra o signatário, a data e a situação da validação, e pode ser revalidada a qualquer momento. A autora baixa o PDF assinado e o pacote com a assinatura, que podem ser conferidos fora do sistema. O administrador da cidade vê o conteúdo assinado só para leitura.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Verificada com um prestador de certificado simulado, sem validade jurídica. A prova com certificado ICP-Brasil real, aprovada no validador do ITI, é pendência antes do go-live; até lá, o registro segue impresso e assinado à mão."
+        },
+        {
+          "id": "F-19.14",
+          "slug": "f-19.14",
+          "title": "Painel de assinatura da secretaria",
+          "benefit": "A gestão acompanha quem assina digitalmente, o que está pendente e o que precisa de atenção.",
+          "description": "O administrador da cidade vê os profissionais com e sem certificado, certificados vencendo em 30 dias, pendências antigas, a quantidade de documentos assinados digitalmente, pendentes e no papel, e as assinaturas que não passaram na última validação.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Verificada com um prestador de certificado simulado, sem validade jurídica. A prova com certificado ICP-Brasil real, aprovada no validador do ITI, é pendência antes do go-live; até lá, o registro segue impresso e assinado à mão."
+        },
+        {
+          "id": "F-19.15",
+          "slug": "f-19.15",
+          "title": "Serviço de assinatura ICP-Brasil",
+          "benefit": "As assinaturas seguem a política ICP-Brasil e são validadas, inclusive a revogação dos certificados.",
+          "description": "Um serviço próprio monta e valida as assinaturas no padrão ICP-Brasil, conferindo a cadeia do certificado e as listas de revogação. Só o resumo do documento sai para o prestador de certificado; o conteúdo clínico fica com a cidade.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "Verificada com um prestador de certificado simulado, sem validade jurídica. A prova com certificado ICP-Brasil real, aprovada no validador do ITI, é pendência antes do go-live; até lá, o registro segue impresso e assinado à mão."
         }
       ]
     }
