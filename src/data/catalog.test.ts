@@ -83,6 +83,23 @@ describe("módulo 18", () => {
   });
 });
 
+describe("módulo 19", () => {
+  it("entra no ciclo 2 com as 15 funcionalidades e a assinatura em validação", () => {
+    const m19 = catalog.modules.find((m) => m.id === "19")!;
+    expect(m19.cycle).toBe(2);
+    expect(m19.status).toBe("validating");
+    expect(m19.features.map((f) => f.id)).toEqual(
+      Array.from({ length: 15 }, (_, i) => `F-19.${i + 1}`)
+    );
+    for (const f of m19.features.slice(0, 7)) expect(f.status).toBe("available");
+    for (const f of m19.features.slice(7)) {
+      expect(f.status).toBe("validating");
+      expect(f.note).toMatch(/simulado/);
+    }
+    expect(findFeature("f-19.6")?.feature.note).toMatch(/e-SUS PEC real/);
+  });
+});
+
 describe("formatRanges", () => {
   it("junta ids consecutivos em faixas", () => {
     expect(formatRanges(["02", "03", "04"])).toBe("02 a 04");
