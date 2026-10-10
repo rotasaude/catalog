@@ -54,7 +54,7 @@ describe("lista de módulos", () => {
     expect(within(m18).getByText("8 funcionalidades")).toBeInTheDocument();
     const m19 = screen.getByRole("region", { name: /Consulta e prontuário/ });
     expect(within(m19).getByText("Em validação")).toBeInTheDocument();
-    expect(within(m19).getByText("15 funcionalidades")).toBeInTheDocument();
+    expect(within(m19).getByText("23 funcionalidades")).toBeInTheDocument();
     const m04 = screen.getByRole("region", { name: /Relatórios/ });
     expect(within(m04).getByText("7 funcionalidades")).toBeInTheDocument();
     expect(within(m04).getByText("Disponível e verificado")).toBeInTheDocument();

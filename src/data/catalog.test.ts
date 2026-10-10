@@ -84,18 +84,19 @@ describe("módulo 18", () => {
 });
 
 describe("módulo 19", () => {
-  it("entra no ciclo 2 com as 15 funcionalidades e a assinatura em validação", () => {
+  it("entra no ciclo 2 com as 23 funcionalidades, a assinatura em validação e os documentos disponíveis", () => {
     const m19 = catalog.modules.find((m) => m.id === "19")!;
     expect(m19.cycle).toBe(2);
     expect(m19.status).toBe("validating");
     expect(m19.features.map((f) => f.id)).toEqual(
-      Array.from({ length: 15 }, (_, i) => `F-19.${i + 1}`)
+      Array.from({ length: 23 }, (_, i) => `F-19.${i + 1}`)
     );
     for (const f of m19.features.slice(0, 7)) expect(f.status).toBe("available");
-    for (const f of m19.features.slice(7)) {
+    for (const f of m19.features.slice(7, 15)) {
       expect(f.status).toBe("validating");
       expect(f.note).toMatch(/simulado/);
     }
+    for (const f of m19.features.slice(15)) expect(f.status).toBe("available");
     expect(findFeature("f-19.6")?.feature.note).toMatch(/e-SUS PEC real/);
   });
 });
