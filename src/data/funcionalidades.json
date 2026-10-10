@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-09",
+    "updatedAt": "2026-10-10",
     "cycles": [
       {
         "id": 1,
@@ -2230,7 +2230,7 @@
       "cycle": 2,
       "name": "Consulta e prontuário",
       "status": "validating",
-      "description": "O prontuário da atenção primária: a consulta registrada no formato SOAP, a lista de problemas do paciente, o acesso controlado e registrado, a ficha enviada ao e-SUS e a assinatura digital ICP-Brasil em nuvem, esta em validação.",
+      "description": "O prontuário da atenção primária: a consulta registrada no formato SOAP, a lista de problemas do paciente, o acesso controlado e registrado, a ficha enviada ao e-SUS, os documentos clínicos com conferência pública por QR e a assinatura digital ICP-Brasil em nuvem, esta em validação.",
       "features": [
         {
           "id": "F-19.1",
@@ -2406,6 +2406,100 @@
           ],
           "status": "validating",
           "note": "Verificada com um prestador de certificado simulado, sem validade jurídica. A prova com certificado ICP-Brasil real, aprovada no validador do ITI, é pendência antes do go-live; até lá, o registro segue impresso e assinado à mão."
+        },
+        {
+          "id": "F-19.16",
+          "slug": "f-19.16",
+          "title": "Catálogo de medicamentos",
+          "benefit": "A receita usa o catálogo oficial de compras públicas, com antimicrobianos e controlados marcados.",
+          "description": "A equipe da plataforma importa o catálogo de medicamentos do governo federal (CATMAT) e as listas da Anvisa de antimicrobianos e de controlados, e liga os documentos clínicos por cidade. Item que não se consegue ler com segurança fica fora da busca até ser revisado.",
+          "surfaces": [
+            "plataforma",
+            "bastidores"
+          ],
+          "status": "available",
+          "note": "Antes de uma cidade real, as listas da Anvisa passam por conferência de um farmacêutico e o catálogo por curadoria."
+        },
+        {
+          "id": "F-19.17",
+          "slug": "f-19.17",
+          "title": "Lista municipal e protocolos de enfermagem",
+          "benefit": "A cidade define os medicamentos da rede e o que a enfermagem pode prescrever.",
+          "description": "O administrador da cidade cadastra o CNPJ da secretaria, a relação municipal de medicamentos (REMUME), que aparece primeiro na receita como \"na rede\", e os protocolos de enfermagem com número, vigência, itens e dose máxima.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-19.18",
+          "slug": "f-19.18",
+          "title": "Medicamentos em uso",
+          "benefit": "O profissional vê o que o paciente usa, inclusive o que veio de fora da rede.",
+          "description": "A lista de medicamentos em uso do paciente se atualiza com as receitas emitidas e com o que o profissional informa durante a consulta, como remédio receitado fora da rede, suspenso ou retomado. Cada mudança fica registrada.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-19.19",
+          "slug": "f-19.19",
+          "title": "Receita",
+          "benefit": "Receita legível e conferível, com regras de segurança para antimicrobianos e controlados.",
+          "description": "O médico prescreve a partir do catálogo, com a lista municipal primeiro, ou em texto livre. A enfermagem prescreve só os itens do protocolo vigente, dentro da dose máxima, com o CNPJ da cidade e o Coren no impresso. Antimicrobiano sai em papel, em duas vias com validade de 10 dias; controlado fica bloqueado.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available",
+          "note": "Assinados digitalmente quando o profissional tem certificado em nuvem; essa assinatura segue em validação com um prestador simulado (veja a assinatura digital). Sem certificado, o documento sai impresso para assinatura à mão."
+        },
+        {
+          "id": "F-19.20",
+          "slug": "f-19.20",
+          "title": "Atestado",
+          "benefit": "Atestado emitido na consulta, com conferência pública.",
+          "description": "O médico ou o dentista emite o atestado de afastamento ou de acompanhante durante a consulta. O código de doença só entra com autorização do paciente.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available",
+          "note": "Assinados digitalmente quando o profissional tem certificado em nuvem; essa assinatura segue em validação com um prestador simulado (veja a assinatura digital). Sem certificado, o documento sai impresso para assinatura à mão."
+        },
+        {
+          "id": "F-19.21",
+          "slug": "f-19.21",
+          "title": "Declaração de comparecimento",
+          "benefit": "O cidadão sai com o comprovante de que esteve na unidade.",
+          "description": "A declaração de comparecimento é emitida na consulta ou pela recepção, com o horário de chegada e de saída. Quando é a recepção, o impresso traz a matrícula de quem emitiu.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-19.22",
+          "slug": "f-19.22",
+          "title": "Requisição de exames",
+          "benefit": "Os exames pedidos na consulta saem num documento pronto para o laboratório.",
+          "description": "A requisição reúne os exames pedidos na consulta finalizada, com o código SIGTAP e a justificativa, e sai em PDF conferível.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available",
+          "note": "Assinados digitalmente quando o profissional tem certificado em nuvem; essa assinatura segue em validação com um prestador simulado (veja a assinatura digital). Sem certificado, o documento sai impresso para assinatura à mão."
+        },
+        {
+          "id": "F-19.23",
+          "slug": "f-19.23",
+          "title": "Conferência por QR e cancelamento",
+          "benefit": "Farmácia, escola ou empregador conferem o documento sem ver dados de saúde.",
+          "description": "Todo documento traz QR code e código curto. A página pública de conferência mostra tipo, data, profissional, unidade, iniciais e ano de nascimento e se o documento é válido ou foi cancelado, sem diagnóstico, remédio ou CPF. A autora cancela com motivo e confirmação, e pode emitir outro no lugar.",
+          "surfaces": [
+            "cidadao",
+            "secretaria"
+          ],
+          "status": "available"
         }
       ]
     }
