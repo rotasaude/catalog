@@ -2447,7 +2447,7 @@
           "slug": "f-19.19",
           "title": "Receita",
           "benefit": "Receita legível e conferível, com regras de segurança para antimicrobianos e controlados.",
-          "description": "O médico prescreve a partir do catálogo, com a lista municipal primeiro, ou em texto livre. A enfermagem prescreve só os itens do protocolo vigente, dentro da dose máxima, com o CNPJ da cidade e o Coren no impresso. Antimicrobiano sai em papel, em duas vias com validade de 10 dias; controlado fica bloqueado.",
+          "description": "O médico prescreve a partir do catálogo, com a lista municipal primeiro, ou em texto livre. A enfermagem prescreve só os itens do protocolo vigente, dentro da dose máxima, com o CNPJ da cidade e o Coren no impresso. Antimicrobiano e controlado das listas C1 e C5 ganham receita própria com número da Anvisa (veja a receita de controle especial e a de antimicrobiano); sem ela, o antimicrobiano sai em papel, em duas vias com validade de 10 dias.",
           "surfaces": [
             "secretaria"
           ],
