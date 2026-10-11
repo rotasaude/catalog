@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-10",
+    "updatedAt": "2026-10-11",
     "cycles": [
       {
         "id": 1,
@@ -2230,7 +2230,7 @@
       "cycle": 2,
       "name": "Consulta e prontuário",
       "status": "validating",
-      "description": "O prontuário da atenção primária: a consulta registrada no formato SOAP, a lista de problemas do paciente, o acesso controlado e registrado, a ficha enviada ao e-SUS, os documentos clínicos com conferência pública por QR e a assinatura digital ICP-Brasil em nuvem, esta em validação.",
+      "description": "O prontuário da atenção primária: a consulta registrada no formato SOAP, a lista de problemas do paciente, o acesso controlado e registrado, a ficha enviada ao e-SUS, os documentos clínicos com conferência pública por QR, a receita de controle especial e de antimicrobiano com número da Anvisa e a assinatura digital ICP-Brasil em nuvem, estas duas em validação.",
       "features": [
         {
           "id": "F-19.1",
@@ -2500,6 +2500,79 @@
             "secretaria"
           ],
           "status": "available"
+        },
+        {
+          "id": "F-19.24",
+          "slug": "f-19.24",
+          "title": "Receita controlada por cidade",
+          "benefit": "A cidade decide quando passa a emitir receita de controlado digital.",
+          "description": "A equipe da plataforma liga a receita de controle especial e de antimicrobiano por cidade e acompanha a conexão com o SNCR da Anvisa. Fora de produção existe um SNCR simulado, sempre marcado como sem validade.",
+          "surfaces": [
+            "plataforma",
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "Verificada com o SNCR e o prestador de certificado simulados, sem validade. A prova com o SNCR real da Anvisa e com certificado ICP-Brasil real é pendência antes do go-live; até lá, a receita de controlado sai em papel."
+        },
+        {
+          "id": "F-19.25",
+          "slug": "f-19.25",
+          "title": "Números da Anvisa por prescritor",
+          "benefit": "Cada médico ou dentista tem o seu estoque de números de receita.",
+          "description": "O prescritor entra com a própria conta gov.br e pede à Anvisa um bloco de 1.000 números de receita por tipo, até três vezes por mês. Cada receita digital usa um número, e o saldo aparece na tela.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Verificada com o SNCR e o prestador de certificado simulados, sem validade. A prova com o SNCR real da Anvisa e com certificado ICP-Brasil real é pendência antes do go-live; até lá, a receita de controlado sai em papel."
+        },
+        {
+          "id": "F-19.26",
+          "slug": "f-19.26",
+          "title": "Receita de controle especial",
+          "benefit": "Receita de controlado sem papel, com o número da Anvisa e conferência pública.",
+          "description": "O médico prescreve medicamentos das listas C1 e C5 do catálogo, com duração, endereço do paciente e do prescritor. A receita sai assinada digitalmente, em duas vias, com o número do SNCR e validade de 30 dias.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Verificada com o SNCR e o prestador de certificado simulados, sem validade. A prova com o SNCR real da Anvisa e com certificado ICP-Brasil real é pendência antes do go-live; até lá, a receita de controlado sai em papel."
+        },
+        {
+          "id": "F-19.27",
+          "slug": "f-19.27",
+          "title": "Receita de antimicrobiano digital",
+          "benefit": "Antibiótico prescrito sem papel, com número da Anvisa.",
+          "description": "O médico prescreve antimicrobianos do catálogo numa receita digital com número do SNCR, duas vias e validade de 10 dias. Itens comuns vão numa receita separada; sem certificado ou sem número, a receita sai em papel.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Verificada com o SNCR e o prestador de certificado simulados, sem validade. A prova com o SNCR real da Anvisa e com certificado ICP-Brasil real é pendência antes do go-live; até lá, a receita de controlado sai em papel."
+        },
+        {
+          "id": "F-19.28",
+          "slug": "f-19.28",
+          "title": "Registro da Notificação de receita",
+          "benefit": "A notificação em papel (listas A e B) fica registrada na consulta.",
+          "description": "Medicamentos das listas A e B continuam na notificação em papel da vigilância sanitária. O profissional registra o talão na consulta, sem impresso, e o medicamento entra na lista de medicamentos em uso.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Verificada com o SNCR e o prestador de certificado simulados, sem validade. A prova com o SNCR real da Anvisa e com certificado ICP-Brasil real é pendência antes do go-live; até lá, a receita de controlado sai em papel."
+        },
+        {
+          "id": "F-19.29",
+          "slug": "f-19.29",
+          "title": "Painel de números da Anvisa",
+          "benefit": "A secretaria vê quem está ficando sem números de receita.",
+          "description": "O administrador da cidade vê, por médico e dentista, quantos números de cada tipo ainda estão livres, quem está com saldo baixo e quando foi o último pedido.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Verificada com o SNCR e o prestador de certificado simulados, sem validade. A prova com o SNCR real da Anvisa e com certificado ICP-Brasil real é pendência antes do go-live; até lá, a receita de controlado sai em papel."
         }
       ]
     }
