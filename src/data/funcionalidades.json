@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-11",
+    "updatedAt": "2026-10-12",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 19"
+        "modules": "15 a 20"
       }
     ]
   },
@@ -2573,6 +2573,85 @@
           ],
           "status": "validating",
           "note": "Verificada com o SNCR e o prestador de certificado simulados, sem validade. A prova com o SNCR real da Anvisa e com certificado ICP-Brasil real é pendência antes do go-live; até lá, a receita de controlado sai em papel."
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "cycle": 2,
+      "name": "Linha do tempo do paciente",
+      "status": "validating",
+      "description": "O histórico da pessoa num lugar só, montado com o que os módulos já registram: para o profissional durante o atendimento, para o cidadão no celular e, em cidade com e-SUS PEC, dentro do próprio PEC, esta última ainda em validação.",
+      "features": [
+        {
+          "id": "F-20.1",
+          "slug": "f-20.1",
+          "title": "Interruptores e configuração da linha do tempo",
+          "benefit": "A cidade liga a linha do tempo quando quiser, e a página do PEC tem configuração própria.",
+          "description": "A linha do tempo é ligada por cidade, pela equipe da plataforma. A página do PEC tem configuração à parte: o endereço do PEC e a chave de assinatura que o próprio PEC gera, feitas pela equipe de manutenção com confirmação e código do autenticador. A chave nunca é exibida.",
+          "surfaces": [
+            "plataforma",
+            "bastidores"
+          ],
+          "status": "available",
+          "note": "A página do PEC só é ligada numa cidade depois da prova num e-SUS PEC real."
+        },
+        {
+          "id": "F-20.2",
+          "slug": "f-20.2",
+          "title": "Linha do tempo da pessoa",
+          "benefit": "Um histórico só, montado com o que cada módulo já registra.",
+          "description": "Reúne triagens, atendimentos, acolhimento, agendamentos, consultas, documentos, Notificações de receita e campanhas, da mais recente para a mais antiga. Junta todos os cadastros validados da mesma pessoa. Um cadastro só declarado nunca entra no histórico de outra pessoa.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-20.3",
+          "slug": "f-20.3",
+          "title": "Linha do tempo para o profissional",
+          "benefit": "O profissional vê o histórico da pessoa durante o atendimento, e fora dele só com justificativa registrada.",
+          "description": "A linha do tempo fica no painel do paciente, durante o atendimento. Fora do atendimento, só por abertura justificada, com motivo e confirmação por código, válida por 30 minutos, que aparece no relatório da administração. Em cidade integrada ao PEC, a tela avisa que o histórico é parcial.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-20.4",
+          "slug": "f-20.4",
+          "title": "Meu histórico, para o cidadão",
+          "benefit": "Cada pessoa vê o próprio histórico pelo celular, com os documentos que recebeu.",
+          "description": "No canal web, quem tem cadastro validado vê o histórico completo, com download do PDF dos documentos e o código de conferência, sem o texto livre da consulta. Quem tem só cadastro declarado vê triagens e agendamentos e o convite para validar no posto.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-20.5",
+          "slug": "f-20.5",
+          "title": "Resumo de saúde para o cidadão",
+          "benefit": "A pessoa vê num lugar só o que está ativo na sua saúde.",
+          "description": "Mostra os problemas ativos, os medicamentos em uso, os exames pedidos nos últimos 12 meses e as últimas medidas de pressão, peso e glicemia, com a data. Aparece só para cadastro validado, em cidade que usa o prontuário do Rota Saúde.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-20.6",
+          "slug": "f-20.6",
+          "title": "Página para os sistemas externos do e-SUS PEC",
+          "benefit": "O profissional abre a linha do tempo do Rota Saúde dentro do próprio PEC.",
+          "description": "Em cidade que usa o e-SUS PEC, o profissional abre a linha do tempo dentro do PEC, durante o atendimento. O acesso é conferido pela assinatura do PEC, com validade de 5 minutos e uso único, e pela unidade e pelo vínculo do profissional.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Provada com um PEC simulado. A prova num e-SUS PEC real é o que falta antes de a primeira cidade usar."
         }
       ]
     }

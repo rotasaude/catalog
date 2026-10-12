@@ -105,6 +105,20 @@ describe("módulo 19", () => {
   });
 });
 
+describe("módulo 20", () => {
+  it("entra no ciclo 2 com as 6 funcionalidades, a página do PEC em validação", () => {
+    const m20 = catalog.modules.find((m) => m.id === "20")!;
+    expect(m20.cycle).toBe(2);
+    expect(m20.status).toBe("validating");
+    expect(m20.features.map((f) => f.id)).toEqual(Array.from({ length: 6 }, (_, i) => `F-20.${i + 1}`));
+    for (const f of m20.features.slice(0, 5)) expect(f.status).toBe("available");
+    expect(findFeature("f-20.1")?.feature.note).toMatch(/e-SUS PEC real/);
+    const pec = findFeature("f-20.6")!.feature;
+    expect(pec.status).toBe("validating");
+    expect(pec.note).toMatch(/PEC simulado/);
+  });
+});
+
 describe("formatRanges", () => {
   it("junta ids consecutivos em faixas", () => {
     expect(formatRanges(["02", "03", "04"])).toBe("02 a 04");

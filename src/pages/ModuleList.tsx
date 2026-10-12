@@ -88,7 +88,7 @@ export function ModuleList() {
       </main>
       <footer className="foot">
         Conteúdo verificado até {formatDate(meta.updatedAt)}. Os módulos {formatRanges(available)}{" "}
-        estão disponíveis e verificados{validating.length > 0 && `; o ${validating.join(", ")} está em validação`}
+        estão disponíveis e verificados{validating.length > 0 && `; ${validating.length > 1 ? `${validating.map((id) => `o ${id}`).join(" e ")} estão` : `o ${validating[0]} está`} em validação`}
         {planned.length > 0 && `; o ${planned.join(", ")} está planejado`}.
       </footer>
     </>
