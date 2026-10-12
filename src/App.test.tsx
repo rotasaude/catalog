@@ -30,7 +30,7 @@ describe("lista de módulos", () => {
       "Ciclo 1 · MVP",
       "Ciclo 2"
     ]);
-    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(19);
+    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(20);
     expect(screen.queryAllByRole("link", { name: /Classificação previsível/ })).toHaveLength(0);
     expect(document.title).toBe("Funcionalidades Rota Saúde");
   });
@@ -55,6 +55,9 @@ describe("lista de módulos", () => {
     const m19 = screen.getByRole("region", { name: /Consulta e prontuário/ });
     expect(within(m19).getByText("Em validação")).toBeInTheDocument();
     expect(within(m19).getByText("29 funcionalidades")).toBeInTheDocument();
+    const m20 = screen.getByRole("region", { name: /Linha do tempo do paciente/ });
+    expect(within(m20).getByText("Em validação")).toBeInTheDocument();
+    expect(within(m20).getByText("6 funcionalidades")).toBeInTheDocument();
     const m04 = screen.getByRole("region", { name: /Relatórios/ });
     expect(within(m04).getByText("7 funcionalidades")).toBeInTheDocument();
     expect(within(m04).getByText("Disponível e verificado")).toBeInTheDocument();
@@ -74,7 +77,7 @@ describe("lista de módulos", () => {
   it("o rodapé resume o estado dos módulos", () => {
     renderAt("/");
     expect(screen.getByRole("contentinfo")).toHaveTextContent(
-      "Os módulos 02 a 18 estão disponíveis e verificados; o 19 está em validação."
+      "Os módulos 02 a 18 estão disponíveis e verificados; o 19 e o 20 estão em validação."
     );
   });
 
@@ -83,7 +86,7 @@ describe("lista de módulos", () => {
     const c1 = screen.getByRole("region", { name: "Ciclo 1 · MVP" });
     const c2 = screen.getByRole("region", { name: "Ciclo 2" });
     expect(within(c1).getByText("módulos 01 a 14")).toBeInTheDocument();
-    expect(within(c2).getByText("módulos 15 a 19")).toBeInTheDocument();
+    expect(within(c2).getByText("módulos 15 a 20")).toBeInTheDocument();
     expect(within(c1).getByRole("region", { name: /Módulo 14/ })).toBeInTheDocument();
     expect(within(c2).getByRole("region", { name: /Módulo 15/ })).toBeInTheDocument();
     expect(within(c1).queryByRole("region", { name: /Módulo 15/ })).not.toBeInTheDocument();
