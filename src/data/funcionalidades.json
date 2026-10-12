@@ -2259,7 +2259,7 @@
           "slug": "f-19.3",
           "title": "Consulta no formato SOAP",
           "benefit": "O profissional registra a consulta com subjetivo, objetivo, avaliação e plano, além de condutas e exames.",
-          "description": "A consulta começa como rascunho, salvo sozinho enquanto o profissional escreve, e reúne sinais vitais, problemas avaliados, condutas e pedidos de exame da tabela SIGTAP. Ao finalizar, a consulta encerra o atendimento com o desfecho escolhido e não pode mais ser alterada. O texto clínico é cifrado com a chave da cidade.",
+          "description": "A consulta começa como rascunho, salvo sozinho enquanto o profissional escreve, e reúne sinais vitais, problemas avaliados, condutas e pedidos de exame da tabela SIGTAP. Ao finalizar, a consulta encerra o atendimento com o desfecho escolhido e não pode mais ser alterada. O texto clínico é cifrado com a chave da cidade. Se a autora sai com a consulta em rascunho, o administrador da cidade descarta o rascunho ou o passa a outro profissional da unidade, com motivo e confirmação de identidade, e o atendimento deixa de ficar preso.",
           "surfaces": [
             "secretaria"
           ],
