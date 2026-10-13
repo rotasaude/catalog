@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useOpenModules } from "../components/OpenModules";
 import { Brand, Chevron, SurfaceIcon } from "../components/icons";
 import { StatusBadge } from "../components/StatusBadge";
-import { catalog, featurePath, findFeature, moduleAnchor, neighbours } from "../data/catalog";
+import { catalog, featurePath, findFeature, moduleAnchor, moduleLabel, neighbours } from "../data/catalog";
 
 function BackLink({ moduleId }: { moduleId?: string }) {
   return (
@@ -50,7 +50,7 @@ export function FeaturePage() {
       <main className="detail">
         <article className="d-card">
           <p className="d-eyebrow">
-            <span>Módulo {m.id} · {m.name}</span>
+            <span>{moduleLabel(m)} · {m.name}</span>
             <span className="id">{f.id}</span>
           </p>
           <h1 ref={titleRef} tabIndex={-1}>{f.title}</h1>

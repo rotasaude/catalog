@@ -47,6 +47,10 @@ export function cycleTitle(c: Cycle): string {
   return c.scope ? `${c.label} · ${c.scope}` : c.label;
 }
 
+export function moduleLabel(m: Module): string {
+  return m.label ?? `Módulo ${m.id}`;
+}
+
 export function featurePath(slug: string): string {
   return `/funcionalidades/${slug}`;
 }

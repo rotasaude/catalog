@@ -30,7 +30,8 @@ describe("lista de módulos", () => {
       "Ciclo 1 · MVP",
       "Ciclo 2"
     ]);
-    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(20);
+    // 20 módulos numerados + o grupo Interface.
+    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(21);
     expect(screen.queryAllByRole("link", { name: /Classificação previsível/ })).toHaveLength(0);
     expect(document.title).toBe("Funcionalidades Rota Saúde");
   });
@@ -86,7 +87,7 @@ describe("lista de módulos", () => {
     const c1 = screen.getByRole("region", { name: "Ciclo 1 · MVP" });
     const c2 = screen.getByRole("region", { name: "Ciclo 2" });
     expect(within(c1).getByText("módulos 01 a 14")).toBeInTheDocument();
-    expect(within(c2).getByText("módulos 15 a 20")).toBeInTheDocument();
+    expect(within(c2).getByText("módulos 15 a 20 e interface")).toBeInTheDocument();
     expect(within(c1).getByRole("region", { name: /Módulo 14/ })).toBeInTheDocument();
     expect(within(c2).getByRole("region", { name: /Módulo 15/ })).toBeInTheDocument();
     expect(within(c1).queryByRole("region", { name: /Módulo 15/ })).not.toBeInTheDocument();
@@ -202,5 +203,31 @@ describe("ida e volta", () => {
     renderAt("/funcionalidades/f-08.2");
     await user.click(screen.getByRole("link", { name: /Todas as funcionalidades/ }));
     expect(moduleToggle(/Agendamento/)).toHaveAttribute("aria-expanded", "true");
+  });
+});
+
+describe("grupo Interface e acessibilidade", () => {
+  it("aparece no Ciclo 2 com rótulo próprio, sem 'Módulo iu'", () => {
+    renderAt("/");
+    const c2 = screen.getByRole("region", { name: "Ciclo 2" });
+    expect(within(c2).getByRole("region", { name: /^Todas as telas Interface e acessibilidade/ })).toBeInTheDocument();
+    expect(screen.queryByText(/Módulo iu/i)).not.toBeInTheDocument();
+  });
+
+  it("não entra na faixa de módulos do rodapé", () => {
+    renderAt("/");
+    expect(screen.getByRole("contentinfo")).not.toHaveTextContent(/iu/i);
+  });
+
+  it("a página do item mostra o rótulo do grupo", () => {
+    renderAt("/funcionalidades/iu-1");
+    expect(screen.getByText("Todas as telas · Interface e acessibilidade")).toBeInTheDocument();
+  });
+
+  it("a volta de um item do grupo abre o grupo", async () => {
+    const user = userEvent.setup();
+    renderAt("/funcionalidades/iu-1");
+    await user.click(screen.getByRole("link", { name: /Todas as funcionalidades/ }));
+    expect(moduleToggle(/Interface e acessibilidade/)).toHaveAttribute("aria-expanded", "true");
   });
 });

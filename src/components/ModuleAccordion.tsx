@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { catalog, deliveredCount, featurePath, moduleAnchor } from "../data/catalog";
+import { catalog, deliveredCount, featurePath, moduleAnchor, moduleLabel } from "../data/catalog";
 import type { Module } from "../data/types";
 import { Chevron } from "./icons";
 import { StatusBadge } from "./StatusBadge";
@@ -30,7 +30,7 @@ export function ModuleAccordion({ module: m, open, onToggle }: Props) {
         <div className="s-main">
           <h3 id={headingId} className="s-title">
             <button type="button" aria-expanded={open} aria-controls={panelId} onClick={() => onToggle(!open)}>
-              <span className="num">Módulo {m.id}</span>{" "}
+              <span className="num">{moduleLabel(m)}</span>{" "}
               <span className="name">{m.name}</span>
             </button>
           </h3>
