@@ -16,6 +16,8 @@ export interface Feature {
 
 export interface Module {
   id: string;
+  // Grupo sem número de módulo (ex.: "Todas as telas"): substitui "Módulo {id}".
+  label?: string;
   cycle: number;
   name: string;
   status: string;

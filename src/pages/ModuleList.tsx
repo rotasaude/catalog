@@ -35,7 +35,7 @@ export function ModuleList() {
   // Voltando de uma funcionalidade (pelo link, com #m-NN, ou pelo "voltar" do
   // navegador, via lastVisited): abre o módulo dela e rola até ele.
   useEffect(() => {
-    const fromHash = /^#m-(\d\d)$/.exec(hash)?.[1];
+    const fromHash = /^#m-([\w-]+)$/.exec(hash)?.[1];
     const target = fromHash ?? lastVisited;
     if (!target) {
       window.scrollTo?.(0, 0);
@@ -48,9 +48,11 @@ export function ModuleList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hash]);
 
-  const available = modules.filter((m) => m.status === "available").map((m) => m.id);
-  const validating = modules.filter((m) => m.status === "validating").map((m) => m.id);
-  const planned = modules.filter((m) => m.status === "planned").map((m) => m.id);
+  // O rodapé conta só os módulos numerados; grupos com rótulo ficam fora.
+  const numbered = modules.filter((m) => !m.label);
+  const available = numbered.filter((m) => m.status === "available").map((m) => m.id);
+  const validating = numbered.filter((m) => m.status === "validating").map((m) => m.id);
+  const planned = numbered.filter((m) => m.status === "planned").map((m) => m.id);
 
   return (
     <>

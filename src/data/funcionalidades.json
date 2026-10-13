@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-12",
+    "updatedAt": "2026-10-13",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 20"
+        "modules": "15 a 20 e interface"
       }
     ]
   },
@@ -2652,6 +2652,87 @@
           ],
           "status": "validating",
           "note": "Provada com um PEC simulado. A prova num e-SUS PEC real é o que falta antes de a primeira cidade usar."
+        }
+      ]
+    },
+    {
+      "id": "iu",
+      "label": "Todas as telas",
+      "cycle": 2,
+      "name": "Interface e acessibilidade",
+      "status": "available",
+      "description": "Uma revisão de todas as telas, sem mudar nenhuma regra: acessibilidade nos padrões do governo, painéis que funcionam no tablet, o canal do cidadão pensado para o celular e os fluxos do dia a dia mais claros.",
+      "features": [
+        {
+          "id": "IU-1",
+          "slug": "iu-1",
+          "title": "Acessibilidade nos padrões do governo",
+          "benefit": "Pessoas com baixa visão ou que usam leitor de tela conseguem usar a plataforma.",
+          "description": "As telas seguem a WCAG 2.2 nível AA e o eMAG 3.1: barra de atalhos, página de acessibilidade e tema de alto contraste. O nível de risco do resultado aparece por cor, forma e texto, e o foco do teclado fica sempre visível.",
+          "surfaces": [
+            "cidadao",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "IU-2",
+          "slug": "iu-2",
+          "title": "Painéis que funcionam no tablet",
+          "benefit": "A equipe usa o painel no tablet em pé, deitado ou no computador, sem informação cortada.",
+          "description": "O painel da secretaria e o console de gestão funcionam em tablet em pé, tablet deitado e computador. No tablet, as tabelas viram cartões. A navegação começa por grupos, com trilha e busca de tela.",
+          "surfaces": [
+            "secretaria",
+            "plataforma"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "IU-3",
+          "slug": "iu-3",
+          "title": "Identidade visual escolhida por pessoa",
+          "benefit": "Cada pessoa da equipe usa o painel na aparência que lhe for mais confortável.",
+          "description": "O painel tem a aparência do padrão gov.br, a identidade Rota Saúde e o alto contraste, escolhidos por cada pessoa no menu da conta. No celular do cidadão, as cores seguem o modo claro ou escuro do aparelho.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
+          ],
+          "status": "available",
+          "note": "A identidade Rota Saúde é provisória: a marca definitiva é um trabalho à parte."
+        },
+        {
+          "id": "IU-4",
+          "slug": "iu-4",
+          "title": "Canal do cidadão feito para o celular",
+          "benefit": "O cidadão faz a triagem com uma mão, entende cada passo e sempre tem o 192 à vista.",
+          "description": "O fluxo do cidadão abre só no celular; o relatório por link abre em qualquer tela. O botão \"Emergência? Ligar 192\" fica fixo no rodapé de toda tela. Os erros aparecem junto do campo, e o resultado diz o próximo passo, com \"Cheguei na unidade\" quando a triagem permite.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "available",
+          "note": "O nome e o brasão da cidade no topo dependem de um ajuste na plataforma, já planejado."
+        },
+        {
+          "id": "IU-5",
+          "slug": "iu-5",
+          "title": "Fila, atendimento e protocolos mais claros",
+          "benefit": "A equipe erra menos nas ações sem volta e não perde o que escreveu.",
+          "description": "Ações sem volta, como \"Saiu sem atendimento\" ou ativar um protocolo, pedem confirmação em dois passos. A consulta salva o rascunho ao sair do campo e avisa antes de fechar com algo pendente. A mensagem de resultado aparece junto da ação que a gerou.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "IU-6",
+          "slug": "iu-6",
+          "title": "Console de manutenção com identidade própria",
+          "benefit": "A equipe da plataforma sabe sempre em que ambiente está.",
+          "description": "O console de manutenção tem aparência própria, com o selo \"Manutenção\" e uma faixa de ambiente que não se confunde com o tema: roxa em desenvolvimento e âmbar em homologação. As tabelas largas rolam para o lado, com aviso.",
+          "surfaces": [
+            "plataforma"
+          ],
+          "status": "available"
         }
       ]
     }
