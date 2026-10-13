@@ -2248,7 +2248,7 @@
           "slug": "f-19.2",
           "title": "Lista de problemas do paciente",
           "benefit": "Cada consulta atualiza a lista de problemas de saúde do paciente, com o histórico do que mudou.",
-          "description": "A lista de problemas e condições do paciente, em CIAP-2 ou CID-10, é alimentada pelas consultas: incluir, avaliar, resolver ou corrigir a data de início. Cada mudança fica registrada como um evento, o que preserva o histórico. O CID-10 é usado pelos médicos, como no e-SUS PEC; os demais profissionais usam a CIAP-2.",
+          "description": "A lista de problemas e condições do paciente, em CIAP-2 ou CID-10, é alimentada pelas consultas: incluir, avaliar, resolver ou corrigir a data de início. Cada mudança fica registrada como um evento, o que preserva o histórico. O CID-10 é usado pelos médicos, como no e-SUS PEC; os demais profissionais usam a CIAP-2. O painel de problemas se atualiza logo depois de finalizar a consulta ou de registrar um adendo.",
           "surfaces": [
             "secretaria"
           ],
@@ -2270,7 +2270,7 @@
           "slug": "f-19.4",
           "title": "Adendos e impresso da consulta",
           "benefit": "Correções entram como adendos, sem alterar o registro original, e a consulta sai impressa para assinatura.",
-          "description": "Depois de finalizada, a consulta só recebe acréscimos por adendo, com motivo, feitos pela própria autora. A autora pode ler e imprimir a consulta quando precisar, pela tela Minhas consultas. O impresso em PDF sai com espaço para a assinatura à mão enquanto a assinatura digital não estiver em uso.",
+          "description": "Depois de finalizada, a consulta só recebe acréscimos por adendo, com motivo, feitos pela própria autora. A autora pode ler e imprimir a consulta quando precisar, pela tela Minhas consultas. O impresso em PDF sai com espaço para a assinatura à mão enquanto a assinatura digital não estiver em uso. No adendo, a autora vê a lista completa de problemas do paciente.",
           "surfaces": [
             "secretaria"
           ],
@@ -2292,7 +2292,7 @@
           "slug": "f-19.6",
           "title": "Ficha de atendimento individual enviada ao e-SUS",
           "benefit": "A consulta registrada no Rota Saúde vira a ficha de atendimento individual do e-SUS, sem digitar de novo.",
-          "description": "Ao finalizar a consulta, nasce a ficha de atendimento individual no layout oficial do e-SUS, com problemas, condutas e exames. Adendos atualizam a ficha; se ela já foi aceita, a correção fica separada à espera do reenvio. Se a exportação estava indisponível, uma rotina noturna gera a ficha que faltou, dentro do mês atual ou do anterior.",
+          "description": "Ao finalizar a consulta, nasce a ficha de atendimento individual no layout oficial do e-SUS, com problemas, condutas e exames. Adendos atualizam a ficha; se ela já foi aceita, a correção fica separada à espera do reenvio. Se a exportação estava indisponível, uma rotina noturna gera a ficha que faltou, dentro do mês atual ou do anterior. Se um adendo não consegue atualizar a ficha depois das novas tentativas, a falha fica registrada, em vez de se perder sem aviso.",
           "surfaces": [
             "bastidores"
           ],
@@ -2364,7 +2364,7 @@
           "slug": "f-19.12",
           "title": "Pendentes de assinatura, em lote ou de volta ao papel",
           "benefit": "O que não foi assinado na hora fica numa lista e é assinado de uma vez, ou volta ao papel com motivo.",
-          "description": "Sem sessão aberta, os documentos vão para a lista de pendentes do profissional, que assina todos com uma única autorização no prestador. Se preferir, devolve um documento ao papel, com motivo registrado, e o impresso volta a ter espaço para a assinatura à mão.",
+          "description": "Sem sessão aberta, os documentos vão para a lista de pendentes do profissional, que assina todos com uma única autorização no prestador. Se preferir, devolve um documento ao papel, com motivo registrado, e o impresso volta a ter espaço para a assinatura à mão. O adendo assinado sem sessão aberta mostra por que está esperando.",
           "surfaces": [
             "secretaria"
           ],
@@ -2425,7 +2425,7 @@
           "slug": "f-19.17",
           "title": "Lista municipal e protocolos de enfermagem",
           "benefit": "A cidade define os medicamentos da rede e o que a enfermagem pode prescrever.",
-          "description": "O administrador da cidade cadastra o CNPJ da secretaria, a relação municipal de medicamentos (REMUME), que aparece primeiro na receita como \"na rede\", e os protocolos de enfermagem com número, vigência, itens e dose máxima.",
+          "description": "O administrador da cidade cadastra o CNPJ da secretaria, a relação municipal de medicamentos (REMUME), que aparece primeiro na receita como \"na rede\", e os protocolos de enfermagem com número, vigência, itens e dose máxima. Cada protocolo mostra o histórico de versões: a vigente, as agendadas e as encerradas. A lista municipal e os protocolos podem ser preparados antes de a cidade ligar os documentos clínicos.",
           "surfaces": [
             "secretaria"
           ],
@@ -2459,7 +2459,7 @@
           "slug": "f-19.20",
           "title": "Atestado",
           "benefit": "Atestado emitido na consulta, com conferência pública.",
-          "description": "O médico ou o dentista emite o atestado de afastamento ou de acompanhante durante a consulta. O código de doença só entra com autorização do paciente.",
+          "description": "O médico emite o atestado de afastamento ou de acompanhante durante a consulta. O código de doença só entra com autorização do paciente. O atestado do dentista depende do atendimento odontológico, que ainda não está disponível.",
           "surfaces": [
             "secretaria"
           ],
@@ -2471,7 +2471,7 @@
           "slug": "f-19.21",
           "title": "Declaração de comparecimento",
           "benefit": "O cidadão sai com o comprovante de que esteve na unidade.",
-          "description": "A declaração de comparecimento é emitida na consulta ou pela recepção, com o horário de chegada e de saída. Quando é a recepção, o impresso traz a matrícula de quem emitiu.",
+          "description": "A declaração de comparecimento é emitida na consulta ou pela recepção, com o horário de chegada e de saída. Quando é a recepção, o impresso traz a matrícula de quem emitiu. A declaração fica na unidade escolhida na tela. A recepção da unidade vê as declarações do atendimento e as do dia, reimprime e cancela, inclusive as emitidas por colegas, e cada consulta à lista fica registrada.",
           "surfaces": [
             "secretaria"
           ],
