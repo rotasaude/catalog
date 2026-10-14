@@ -30,8 +30,8 @@ describe("lista de módulos", () => {
       "Ciclo 1 · MVP",
       "Ciclo 2"
     ]);
-    // 20 módulos numerados + o grupo Interface.
-    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(21);
+    // 21 módulos numerados + o grupo Interface.
+    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(22);
     expect(screen.queryAllByRole("link", { name: /Classificação previsível/ })).toHaveLength(0);
     expect(document.title).toBe("Funcionalidades Rota Saúde");
   });
