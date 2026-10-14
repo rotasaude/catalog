@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import raw from "./funcionalidades.json";
 import { catalog, deliveredCount, findFeature, neighbours, validateCatalog } from "./catalog";
 import type { Catalog } from "./types";
-import { formatRanges } from "../pages/ModuleList";
+import { formatRanges, formatValidating } from "../pages/ModuleList";
 
 const clone = (): Catalog => JSON.parse(JSON.stringify(raw));
 
@@ -124,5 +124,32 @@ describe("formatRanges", () => {
     expect(formatRanges(["02", "03", "04"])).toBe("02 a 04");
     expect(formatRanges(["02", "03", "05", "07", "08"])).toBe("02 a 03, 05 e 07 a 08");
     expect(formatRanges(["09"])).toBe("09");
+  });
+});
+
+describe("formatValidating", () => {
+  it("um, dois e três módulos", () => {
+    expect(formatValidating(["19"])).toBe("o 19 está");
+    expect(formatValidating(["19", "20"])).toBe("o 19 e o 20 estão");
+    expect(formatValidating(["19", "20", "21"])).toBe("o 19, o 20 e o 21 estão");
+  });
+});
+
+describe("módulo 21", () => {
+  it("entra no ciclo 2: entrada FHIR e PEC em validação, o resto disponível", () => {
+    const m21 = catalog.modules.find((m) => m.id === "21")!;
+    expect(m21.cycle).toBe(2);
+    expect(m21.status).toBe("validating");
+    expect(m21.features.map((f) => f.id)).toEqual(Array.from({ length: 13 }, (_, i) => `F-21.${i + 1}`));
+    for (const id of ["f-21.1", "f-21.2", "f-21.3", "f-21.4", "f-21.5", "f-21.6", "f-21.8", "f-21.9", "f-21.10", "f-21.12", "f-21.13"]) {
+      expect(findFeature(id)?.feature.status).toBe("available");
+    }
+    const fhir = findFeature("f-21.7")!.feature;
+    expect(fhir.status).toBe("validating");
+    expect(fhir.note).toMatch(/laboratório simulado/);
+    expect(findFeature("f-21.1")?.feature.note).toMatch(/fora de produção/);
+    const pec = findFeature("f-21.11")!.feature;
+    expect(pec.status).toBe("validating");
+    expect(pec.note).toMatch(/PEC real/);
   });
 });

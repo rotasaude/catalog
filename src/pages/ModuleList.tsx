@@ -19,6 +19,13 @@ export function formatRanges(ids: string[]): string {
   return parts.length > 1 ? `${parts.slice(0, -1).join(", ")} e ${parts[parts.length - 1]}` : parts[0] ?? "";
 }
 
+// "o 19 está", "o 19 e o 20 estão", "o 19, o 20 e o 21 estão".
+export function formatValidating(ids: string[]): string {
+  const items = ids.map((id) => `o ${id}`);
+  const list = items.length > 1 ? `${items.slice(0, -1).join(", ")} e ${items[items.length - 1]}` : items[0] ?? "";
+  return `${list} ${items.length > 1 ? "estão" : "está"}`;
+}
+
 function formatDate(iso: string): string {
   const [y, m, d] = iso.split("-").map(Number);
   return new Date(y, m - 1, d).toLocaleDateString("pt-BR", { day: "numeric", month: "short", year: "numeric" }).replace(".", "");
@@ -90,7 +97,7 @@ export function ModuleList() {
       </main>
       <footer className="foot">
         Conteúdo verificado até {formatDate(meta.updatedAt)}. Os módulos {formatRanges(available)}{" "}
-        estão disponíveis e verificados{validating.length > 0 && `; ${validating.length > 1 ? `${validating.map((id) => `o ${id}`).join(" e ")} estão` : `o ${validating[0]} está`} em validação`}
+        estão disponíveis e verificados{validating.length > 0 && `; ${formatValidating(validating)} em validação`}
         {planned.length > 0 && `; o ${planned.join(", ")} está planejado`}.
       </footer>
     </>

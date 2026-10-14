@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-13",
+    "updatedAt": "2026-10-14",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 20 e interface"
+        "modules": "15 a 21 e interface"
       }
     ]
   },
@@ -2601,7 +2601,7 @@
           "slug": "f-20.2",
           "title": "Linha do tempo da pessoa",
           "benefit": "Um histórico só, montado com o que cada módulo já registra.",
-          "description": "Reúne triagens, atendimentos, acolhimento, agendamentos, consultas, documentos, Notificações de receita e campanhas, da mais recente para a mais antiga. Junta todos os cadastros validados da mesma pessoa. Um cadastro só declarado nunca entra no histórico de outra pessoa.",
+          "description": "Reúne triagens, atendimentos, acolhimento, agendamentos, consultas, documentos, Notificações de receita, campanhas e exames, da mais recente para a mais antiga. Junta todos os cadastros validados da mesma pessoa. Um cadastro só declarado nunca entra no histórico de outra pessoa.",
           "surfaces": [
             "secretaria",
             "cidadao"
@@ -2652,6 +2652,163 @@
           ],
           "status": "validating",
           "note": "Provada com um PEC simulado. A prova num e-SUS PEC real é o que falta antes de a primeira cidade usar."
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "cycle": 2,
+      "name": "Exames e laboratório",
+      "status": "validating",
+      "description": "O exame pedido é acompanhado até o resultado: autorização, marcação, coleta, laudo e a ciência de quem pediu, com prazos e aviso de atraso. Laboratórios mandam o resultado por um portal ou por integração, e o cidadão acompanha pelo celular. O laboratório municipal (coleta com etiqueta e laudo digitado) vem numa etapa seguinte.",
+      "features": [
+        {
+          "id": "F-21.1",
+          "slug": "f-21.1",
+          "title": "Interruptores do rastreamento de exames",
+          "benefit": "A cidade liga o rastreamento de exames quando quiser, e cada integração à parte.",
+          "description": "O rastreamento, a entrada de resultados por integração com laboratórios e o pedido pelo PEC são ligados por cidade, pela equipe da plataforma, cada um com os seus pré-requisitos. A tela diz o que falta para cada um funcionar.",
+          "surfaces": [
+            "plataforma",
+            "bastidores"
+          ],
+          "status": "available",
+          "note": "O laboratório simulado, usado para demonstração e testes, só existe fora de produção."
+        },
+        {
+          "id": "F-21.2",
+          "slug": "f-21.2",
+          "title": "Catálogo de exames e prestadores da cidade",
+          "benefit": "A cidade diz quais exames acompanha, quem os faz e em quanto tempo.",
+          "description": "A administração municipal monta o catálogo a partir da tabela SIGTAP: quais exames exigem autorização, o prazo de cada etapa e o que o cidadão pode ver do resultado. Cadastra os prestadores — laboratório municipal, credenciado, consórcio, LACEN ou imagem — com prazos próprios por exame.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.3",
+          "slug": "f-21.3",
+          "title": "Exame acompanhado do pedido ao resultado",
+          "benefit": "Cada exame pedido vira um acompanhamento com situação e histórico.",
+          "description": "O pedido feito na consulta já nasce acompanhado, e a recepção cadastra o que chega pela guia em papel, com a foto da guia. Cada passo fica registrado com quem fez e quando; antes do resultado, o exame pode ser cancelado com motivo.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.4",
+          "slug": "f-21.4",
+          "title": "Fila de regulação",
+          "benefit": "Exames que exigem autorização entram numa fila única da cidade.",
+          "description": "O regulador decide na ordem: urgentes primeiro, depois os mais antigos. Ao autorizar escolhe o prestador; ao negar registra o motivo, e quem pediu fica sabendo.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.5",
+          "slug": "f-21.5",
+          "title": "Prazos e exames atrasados",
+          "benefit": "A unidade e a coordenação veem o que está atrasado e em que etapa.",
+          "description": "Cada etapa tem prazo — do prestador, do catálogo ou o padrão da plataforma — e o urgente conta a metade. Uma conferência diária marca os atrasos, mostrados num painel com filtros por etapa, prestador e exame.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.6",
+          "slug": "f-21.6",
+          "title": "Portal do prestador",
+          "benefit": "O laboratório agenda, registra a coleta e envia o resultado pelo próprio Rota Saúde.",
+          "description": "Cada prestador tem usuário próprio e vê só as suas guias, com o mínimo para identificar o paciente. Não acessa prontuário nem guias de outro prestador, e vê as coletas e resultados em atraso.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.7",
+          "slug": "f-21.7",
+          "title": "Resultado por integração com o laboratório",
+          "benefit": "O laboratório com sistema próprio manda o resultado direto, sem digitação.",
+          "description": "O laboratório envia o laudo em PDF e os valores no padrão FHIR, com um acesso próprio que a cidade pode revogar. O resultado só entra se o paciente bater com o do exame, e o mesmo envio repetido não duplica.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "Provada com um laboratório simulado. Falta o primeiro laboratório real antes de uma cidade usar."
+        },
+        {
+          "id": "F-21.8",
+          "slug": "f-21.8",
+          "title": "Resultado, ciência e fila da equipe",
+          "benefit": "Todo resultado é visto por um profissional, e nenhum fica esquecido.",
+          "description": "Quem pediu o exame dá ciência do resultado. Se o prazo vence, ou se o resultado vem marcado como crítico, ele vai para a fila da equipe de referência do paciente, onde médico ou enfermeiro dá ciência com motivo.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.9",
+          "slug": "f-21.9",
+          "title": "Resultado externo",
+          "benefit": "Exame feito fora da rede também entra no histórico do paciente.",
+          "description": "O profissional ou a unidade registra um resultado que chegou sem pedido no Rota Saúde, com laboratório, data, PDF e valores. Quem registra já dá a ciência.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.10",
+          "slug": "f-21.10",
+          "title": "Meus exames, para o cidadão",
+          "benefit": "A pessoa acompanha os próprios exames pelo celular.",
+          "description": "No canal web, quem tem cadastro validado vê a situação de cada exame, a data e o local marcados e baixa o PDF do resultado quando a cidade libera: na hora, depois que o profissional viu, ou nunca pelo celular, com o aviso para retirar na unidade. Quem tem só cadastro declarado vê o convite para validar no posto.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.11",
+          "slug": "f-21.11",
+          "title": "Pedido de exame pelo e-SUS PEC",
+          "benefit": "Em cidade com e-SUS PEC, o profissional pede o exame sem sair do PEC.",
+          "description": "Dentro do atendimento no PEC, o profissional abre o pedido de exames do Rota Saúde, com profissional e paciente já preenchidos pela chamada assinada do PEC. O exame nasce acompanhado, como os pedidos da consulta.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Provado com uma reprodução fiel da tela de sistemas externos do e-SUS PEC 5.5.28 e um PEC simulado; nenhum atendimento num PEC real foi aberto. A prova num e-SUS PEC real é o que falta antes de a primeira cidade usar."
+        },
+        {
+          "id": "F-21.12",
+          "slug": "f-21.12",
+          "title": "Relatório de conferência por prestador",
+          "benefit": "A cidade confere mês a mês o que cada prestador entregou, e no prazo.",
+          "description": "Por prestador e mês: guias autorizadas, coletadas e com resultado no prazo ou em atraso, na tela e em planilha. A planilha detalhada leva só o código da guia, o código SIGTAP e as datas.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.13",
+          "slug": "f-21.13",
+          "title": "Exames na linha do tempo",
+          "benefit": "Os exames aparecem no histórico do paciente, para o profissional e para o cidadão.",
+          "description": "O profissional vê o pedido, as etapas e o resultado na linha do tempo do paciente. O cidadão vê o andamento e o resultado conforme o que a cidade libera para cada exame.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
+          ],
+          "status": "available"
         }
       ]
     },
