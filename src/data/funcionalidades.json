@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-14",
+    "updatedAt": "2026-10-16",
     "cycles": [
       {
         "id": 1,
@@ -2660,7 +2660,7 @@
       "cycle": 2,
       "name": "Exames e laboratório",
       "status": "validating",
-      "description": "O exame pedido é acompanhado até o resultado: autorização, marcação, coleta, laudo e a ciência de quem pediu, com prazos e aviso de atraso. Laboratórios mandam o resultado por um portal ou por integração, e o cidadão acompanha pelo celular. O laboratório municipal (coleta com etiqueta e laudo digitado) vem numa etapa seguinte.",
+      "description": "O exame pedido é acompanhado até o resultado: autorização, marcação, coleta, laudo e a ciência de quem pediu, com prazos e aviso de atraso. Laboratórios mandam o resultado por um portal ou por integração, e o cidadão acompanha pelo celular. O laboratório municipal tem o fluxo inteiro: requisição com etiqueta, coleta na UBS, remessa, recebimento, mapa de trabalho, resultado dos aparelhos ou digitado, liberação assinada e laudo.",
       "features": [
         {
           "id": "F-21.1",
@@ -2807,6 +2807,133 @@
           "surfaces": [
             "secretaria",
             "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.14",
+          "slug": "f-21.14",
+          "title": "Interruptores e catálogo-base do laboratório",
+          "benefit": "A cidade liga o laboratório municipal e parte de um catálogo pronto.",
+          "description": "A equipe da plataforma liga o laboratório municipal por cidade, e a entrada dos resultados dos aparelhos à parte. Um catálogo-base com os exames mais pedidos — material, tubo, método, componentes e valores de referência — serve de ponto de partida para cada laboratório.",
+          "surfaces": [
+            "plataforma",
+            "bastidores"
+          ],
+          "status": "available",
+          "note": "O middleware simulado, que manda resultados de exemplo, só existe fora de produção."
+        },
+        {
+          "id": "F-21.15",
+          "slug": "f-21.15",
+          "title": "Catálogo do laboratório com versões",
+          "benefit": "O laboratório ajusta cada exame ao seu método sem mudar laudos antigos.",
+          "description": "O laboratório adota os exames do catálogo-base e ajusta método, valores de referência por sexo e idade, limites críticos e o código de cada aparelho. Cada mudança cria uma nova versão; o laudo sempre mostra a versão usada. A administração também define os motivos de rejeição de amostra e quem libera laudos: um responsável técnico e um substituto.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.16",
+          "slug": "f-21.16",
+          "title": "Requisição, etiqueta e coleta",
+          "benefit": "Cada tubo sai da UBS com etiqueta e código de barras.",
+          "description": "A UBS abre a requisição com os exames pedidos na consulta ou em papel, imprime as etiquetas com código de barras e registra a coleta lendo cada tubo. O comprovante da requisição traz a previsão de entrega.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available",
+          "note": "Antes de uma cidade real, cada modelo de impressora térmica e de leitor das UBS e do laboratório passa por uma prova com etiqueta real."
+        },
+        {
+          "id": "F-21.17",
+          "slug": "f-21.17",
+          "title": "Remessa da UBS e recebimento com rejeição",
+          "benefit": "O laboratório sabe o que chegou, o que faltou e o que precisa ser coletado de novo.",
+          "description": "A UBS monta a remessa lendo os tubos e anota a temperatura da caixa. O laboratório confere a remessa, aceita, rejeita com motivo ou aceita com restrição cada amostra. A rejeição pede a recoleta à UBS de origem, e a amostra que não chegou aparece para a UBS.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.18",
+          "slug": "f-21.18",
+          "title": "Mapa de trabalho e digitação",
+          "benefit": "A bancada vê o que tem para fazer e registra o resultado com conferência.",
+          "description": "O mapa de trabalho mostra as amostras aceitas por setor e bancada, com urgentes primeiro, e sai em PDF. O resultado é digitado pela etiqueta ou pelo mapa, com a faixa de referência do paciente e limites de digitação; número com ponto é recusado para evitar erro de milhar. Os índices calculados são refeitos sozinhos.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.19",
+          "slug": "f-21.19",
+          "title": "Entrada dos resultados dos aparelhos",
+          "benefit": "O resultado dos aparelhos chega sem redigitação e espera a conferência.",
+          "description": "O middleware do laboratório consulta as amostras que esperam resultado e manda os valores pelo padrão HL7, com recibo de aceite ou recusa para cada mensagem. Nada vai ao paciente sem a liberação de um profissional, e nenhum valor vai para os registros do sistema.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "Verificada com um middleware simulado. A prova com o middleware e os aparelhos reais do primeiro laboratório é pendência antes do go-live."
+        },
+        {
+          "id": "F-21.20",
+          "slug": "f-21.20",
+          "title": "Liberação com assinatura e laudo",
+          "benefit": "O laudo só sai depois que um profissional confere e assina.",
+          "description": "O liberador confere os valores, escolhe a repetição que vale e libera o laudo inteiro ou parcial, com assinatura eletrônica avançada ou com certificado ICP-Brasil — o médico libera só com ICP. O laudo em PDF traz o responsável técnico, quem liberou e um código para a conferência pública.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available",
+          "note": "A assinatura com certificado ICP-Brasil foi verificada com um prestador simulado e segue em validação com o módulo 19."
+        },
+        {
+          "id": "F-21.21",
+          "slug": "f-21.21",
+          "title": "Valores críticos",
+          "benefit": "Ninguém esquece de avisar um resultado crítico.",
+          "description": "O valor crítico aparece marcado na conferência. Liberado sem o registro de quem foi avisado, ele fica numa lista própria até alguém registrar o aviso — quem, a função, por telefone, presencialmente ou pelo sistema, e quando.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.22",
+          "slug": "f-21.22",
+          "title": "Retificação de laudo",
+          "benefit": "Um laudo errado é substituído com motivo, e todos veem qual vale.",
+          "description": "O liberador emite um laudo retificado com o motivo e o registro de quem foi avisado. O anterior fica marcado como substituído na conferência pública, o exame volta para a ciência de quem pediu, e o cidadão vê só o laudo vigente.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.23",
+          "slug": "f-21.23",
+          "title": "Relatórios de produção, rejeição e prazo",
+          "benefit": "A coordenação acompanha a produção do laboratório e onde ela emperra.",
+          "description": "Por mês: exames liberados por unidade de origem, exame, setor e liberador, com o valor da tabela SIGTAP; amostras rejeitadas por motivo e unidade; e laudos no prazo, atrasados e pendentes por exame. Cada relatório sai também em CSV.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.24",
+          "slug": "f-21.24",
+          "title": "Registro do GAL",
+          "benefit": "O número do GAL fica junto do exame, para quem precisa dele.",
+          "description": "Nos exames que também vão ao sistema do LACEN, a unidade ou o laboratório registra uma vez o número da requisição no GAL. Ele aparece para a equipe e nunca para o cidadão.",
+          "surfaces": [
+            "secretaria"
           ],
           "status": "available"
         }
