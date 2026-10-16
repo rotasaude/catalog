@@ -140,7 +140,7 @@ describe("módulo 21", () => {
     const m21 = catalog.modules.find((m) => m.id === "21")!;
     expect(m21.cycle).toBe(2);
     expect(m21.status).toBe("validating");
-    expect(m21.features.map((f) => f.id)).toEqual(Array.from({ length: 13 }, (_, i) => `F-21.${i + 1}`));
+    expect(m21.features.map((f) => f.id)).toEqual(Array.from({ length: 24 }, (_, i) => `F-21.${i + 1}`));
     for (const id of ["f-21.1", "f-21.2", "f-21.3", "f-21.4", "f-21.5", "f-21.6", "f-21.8", "f-21.9", "f-21.10", "f-21.12", "f-21.13"]) {
       expect(findFeature(id)?.feature.status).toBe("available");
     }
@@ -151,5 +151,18 @@ describe("módulo 21", () => {
     const pec = findFeature("f-21.11")!.feature;
     expect(pec.status).toBe("validating");
     expect(pec.note).toMatch(/PEC real/);
+  });
+
+  it("21b, laboratório municipal: só a entrada dos aparelhos em validação; ICP e etiqueta com nota", () => {
+    for (const id of ["f-21.14", "f-21.15", "f-21.16", "f-21.17", "f-21.18", "f-21.20", "f-21.21", "f-21.22", "f-21.23", "f-21.24"]) {
+      expect(findFeature(id)?.feature.status).toBe("available");
+    }
+    const hl7 = findFeature("f-21.19")!.feature;
+    expect(hl7.status).toBe("validating");
+    expect(hl7.note).toMatch(/middleware simulado/);
+    expect(findFeature("f-21.14")?.feature.note).toMatch(/fora de produção/);
+    expect(findFeature("f-21.20")?.feature.note).toMatch(/ICP-Brasil/);
+    expect(findFeature("f-21.16")?.feature.note).toMatch(/impressora/);
+    expect(findFeature("f-21.24")?.feature.description).toMatch(/nunca para o cidadão/);
   });
 });
