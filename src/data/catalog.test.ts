@@ -140,7 +140,7 @@ describe("módulo 21", () => {
     const m21 = catalog.modules.find((m) => m.id === "21")!;
     expect(m21.cycle).toBe(2);
     expect(m21.status).toBe("validating");
-    expect(m21.features.map((f) => f.id)).toEqual(Array.from({ length: 24 }, (_, i) => `F-21.${i + 1}`));
+    expect(m21.features.map((f) => f.id)).toEqual(Array.from({ length: 34 }, (_, i) => `F-21.${i + 1}`));
     for (const id of ["f-21.1", "f-21.2", "f-21.3", "f-21.4", "f-21.5", "f-21.6", "f-21.8", "f-21.9", "f-21.10", "f-21.12", "f-21.13"]) {
       expect(findFeature(id)?.feature.status).toBe("available");
     }
@@ -164,5 +164,23 @@ describe("módulo 21", () => {
     expect(findFeature("f-21.20")?.feature.note).toMatch(/ICP-Brasil/);
     expect(findFeature("f-21.16")?.feature.note).toMatch(/impressora/);
     expect(findFeature("f-21.24")?.feature.description).toMatch(/nunca para o cidadão/);
+  });
+
+  it("21c, qualidade e insumos: só o controle pela HL7 em validação, até haver middleware real", () => {
+    const m21 = catalog.modules.find((m) => m.id === "21")!;
+    expect(m21.description).toMatch(/controle de qualidade/);
+    expect(m21.description).toMatch(/lote do reagente/);
+    for (const id of ["f-21.25", "f-21.26", "f-21.27", "f-21.29", "f-21.30", "f-21.31", "f-21.32", "f-21.33", "f-21.34"]) {
+      expect(findFeature(id)?.feature.status).toBe("available");
+    }
+    const hl7 = findFeature("f-21.28")!.feature;
+    expect(hl7.status).toBe("validating");
+    expect(hl7.note).toMatch(/middleware simulado/);
+    expect(hl7.note).toMatch(/middleware real/);
+    expect(hl7.surfaces).toEqual([ "bastidores" ]);
+    expect(findFeature("f-21.25")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    expect(findFeature("f-21.27")?.feature.note).toMatch(/responsável técnico/);
+    expect(findFeature("f-21.32")?.feature.description).toMatch(/a abertura de embalagem não/);
+    expect(findFeature("f-21.34")?.feature.description).toMatch(/nada é baixado/);
   });
 });
