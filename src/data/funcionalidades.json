@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-16",
+    "updatedAt": "2026-10-19",
     "cycles": [
       {
         "id": 1,
@@ -2660,7 +2660,7 @@
       "cycle": 2,
       "name": "Exames e laboratório",
       "status": "validating",
-      "description": "O exame pedido é acompanhado até o resultado: autorização, marcação, coleta, laudo e a ciência de quem pediu, com prazos e aviso de atraso. Laboratórios mandam o resultado por um portal ou por integração, e o cidadão acompanha pelo celular. O laboratório municipal tem o fluxo inteiro: requisição com etiqueta, coleta na UBS, remessa, recebimento, mapa de trabalho, resultado dos aparelhos ou digitado, liberação assinada e laudo.",
+      "description": "O exame pedido é acompanhado até o resultado: autorização, marcação, coleta, laudo e a ciência de quem pediu, com prazos e aviso de atraso. Laboratórios mandam o resultado por um portal ou por integração, e o cidadão acompanha pelo celular. O laboratório municipal tem o fluxo inteiro: requisição com etiqueta, coleta na UBS, remessa, recebimento, mapa de trabalho, resultado dos aparelhos ou digitado, liberação assinada e laudo. O controle de qualidade reprovado bloqueia a liberação do analito no aparelho, e, com o estoque ligado, cada resultado guarda o lote do reagente em uso.",
       "features": [
         {
           "id": "F-21.1",
@@ -2932,6 +2932,120 @@
           "title": "Registro do GAL",
           "benefit": "O número do GAL fica junto do exame, para quem precisa dele.",
           "description": "Nos exames que também vão ao sistema do LACEN, a unidade ou o laboratório registra uma vez o número da requisição no GAL. Ele aparece para a equipe e nunca para o cidadão.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.25",
+          "slug": "f-21.25",
+          "title": "Interruptores e aparelhos do laboratório",
+          "benefit": "O controle de qualidade e o estoque entram por cidade, e cada exame sabe em que aparelho é feito.",
+          "description": "A equipe da plataforma liga, por cidade, o controle de qualidade e o estoque do laboratório municipal, independentes entre si. A administração cadastra os aparelhos (fabricante, modelo, série e setor) e liga cada exame ao aparelho que o faz.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available",
+          "note": "O middleware simulado, que só roda fora de produção, manda corridas de controle de exemplo, e uma delas reprovada abre bloqueio de liberação."
+        },
+        {
+          "id": "F-21.26",
+          "slug": "f-21.26",
+          "title": "Materiais, lotes e referências de controle",
+          "benefit": "Cada lote de controle tem a sua referência, da bula ou do próprio laboratório.",
+          "description": "O laboratório cadastra os materiais de controle com os seus níveis, e cada lote com validade e um código de barras por nível. A referência começa pela bula; depois de 20 corridas aprovadas o sistema sugere a média e o desvio do próprio laboratório, e o responsável técnico aceita uma nova versão sem apagar a anterior.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.27",
+          "slug": "f-21.27",
+          "title": "Corridas de controle e regras de Westgard",
+          "benefit": "O controle de cada corrida é avaliado na hora, sem conta à mão.",
+          "description": "O valor do controle é digitado na corrida do aparelho ou chega pelo middleware, e é avaliado na gravação pelas regras de Westgard: a regra de alerta só avisa e as regras de rejeição reprovam a corrida. O responsável técnico desliga uma regra por analito, sempre com justificativa registrada.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available",
+          "note": "A validação do controle de qualidade pelo responsável técnico do primeiro laboratório é feita antes do go-live."
+        },
+        {
+          "id": "F-21.28",
+          "slug": "f-21.28",
+          "title": "Controle pela HL7",
+          "benefit": "O resultado do controle chega do aparelho sem digitação e nunca vira resultado de paciente.",
+          "description": "O middleware do aparelho manda o resultado do controle pelo mesmo padrão HL7 dos pacientes; o sistema reconhece o lote de controle pelo código de barras e o aparelho pelo identificador que ele envia. Lote vencido ou encerrado, controle sem referência e aparelho desconhecido são recusados.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "Verificado só com um middleware simulado, que manda corridas aprovadas e reprovadas. Falta o primeiro middleware real mandando controles, na convenção do fornecedor, antes do go-live."
+        },
+        {
+          "id": "F-21.29",
+          "slug": "f-21.29",
+          "title": "Bloqueio da liberação, exceção e revisão",
+          "benefit": "Com o controle reprovado, nenhum resultado afetado sai sem decisão do responsável técnico.",
+          "description": "Quando o controle reprova, nenhum resultado daquele analito naquele aparelho é liberado. O responsável técnico ou o substituto libera um exame com exceção e justificativa, e os laudos liberados desde a última corrida aprovada entram numa revisão, mantidos ou retificados. O bloqueio fecha com a ação corretiva e uma nova corrida aprovada.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.30",
+          "slug": "f-21.30",
+          "title": "Gráfico de Levey-Jennings",
+          "benefit": "Quem libera os laudos e o responsável técnico veem a tendência do controle antes de ele reprovar.",
+          "description": "Para cada lote, nível, analito e aparelho, o gráfico mostra os valores do controle com as faixas de 1, 2 e 3 desvios, as regras que dispararam e a versão da referência usada em cada ponto. Quem libera os laudos, o responsável técnico, o substituto e a administração abrem o gráfico; a equipe da bancada não.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.31",
+          "slug": "f-21.31",
+          "title": "Registro do controle externo",
+          "benefit": "As rodadas do controle externo ficam registradas, com a ação para cada falha.",
+          "description": "Quem libera os laudos, inclusive o responsável técnico, ou a administração registra cada rodada do controle externo (programa, valor enviado, alvo e adequação), com a ação para cada item inadequado, e anexa o relatório anual do programa. Uma tela mostra a taxa de adequação por analito no ano.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.32",
+          "slug": "f-21.32",
+          "title": "Estoque de reagentes e insumos com lotes",
+          "benefit": "O laboratório sabe o que tem, o que vence e o que está acabando.",
+          "description": "Reagentes, calibradores, controles e consumíveis têm unidade, estoque mínimo e rendimento. A entrada registra lote, validade, fornecedor e origem, e lote vencido é recusado. Perdas, vencimentos e ajustes pedem motivo, a abertura de embalagem não, e o saldo nunca fica negativo; alertas mostram o que vence logo e o que está abaixo do mínimo.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.33",
+          "slug": "f-21.33",
+          "title": "Lote em uso e rastreio do reagente",
+          "benefit": "Um lote com problema leva direto aos resultados que o usaram.",
+          "description": "Com o estoque ligado, o laboratório marca o lote de reagente em uso em cada aparelho e exame, e cada resultado e valor de controle guarda esse lote; sem lote em uso, o resultado fica marcado sem rastreio. Por lote, sai a lista das requisições e corridas que o usaram, sem nome de paciente, também em CSV.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-21.34",
+          "slug": "f-21.34",
+          "title": "Relatório de consumo estimado",
+          "benefit": "A coordenação compara o que foi aberto com o que foi de fato usado.",
+          "description": "Por mês, item e aparelho, o relatório compara os testes realizados (resultados, repetições e controles) com os testes das embalagens abertas e mostra o desvio, que só existe para o item com rendimento cadastrado. Há uma linha para o que não tem aparelho, e sai na tela e em CSV; nada é baixado do estoque sozinho.",
           "surfaces": [
             "secretaria"
           ],
