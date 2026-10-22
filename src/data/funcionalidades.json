@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-19",
+    "updatedAt": "2026-10-21",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 21 e interface"
+        "modules": "15 a 22 e interface"
       }
     ]
   },
@@ -3048,6 +3048,95 @@
           "description": "Por mês, item e aparelho, o relatório compara os testes realizados (resultados, repetições e controles) com os testes das embalagens abertas e mostra o desvio, que só existe para o item com rendimento cadastrado. Há uma linha para o que não tem aparelho, e sai na tela e em CSV; nada é baixado do estoque sozinho.",
           "surfaces": [
             "secretaria"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "cycle": 2,
+      "name": "Procedimentos e faturamento",
+      "status": "validating",
+      "description": "O procedimento feito na UPA, no hospital ou no laboratório municipal é registrado e conferido com a tabela SIGTAP sem travar o atendimento. No fim do mês, o faturista fecha a competência de cada estabelecimento e gera o arquivo que o BPA Magnético importa, sem redigitar. A UBS fica de fora: a produção da atenção primária segue pelo e-SUS APS.",
+      "features": [
+        {
+          "id": "F-22.1",
+          "slug": "f-22.1",
+          "title": "Interruptor e papel de faturista",
+          "benefit": "O faturamento entra por cidade, com uma pessoa responsável por ele.",
+          "description": "A equipe da plataforma liga o faturamento de procedimentos por cidade, sem depender do modo de prontuário; a tela diz o que falta, como o código IBGE da cidade. A administração convida o faturista, que fecha as competências e baixa o arquivo; a própria administração acompanha e configura o cabeçalho do arquivo.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-22.2",
+          "slug": "f-22.2",
+          "title": "Registro de procedimento com conferência SIGTAP",
+          "benefit": "O procedimento é registrado na hora, e o que não vai passar no faturamento aparece logo.",
+          "description": "No atendimento, na consulta ou avulso pela unidade, o profissional busca o procedimento na tabela SIGTAP da competência e informa quantidade e CID quando a tabela pede. A conferência de CBO, idade, sexo, CID e instrumento marca o procedimento como não faturável, com o motivo, e nunca impede o registro.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-22.3",
+          "slug": "f-22.3",
+          "title": "Produção do laboratório municipal no faturamento",
+          "benefit": "Os exames do laboratório municipal entram no faturamento sem digitação.",
+          "description": "Cada exame liberado no laudo do laboratório municipal vira um procedimento realizado, com o liberador como profissional e o laboratório como estabelecimento. A retificação do laudo não duplica a produção.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-22.4",
+          "slug": "f-22.4",
+          "title": "Lançamento manual pelo faturista",
+          "benefit": "A produção feita fora do sistema também chega ao arquivo.",
+          "description": "O faturista lança o procedimento feito fora do Rota Saúde, escolhendo o estabelecimento, o paciente e o profissional com o CBO do vínculo. O lançamento passa pela mesma conferência com a SIGTAP.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-22.5",
+          "slug": "f-22.5",
+          "title": "Fechamento da competência e pendências",
+          "benefit": "O faturista vê antes do fechamento o que não vai passar e o que corrigir.",
+          "description": "Por estabelecimento e competência, a tela mostra as linhas de BPA-I e BPA-C, os não faturáveis por motivo e as pendências agrupadas pelo que corrigir — cadastro do profissional, do paciente ou do estabelecimento. Raça/cor e endereço do paciente, que o BPA-I exige, o faturista completa na própria pendência, e a recepção já os capta no check-in e no cadastro. Corrigido o cadastro, a pendência sai sem relançar. O procedimento de competência já fechada entra, como atrasado, na primeira competência aberta. Fechar e reabrir pedem a verificação em duas etapas, e reabrir pede motivo.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-22.6",
+          "slug": "f-22.6",
+          "title": "Arquivo BPA-I e BPA-C do BPA Magnético",
+          "benefit": "O arquivo da competência sai pronto para importar no BPA Magnético.",
+          "description": "O fechamento gera o arquivo de interface do BPA Magnético, com o BPA individualizado item a item e o consolidado agregado. Cada fechamento é uma versão guardada; o arquivo nunca muda depois de gerado, e cada download fica registrado na trilha.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Gerado e conferido contra o layout do DATASUS de 09/07/2026. Falta a importação real no BPA Magnético, pela secretaria piloto, antes do go-live."
+        },
+        {
+          "id": "F-22.7",
+          "slug": "f-22.7",
+          "title": "Procedimentos na linha do tempo",
+          "benefit": "O procedimento realizado aparece no histórico do paciente.",
+          "description": "O profissional vê na linha do tempo o procedimento com a data, a unidade e quem fez; o cidadão vê o nome, a data e a unidade, sem nada de faturamento.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
           ],
           "status": "available"
         }

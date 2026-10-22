@@ -132,6 +132,7 @@ describe("formatValidating", () => {
     expect(formatValidating(["19"])).toBe("o 19 está");
     expect(formatValidating(["19", "20"])).toBe("o 19 e o 20 estão");
     expect(formatValidating(["19", "20", "21"])).toBe("o 19, o 20 e o 21 estão");
+    expect(formatValidating(["19", "20", "21", "22"])).toBe("o 19, o 20, o 21 e o 22 estão");
   });
 });
 
@@ -182,5 +183,31 @@ describe("módulo 21", () => {
     expect(findFeature("f-21.27")?.feature.note).toMatch(/responsável técnico/);
     expect(findFeature("f-21.32")?.feature.description).toMatch(/a abertura de embalagem não/);
     expect(findFeature("f-21.34")?.feature.description).toMatch(/nada é baixado/);
+  });
+});
+
+describe("módulo 22", () => {
+  it("entra no ciclo 2 depois do 21: só o arquivo BPA em validação, até a importação real no BPA Magnético", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("22")).toBe(ids.indexOf("21") + 1);
+    const m22 = catalog.modules.find((m) => m.id === "22")!;
+    expect(m22.cycle).toBe(2);
+    expect(m22.status).toBe("validating");
+    expect(m22.name).toBe("Procedimentos e faturamento");
+    expect(m22.description).toMatch(/BPA Magnético/);
+    expect(m22.description).toMatch(/UBS/);
+    expect(m22.features.map((f) => f.id)).toEqual(Array.from({ length: 7 }, (_, i) => `F-22.${i + 1}`));
+    for (const id of ["f-22.1", "f-22.2", "f-22.3", "f-22.4", "f-22.5", "f-22.7"]) {
+      expect(findFeature(id)?.feature.status).toBe("available");
+    }
+    const bpa = findFeature("f-22.6")!.feature;
+    expect(bpa.status).toBe("validating");
+    expect(bpa.note).toMatch(/BPA Magnético/);
+    expect(bpa.note).toMatch(/09\/07\/2026/);
+    expect(findFeature("f-22.1")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    expect(findFeature("f-22.2")?.feature.description).toMatch(/nunca impede/);
+    expect(findFeature("f-22.3")?.feature.surfaces).toEqual([ "bastidores" ]);
+    expect(findFeature("f-22.7")?.feature.surfaces).toEqual([ "secretaria", "cidadao" ]);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 22 e interface");
   });
 });
