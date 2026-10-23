@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-21",
+    "updatedAt": "2026-10-23",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 22 e interface"
+        "modules": "15 a 23 e interface"
       }
     ]
   },
@@ -3136,6 +3136,105 @@
           "description": "O profissional vê na linha do tempo o procedimento com a data, a unidade e quem fez; o cidadão vê o nome, a data e a unidade, sem nada de faturamento.",
           "surfaces": [
             "secretaria",
+            "cidadao"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "cycle": 2,
+      "name": "Linhas de cuidado",
+      "status": "validating",
+      "description": "Criança, gestante, diabetes, hipertensão, pessoa idosa e prevenção do câncer na mulher ganham acompanhamento pessoa a pessoa, pelas boas práticas das notas metodológicas do componente de qualidade da APS. A equipe vê quem está em dia ou atrasado e faz a busca ativa; a gestão vê uma estimativa dos indicadores C2 a C7 por equipe, antes da extração oficial.",
+      "features": [
+        {
+          "id": "F-23.1",
+          "slug": "f-23.1",
+          "title": "Interruptor e catálogo-base das linhas",
+          "benefit": "As linhas entram por cidade, a partir de um catálogo mantido pela plataforma.",
+          "description": "A equipe da plataforma liga as linhas de cuidado por cidade (só com o prontuário do Rota Saúde) e mantém as seis linhas das notas metodológicas em versões. Uma versão nova só vale para a cidade que a adotar.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-23.2",
+          "slug": "f-23.2",
+          "title": "Linhas da cidade",
+          "benefit": "A secretaria escolhe as linhas e cria as próprias.",
+          "description": "A administração adota as linhas do catálogo, adota as versões novas quando quiser e cria linhas próprias — por exemplo, saúde mental — com as mesmas regras de elegibilidade e boas práticas.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-23.3",
+          "slug": "f-23.3",
+          "title": "Sugestão e inscrição confirmada",
+          "benefit": "Ninguém entra numa linha sem um profissional confirmar.",
+          "description": "O sistema sugere quem deveria estar em cada linha, pela lista de problemas, pela idade e sexo e pela condição que o próprio cidadão declarou. Só médico ou enfermeiro confirma; na gestante, com a data da última menstruação. Também dá para inscrever à mão.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-23.4",
+          "slug": "f-23.4",
+          "title": "Acompanhamento das boas práticas",
+          "benefit": "A situação de cada pessoa sai do que já foi registrado, sem digitar de novo.",
+          "description": "Consultas, pressão, peso e altura, exames e procedimentos já registrados dizem se cada boa prática está em dia, vencendo ou vencida. O que o sistema ainda não registra, como visita do agente e vacina, aparece como não acompanhado e não conta como atraso.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-23.5",
+          "slug": "f-23.5",
+          "title": "Painel da equipe e busca ativa",
+          "benefit": "A equipe sabe quem procurar esta semana e por quê.",
+          "description": "O painel mostra, por equipe e linha, quem tem alguma boa prática vencida, registra cada tentativa de contato e abre o agendamento da unidade para a pessoa. Cada profissional vê o painel nominal só das equipes do seu vínculo. A leitura nominal fica registrada na trilha de auditoria.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-23.6",
+          "slug": "f-23.6",
+          "title": "Prévia dos indicadores C2 a C7",
+          "benefit": "A gestão vê onde a equipe vai perder pontos antes da extração oficial.",
+          "description": "Por equipe, a prévia estima a pontuação de cada indicador sobre a população elegível, inscrita ou não, sem visita do agente e vacina. É sempre rotulada como estimativa.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "O valor oficial é calculado pelo SIAPS. A prévia foi conferida com dados de exemplo; falta comparar com uma extração oficial da secretaria piloto."
+        },
+        {
+          "id": "F-23.7",
+          "slug": "f-23.7",
+          "title": "Condição declarada e Meu acompanhamento",
+          "benefit": "O cidadão diz o que tem e vê o que está para fazer.",
+          "description": "No celular, o cidadão com cadastro validado pode informar diabetes, pressão alta, gravidez ou acompanhamento de saúde mental na tela do seu perfil, e tirar quando quiser — não é diagnóstico, e a pergunta não aparece no passo obrigatório do cadastro. Em Meu acompanhamento, vê as linhas em que foi inscrito e o que está para fazer, em linguagem simples, e as triagens vencidas têm o botão Começar.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-23.8",
+          "slug": "f-23.8",
+          "title": "Aviso de triagem periódica vencida",
+          "benefit": "A triagem que precisa ser refeita aparece primeiro.",
+          "description": "Na tela de triagens do celular, a triagem cujo prazo de repetição venceu — inclusive a que estava sugerida — aparece na seção Está na hora de refazer, com a data da última vez, para qualquer pessoa, inscrita ou não numa linha.",
+          "surfaces": [
             "cidadao"
           ],
           "status": "available"

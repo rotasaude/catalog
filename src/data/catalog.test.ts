@@ -133,6 +133,7 @@ describe("formatValidating", () => {
     expect(formatValidating(["19", "20"])).toBe("o 19 e o 20 estão");
     expect(formatValidating(["19", "20", "21"])).toBe("o 19, o 20 e o 21 estão");
     expect(formatValidating(["19", "20", "21", "22"])).toBe("o 19, o 20, o 21 e o 22 estão");
+    expect(formatValidating(["19", "20", "21", "22", "23"])).toBe("o 19, o 20, o 21, o 22 e o 23 estão");
   });
 });
 
@@ -208,6 +209,32 @@ describe("módulo 22", () => {
     expect(findFeature("f-22.2")?.feature.description).toMatch(/nunca impede/);
     expect(findFeature("f-22.3")?.feature.surfaces).toEqual([ "bastidores" ]);
     expect(findFeature("f-22.7")?.feature.surfaces).toEqual([ "secretaria", "cidadao" ]);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 22 e interface");
+  });
+});
+
+describe("módulo 23", () => {
+  it("entra no ciclo 2 depois do 22: a prévia e a busca ativa em validação até a cidade piloto", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("23")).toBe(ids.indexOf("22") + 1);
+    const m23 = catalog.modules.find((m) => m.id === "23")!;
+    expect(m23.cycle).toBe(2);
+    expect(m23.status).toBe("validating");
+    expect(m23.name).toBe("Linhas de cuidado");
+    expect(m23.description).toMatch(/busca ativa/);
+    expect(m23.description).toMatch(/estimativa/);
+    expect(m23.features.map((f) => f.id)).toEqual(Array.from({ length: 8 }, (_, i) => `F-23.${i + 1}`));
+    for (const id of ["f-23.1", "f-23.2", "f-23.3", "f-23.4", "f-23.5", "f-23.7", "f-23.8"]) {
+      expect(findFeature(id)?.feature.status).toBe("available");
+    }
+    const preview = findFeature("f-23.6")!.feature;
+    expect(preview.status).toBe("validating");
+    expect(preview.note).toMatch(/SIAPS/);
+    expect(findFeature("f-23.1")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    expect(findFeature("f-23.3")?.feature.description).toMatch(/médico ou enfermeiro/);
+    expect(findFeature("f-23.4")?.feature.description).toMatch(/não acompanhado/);
+    expect(findFeature("f-23.4")?.feature.surfaces).toEqual([ "bastidores" ]);
+    expect(findFeature("f-23.7")?.feature.surfaces).toEqual([ "cidadao" ]);
+    expect(findFeature("f-23.8")?.feature.surfaces).toEqual([ "cidadao" ]);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 23 e interface");
   });
 });
