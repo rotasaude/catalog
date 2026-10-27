@@ -3320,7 +3320,7 @@
           "slug": "f-24.7",
           "title": "Fichas de cadastro para o e-SUS",
           "benefit": "O cadastro feito na web vai para o SIAPS.",
-          "description": "Cada versão do cadastro individual ou domiciliar vira a ficha correspondente no formato LEDI, enviada ao PEC da cidade; a atualização aponta a ficha original.",
+          "description": "Cada versão do cadastro individual ou domiciliar vira a ficha correspondente no formato LEDI APS, o padrão do Ministério da Saúde, enviada ao PEC da cidade; a atualização aponta a ficha original.",
           "surfaces": [
             "bastidores"
           ],
