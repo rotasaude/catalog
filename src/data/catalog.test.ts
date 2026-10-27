@@ -134,6 +134,7 @@ describe("formatValidating", () => {
     expect(formatValidating(["19", "20", "21"])).toBe("o 19, o 20 e o 21 estão");
     expect(formatValidating(["19", "20", "21", "22"])).toBe("o 19, o 20, o 21 e o 22 estão");
     expect(formatValidating(["19", "20", "21", "22", "23"])).toBe("o 19, o 20, o 21, o 22 e o 23 estão");
+    expect(formatValidating(["19", "20", "21", "22", "23", "24"])).toBe("o 19, o 20, o 21, o 22, o 23 e o 24 estão");
   });
 });
 
@@ -235,6 +236,33 @@ describe("módulo 23", () => {
     expect(findFeature("f-23.4")?.feature.surfaces).toEqual([ "bastidores" ]);
     expect(findFeature("f-23.7")?.feature.surfaces).toEqual([ "cidadao" ]);
     expect(findFeature("f-23.8")?.feature.surfaces).toEqual([ "cidadao" ]);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 23 e interface");
+  });
+});
+
+describe("módulo 24 (24a)", () => {
+  it("entra no ciclo 2 depois do 23: fichas em validação; nada de visita nem app de campo", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("24")).toBe(ids.indexOf("23") + 1);
+    const m24 = catalog.modules.find((m) => m.id === "24")!;
+    expect(m24.cycle).toBe(2);
+    expect(m24.status).toBe("validating");
+    expect(m24.name).toBe("Cadastro individual e domiciliar");
+    expect(m24.description).toMatch(/24 meses/);
+    expect(m24.features.map((f) => f.id)).toEqual(Array.from({ length: 8 }, (_, i) => `F-24.${i + 1}`));
+    for (const id of ["f-24.1", "f-24.2", "f-24.3", "f-24.4", "f-24.5", "f-24.6", "f-24.8"]) {
+      expect(findFeature(id)?.feature.status).toBe("available");
+    }
+    const fichas = findFeature("f-24.7")!.feature;
+    expect(fichas.status).toBe("validating");
+    expect(fichas.note).toMatch(/SIAPS/);
+    expect(findFeature("f-24.1")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    expect(findFeature("f-24.3")?.feature.description).toMatch(/sem CPF/);
+    expect(findFeature("f-24.3")?.feature.description).toMatch(/duplicad/);
+    expect(findFeature("f-24.5")?.feature.description).toMatch(/recusa/);
+    expect(findFeature("f-24.7")?.feature.surfaces).toEqual([ "bastidores" ]);
+    expect(findFeature("f-24.8")?.feature.surfaces).toEqual([ "bastidores" ]);
+    const text = JSON.stringify(m24);
+    expect(text).not.toMatch(/visita domiciliar|atividade coletiva|tablet|offline|celular/i);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 24 e interface");
   });
 });

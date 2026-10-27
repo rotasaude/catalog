@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-23",
+    "updatedAt": "2026-10-27",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 23 e interface"
+        "modules": "15 a 24 e interface"
       }
     ]
   },
@@ -3236,6 +3236,105 @@
           "description": "Na tela de triagens do celular, a triagem cujo prazo de repetição venceu — inclusive a que estava sugerida — aparece na seção Está na hora de refazer, com a data da última vez, para qualquer pessoa, inscrita ou não numa linha.",
           "surfaces": [
             "cidadao"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "cycle": 2,
+      "name": "Cadastro individual e domiciliar",
+      "status": "validating",
+      "description": "A equipe cadastra pela web cada domicílio, família e morador da sua área, no formato das fichas de cadastro do e-SUS, e sabe por microárea quem tem cadastro válido, quem vence logo e quem falta cadastrar. O cadastro atualizado nos últimos 24 meses é o que conta para o componente de vínculo do financiamento da APS.",
+      "features": [
+        {
+          "id": "F-24.1",
+          "slug": "f-24.1",
+          "title": "Interruptor e microáreas",
+          "benefit": "Cada equipe de saúde da família tem suas microáreas e o agente responsável.",
+          "description": "A equipe da plataforma liga o cadastro por cidade (só com o prontuário do Rota Saúde e com o código IBGE e a UF da cidade). A administração municipal cria as microáreas de cada equipe, com código de dois dígitos e o agente comunitário responsável, com confirmação em duas etapas.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.2",
+          "slug": "f-24.2",
+          "title": "Agentes de campo sem conselho profissional",
+          "benefit": "O agente comunitário e o agente de endemias entram no cadastro de profissionais.",
+          "description": "O agente comunitário de saúde e o agente de combate às endemias são cadastrados sem registro em conselho, que não existe para essas ocupações. O CNS continua obrigatório.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.3",
+          "slug": "f-24.3",
+          "title": "Paciente sem CPF e possíveis duplicados",
+          "benefit": "Recém-nascido e pessoa em situação de rua também são cadastrados.",
+          "description": "A pessoa pode ser cadastrada sem CPF, com o motivo da ficha e o CNS. Antes de criar alguém sem CPF, o sistema mostra possíveis duplicados por nome, nascimento e nome da mãe; um CPF que já pertence a outro paciente é recusado. Quem já tem cadastro é levado direto ao cadastro existente.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.4",
+          "slug": "f-24.4",
+          "title": "Cadastro domiciliar e família",
+          "benefit": "O imóvel, as condições de moradia e as famílias que moram nele.",
+          "description": "O agente ou a equipe registram o endereço, o tipo de imóvel, as condições de moradia e as famílias, com responsável, renda e número de membros. Cada salvamento guarda uma versão e gera a ficha de cadastro domiciliar e territorial. Quando o responsável sai, por mudança ou óbito, a equipe escolhe o novo responsável entre os moradores.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.5",
+          "slug": "f-24.5",
+          "title": "Cadastro individual, recusa e saída",
+          "benefit": "A ficha de cada morador, em seções.",
+          "description": "Dados sociodemográficos, condições de saúde e situação de rua, com a mesma validação das fichas do e-SUS. A recusa do cidadão fica registrada com o termo, e a saída do cadastro tem motivo: mudança de território ou óbito.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.6",
+          "slug": "f-24.6",
+          "title": "Validade de 24 meses e quem falta cadastrar",
+          "benefit": "A equipe sabe quem precisa ser cadastrado ou atualizado.",
+          "description": "Por equipe e microárea, a lista de cadastros vencidos, a vencer em 60 dias e das pessoas da equipe ainda sem cadastro, com atalho para cadastrar ou atualizar. A leitura nominal fica registrada na trilha de auditoria.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.7",
+          "slug": "f-24.7",
+          "title": "Fichas de cadastro para o e-SUS",
+          "benefit": "O cadastro feito na web vai para o SIAPS.",
+          "description": "Cada versão do cadastro individual ou domiciliar vira a ficha correspondente no formato LEDI, enviada ao PEC da cidade; a atualização aponta a ficha original.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "As fichas foram conferidas com os exemplos de referência do LEDI; falta o SIAPS aceitar fichas reais da cidade piloto."
+        },
+        {
+          "id": "F-24.8",
+          "slug": "f-24.8",
+          "title": "Equipe e óbito pelo cadastro",
+          "benefit": "A pessoa passa a ser da equipe da microárea onde mora.",
+          "description": "Quem tem cadastro individual ativo pertence à equipe da microárea do seu domicílio, inclusive nas linhas de cuidado; a saída por óbito marca a pessoa como falecida, encerra as inscrições nas linhas de cuidado e dispensa as sugestões pendentes.",
+          "surfaces": [
+            "bastidores"
           ],
           "status": "available"
         }
