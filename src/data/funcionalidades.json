@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-27",
+    "updatedAt": "2026-10-28",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 24 e interface"
+        "modules": "15 a 25 e interface"
       }
     ]
   },
@@ -3335,6 +3335,105 @@
           "description": "Quem tem cadastro individual ativo pertence à equipe da microárea do seu domicílio, inclusive nas linhas de cuidado; a saída por óbito marca a pessoa como falecida, encerra as inscrições nas linhas de cuidado e dispensa as sugestões pendentes.",
           "surfaces": [
             "bastidores"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "cycle": 2,
+      "name": "Vigilância epidemiológica",
+      "status": "validating",
+      "description": "O caso de doença de notificação obrigatória atendido no Rota Saúde chega à vigilância municipal. O médico ou o enfermeiro registra a suspeita na consulta, a vigilância acompanha cada caso com prazo até a digitação no Sinan, que continua feita à mão, e vê por bairro e semana epidemiológica onde os casos estão aumentando.",
+      "features": [
+        {
+          "id": "F-25.1",
+          "slug": "f-25.1",
+          "title": "Interruptor, papel de vigilância e lista de doenças",
+          "benefit": "A lista nacional de notificação compulsória, na versão vigente.",
+          "description": "A equipe da plataforma liga a vigilância por cidade e mantém a lista nacional de doenças e agravos, com prazo e códigos, publicando versões novas com confirmação em duas etapas. A cidade acrescenta suas doenças locais e dá o papel de vigilância a quem acompanha os casos.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-25.2",
+          "slug": "f-25.2",
+          "title": "Sugestão de notificação na consulta",
+          "benefit": "O médico notifica a suspeita sem sair do atendimento.",
+          "description": "Quando a consulta registra um código de doença da lista, aparece o aviso para notificar a suspeita, com a data dos primeiros sintomas. Médico e enfermeiro também podem notificar à mão a qualquer momento, e o aviso não impede finalizar a consulta.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-25.3",
+          "slug": "f-25.3",
+          "title": "Rede de segurança na finalização",
+          "benefit": "Caso esquecido na consulta chega à vigilância.",
+          "description": "A consulta finalizada com código da lista e sem notificação vira uma possível notificação não feita na fila da vigilância, que confirma ou descarta com motivo.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-25.4",
+          "slug": "f-25.4",
+          "title": "Fila, notificação manual e ficha",
+          "benefit": "A vigilância vê todos os casos num só lugar.",
+          "description": "A fila mostra primeiro os casos imediatos e os vencidos. A vigilância registra casos que chegaram de hospital, laboratório ou outra cidade, com busca da pessoa e de possíveis duplicados, e completa a ficha de notificação.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-25.5",
+          "slug": "f-25.5",
+          "title": "Andamento, encerramento e número oficial",
+          "benefit": "Cada caso tem início, investigação e fim registrados.",
+          "description": "O caso passa de notificado a em investigação e a encerrado, com a classificação final. A digitação no Sinan é feita à mão, e o número da notificação no sistema oficial fica registrado no caso.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-25.6",
+          "slug": "f-25.6",
+          "title": "Prazos, alertas e notificação negativa",
+          "benefit": "O prazo de cada caso fica à vista, e o caso imediato avisa a vigilância.",
+          "description": "O prazo conta da data da suspeita: 24 horas para as imediatas e 7 dias para as semanais, e a fila destaca os vencidos. Caso imediato gera e-mail à vigilância sem dado do paciente, e a unidade sem casos na semana registra a notificação negativa.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-25.7",
+          "slug": "f-25.7",
+          "title": "Ficha em PDF, CSV por semana e relatório sem número",
+          "benefit": "O que precisa ser digitado no Sinan, pronto para digitar.",
+          "description": "A ficha de notificação individual sai em PDF no formato do Sinan, os casos de cada semana epidemiológica saem em planilha sem CPF, e um relatório mostra os casos encerrados ainda sem número oficial. As fichas de investigação específicas de cada doença não fazem parte desta entrega.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Falta a vigilância da cidade piloto digitar casos reais no Sinan a partir da ficha em PDF."
+        },
+        {
+          "id": "F-25.8",
+          "slug": "f-25.8",
+          "title": "Painel por bairro e semana epidemiológica",
+          "benefit": "Onde os casos estão aumentando.",
+          "description": "Casos por bairro do domicílio e semana epidemiológica, com contagens pequenas (de 1 a 4 casos) escondidas para não identificar ninguém. O painel marca um sinal quando a semana tem pelo menos 5 casos e mais que o dobro da média das quatro semanas anteriores (semanas com 1 a 4 casos contam como 2,5): um aviso para a vigilância avaliar.",
+          "surfaces": [
+            "secretaria"
           ],
           "status": "available"
         }
