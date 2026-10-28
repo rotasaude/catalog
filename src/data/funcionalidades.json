@@ -3345,7 +3345,7 @@
       "cycle": 2,
       "name": "Vigilância epidemiológica",
       "status": "validating",
-      "description": "O caso de doença de notificação obrigatória atendido no Rota Saúde chega à vigilância municipal. O médico ou o enfermeiro registra a suspeita na consulta, a vigilância acompanha cada caso com prazo até a digitação no Sinan, que continua feita à mão, e vê por bairro e semana epidemiológica onde os casos estão aumentando.",
+      "description": "A sugestão na consulta e a rede de segurança levam à vigilância municipal os casos de doença de notificação obrigatória atendidos no Rota Saúde. O médico ou o enfermeiro registra a suspeita na consulta, a vigilância acompanha cada caso com prazo até a digitação no Sinan, que continua feita à mão, e vê por bairro e semana epidemiológica onde os casos estão aumentando.",
       "features": [
         {
           "id": "F-25.1",
@@ -3364,7 +3364,7 @@
           "slug": "f-25.2",
           "title": "Sugestão de notificação na consulta",
           "benefit": "O médico notifica a suspeita sem sair do atendimento.",
-          "description": "Quando a consulta registra um código de doença da lista, aparece o aviso para notificar a suspeita, com a data dos primeiros sintomas. Médico e enfermeiro também podem notificar à mão a qualquer momento, e o aviso não impede finalizar a consulta.",
+          "description": "Quando a consulta registra, como problema novo ou reativado, um código de doença da lista, aparece o aviso para notificar a suspeita, com a data dos primeiros sintomas. Médico e enfermeiro também podem notificar à mão a qualquer momento, e o aviso não impede finalizar a consulta.",
           "surfaces": [
             "secretaria"
           ],
@@ -3375,7 +3375,7 @@
           "slug": "f-25.3",
           "title": "Rede de segurança na finalização",
           "benefit": "Caso esquecido na consulta chega à vigilância.",
-          "description": "A consulta finalizada com código da lista e sem notificação vira uma possível notificação não feita na fila da vigilância, que confirma ou descarta com motivo.",
+          "description": "A consulta finalizada com código da lista e sem notificação aberta ou recente da doença vira uma possível notificação não feita na fila da vigilância, que confirma ou descarta com motivo.",
           "surfaces": [
             "bastidores"
           ],
@@ -3408,7 +3408,7 @@
           "slug": "f-25.6",
           "title": "Prazos, alertas e notificação negativa",
           "benefit": "O prazo de cada caso fica à vista, e o caso imediato avisa a vigilância.",
-          "description": "O prazo conta da data da suspeita: 24 horas para as imediatas e 7 dias para as semanais, e a fila destaca os vencidos. Caso imediato gera e-mail à vigilância sem dado do paciente, e a unidade sem casos na semana registra a notificação negativa.",
+          "description": "O prazo conta da data da suspeita: 24 horas para as imediatas e 7 dias para as semanais, e a fila destaca os vencidos. Caso imediato gera e-mail à vigilância sem dado do paciente, e a vigilância registra, em nome da unidade sem casos na semana, a notificação negativa.",
           "surfaces": [
             "secretaria"
           ],
