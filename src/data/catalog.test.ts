@@ -135,6 +135,7 @@ describe("formatValidating", () => {
     expect(formatValidating(["19", "20", "21", "22"])).toBe("o 19, o 20, o 21 e o 22 estão");
     expect(formatValidating(["19", "20", "21", "22", "23"])).toBe("o 19, o 20, o 21, o 22 e o 23 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24"])).toBe("o 19, o 20, o 21, o 22, o 23 e o 24 estão");
+    expect(formatValidating(["19", "20", "21", "22", "23", "24", "25"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24 e o 25 estão");
   });
 });
 
@@ -263,6 +264,32 @@ describe("módulo 24 (24a)", () => {
     expect(findFeature("f-24.8")?.feature.surfaces).toEqual([ "bastidores" ]);
     const text = JSON.stringify(m24);
     expect(text).not.toMatch(/visita domiciliar|atividade coletiva|tablet|offline|celular/i);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 24 e interface");
+  });
+});
+
+describe("módulo 25", () => {
+  it("entra no ciclo 2 depois do 24: digitação manual no Sinan, sinal sem surto, ficha em validação", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("25")).toBe(ids.indexOf("24") + 1);
+    const m25 = catalog.modules.find((m) => m.id === "25")!;
+    expect(m25.cycle).toBe(2);
+    expect(m25.status).toBe("validating");
+    expect(m25.name).toBe("Vigilância epidemiológica");
+    expect(m25.features.map((f) => f.id)).toEqual(Array.from({ length: 8 }, (_, i) => `F-25.${i + 1}`));
+    for (const id of [ "f-25.1", "f-25.2", "f-25.3", "f-25.4", "f-25.5", "f-25.6", "f-25.8" ]) {
+      expect(findFeature(id)?.feature.status).toBe("available");
+    }
+    const outputs = findFeature("f-25.7")!.feature;
+    expect(outputs.status).toBe("validating");
+    expect(outputs.note).toMatch(/Sinan/);
+    expect(findFeature("f-25.1")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    expect(findFeature("f-25.3")?.feature.surfaces).toEqual([ "bastidores" ]);
+    expect(findFeature("f-25.2")?.feature.description).toMatch(/não impede/);
+    expect(findFeature("f-25.5")?.feature.description).toMatch(/à mão/);
+    expect(findFeature("f-25.8")?.feature.description).toMatch(/sinal/);
+    expect(findFeature("f-25.8")?.feature.description).toMatch(/pelo menos 5 casos/);
+    const text = JSON.stringify(m25);
+    expect(text).not.toMatch(/surto|vacina|automaticamente|envia(m)? ao Sinan/i);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 25 e interface");
   });
 });
