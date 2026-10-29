@@ -3519,7 +3519,7 @@
           "slug": "f-26.7",
           "title": "Situação do pedido para o cidadão",
           "benefit": "O cidadão acompanha o encaminhamento pelo celular.",
-          "description": "Em Meus encaminhamentos, a pessoa vê se o pedido está aguardando, agendado com data e local, em revisão pela unidade, não autorizado ou encerrado — nunca a posição na fila, que muda com o risco dos outros pedidos.",
+          "description": "Em Meus encaminhamentos, a pessoa vê se o pedido está aguardando, autorizado à espera do horário, agendado com data e local, em revisão pela unidade, não autorizado ou encerrado — nunca a posição na fila, que muda com o risco dos outros pedidos.",
           "surfaces": [
             "cidadao"
           ],
