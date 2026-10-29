@@ -136,6 +136,7 @@ describe("formatValidating", () => {
     expect(formatValidating(["19", "20", "21", "22", "23"])).toBe("o 19, o 20, o 21, o 22 e o 23 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24"])).toBe("o 19, o 20, o 21, o 22, o 23 e o 24 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24 e o 25 estão");
+    expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25 e o 26a estão");
   });
 });
 
@@ -290,6 +291,35 @@ describe("módulo 25", () => {
     expect(findFeature("f-25.8")?.feature.description).toMatch(/pelo menos 5 casos/);
     const text = JSON.stringify(m25);
     expect(text).not.toMatch(/surto|vacina|automaticamente|envia(m)? ao Sinan/i);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 25 e interface");
+  });
+});
+
+describe("módulo 26a", () => {
+  it("entra no ciclo 2 depois do 25: sem SISREG automático, sem posição para o cidadão, convivência em validação", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("26a")).toBe(ids.indexOf("25") + 1);
+    expect(ids.indexOf("iu")).toBe(ids.indexOf("26a") + 1);
+    const m26 = catalog.modules.find((m) => m.id === "26a")!;
+    expect(m26.cycle).toBe(2);
+    expect(m26.status).toBe("validating");
+    expect(m26.name).toBe("Regulação municipal");
+    expect(m26.label).toBeUndefined();
+    expect(m26.features.map((f) => f.id)).toEqual(Array.from({ length: 7 }, (_, i) => `F-26.${i + 1}`));
+    for (const id of [ "f-26.1", "f-26.2", "f-26.3", "f-26.4", "f-26.5", "f-26.7" ]) {
+      expect(findFeature(id)?.feature.status).toBe("available");
+    }
+    const state = findFeature("f-26.6")!.feature;
+    expect(state.status).toBe("validating");
+    expect(state.note).toMatch(/sistema do estado/);
+    expect(findFeature("f-26.1")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    expect(findFeature("f-26.7")?.feature.surfaces).toEqual([ "cidadao" ]);
+    expect(findFeature("f-26.2")?.feature.description).toMatch(/não impede/);
+    expect(findFeature("f-26.3")?.feature.description).toMatch(/motivo/);
+    expect(findFeature("f-26.4")?.feature.description).toMatch(/saldo/);
+    expect(findFeature("f-26.6")?.feature.description).toMatch(/à mão/);
+    expect(findFeature("f-26.7")?.feature.description).toMatch(/nunca a posição/);
+    const text = JSON.stringify(m26);
+    expect(text).not.toMatch(/automaticamente|envia(m)? ao (SISREG|estado)|integra(do|ção) com o SISREG|teto|APAC|OCI|RNDS|MIRA/i);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 26a e interface");
   });
 });

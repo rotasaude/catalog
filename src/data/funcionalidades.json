@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-28",
+    "updatedAt": "2026-10-29",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 25 e interface"
+        "modules": "15 a 26a e interface"
       }
     ]
   },
@@ -3434,6 +3434,94 @@
           "description": "Casos por bairro do domicílio e semana epidemiológica, com contagens pequenas (de 1 a 4 casos) escondidas para não identificar ninguém. O painel marca um sinal quando a semana tem pelo menos 5 casos e mais que o dobro da média das quatro semanas anteriores (semanas com 1 a 4 casos contam como 2,5): um aviso para a vigilância avaliar.",
           "surfaces": [
             "secretaria"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "26a",
+      "cycle": 2,
+      "name": "Regulação municipal",
+      "status": "validating",
+      "description": "O encaminhamento a especialista ou procedimento sai da consulta com o que o regulador precisa para decidir e entra numa fila única que respeita a cor de risco e o tempo de espera. A secretaria só autoriza quando há vaga numa oferta real, acompanha quanto da cota de cada prestador já foi usado e convive com o sistema de regulação do estado.",
+      "features": [
+        {
+          "id": "F-26.1",
+          "slug": "f-26.1",
+          "title": "Interruptor, papel de regulador e prazos por cor",
+          "benefit": "Cada cor de risco com o seu prazo, definido pela cidade.",
+          "description": "A equipe da plataforma liga a regulação por cidade. A cidade dá o papel de regulador à equipe central, define o prazo de cada cor (vermelho, amarelo, verde e azul) e a lista do que o enfermeiro pode pedir.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-26.2",
+          "slug": "f-26.2",
+          "title": "Pedido de regulação na consulta e guia",
+          "benefit": "O médico pede o encaminhamento sem sair do atendimento.",
+          "description": "Na consulta, o profissional escolhe a especialidade ou o procedimento, informa o CID-10 (o enfermeiro pode usar o CIAP-2), a justificativa e a cor de risco sugerida, e a guia de encaminhamento sai em PDF. O pedido vai para a fila ao finalizar e não impede finalizar a consulta.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-26.3",
+          "slug": "f-26.3",
+          "title": "Fila regulada e decisões do regulador",
+          "benefit": "O regulador decide a fila do dia sem telefone.",
+          "description": "A fila mostra cada pedido com a cor, o tempo de espera e o prazo, com os vencidos primeiro. O regulador confirma ou muda a cor, autoriza, devolve para complementar, nega ou cancela, e passar um pedido à frente de outro mais antigo exige motivo registrado.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-26.4",
+          "slug": "f-26.4",
+          "title": "Prestadores, ofertas e cotas",
+          "benefit": "Nenhuma autorização sem vaga.",
+          "description": "A secretaria cadastra a rede própria e os prestadores contratados, de consórcio e da PPI, com a cota mensal de cada especialidade ou procedimento e o saldo à vista. Autorizar consome a cota e cancelar antes do atendimento devolve.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-26.5",
+          "slug": "f-26.5",
+          "title": "Agendamento e desfecho",
+          "benefit": "O paciente recebe data e local.",
+          "description": "Na rede própria, a autorização vira pedido de agendamento para a unidade de destino marcar o horário; no prestador externo, o regulador registra data, hora e local. Depois, registra realizado ou falta: a primeira falta devolve o pedido à fila e a segunda encerra.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-26.6",
+          "slug": "f-26.6",
+          "title": "Convivência com o sistema do estado",
+          "benefit": "Pedidos regulados pelo estado também ficam registrados.",
+          "description": "O pedido marcado como regulado pelo estado fica fora da fila municipal e não consome cota, com o número do SISREG, CARE ou CROSS. Uma planilha reúne o necessário para digitar à mão no sistema do estado.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Falta a secretaria da cidade piloto digitar pedidos reais no sistema do estado a partir da planilha."
+        },
+        {
+          "id": "F-26.7",
+          "slug": "f-26.7",
+          "title": "Situação do pedido para o cidadão",
+          "benefit": "O cidadão acompanha o encaminhamento pelo celular.",
+          "description": "Em Meus encaminhamentos, a pessoa vê se o pedido está aguardando, agendado com data e local, em revisão pela unidade, não autorizado ou encerrado — nunca a posição na fila, que muda com o risco dos outros pedidos.",
+          "surfaces": [
+            "cidadao"
           ],
           "status": "available"
         }
