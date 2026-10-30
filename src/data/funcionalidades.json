@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-29",
+    "updatedAt": "2026-10-30",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 26a e interface"
+        "modules": "15 a 27a e interface"
       }
     ]
   },
@@ -3522,6 +3522,94 @@
           "description": "Em Meus encaminhamentos, a pessoa vê se o pedido está aguardando, autorizado à espera do horário, agendado com data e local, em revisão pela unidade, não autorizado ou encerrado — nunca a posição na fila, que muda com o risco dos outros pedidos.",
           "surfaces": [
             "cidadao"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "27a",
+      "cycle": 2,
+      "name": "Farmácia e almoxarifado",
+      "status": "validating",
+      "description": "Todo medicamento que sai da farmácia da unidade sai de um lote conhecido, contra uma receita válida, para um paciente identificado. A secretaria sabe, por local, o que tem, o que vence e o que falta, sem planilha, e o prontuário mostra o que o paciente retirou.",
+      "features": [
+        {
+          "id": "F-27.1",
+          "slug": "f-27.1",
+          "title": "Interruptor, papéis e locais de estoque",
+          "benefit": "Cada farmácia com a sua equipe.",
+          "description": "A equipe da plataforma liga a farmácia por cidade. A secretaria cadastra o almoxarifado central e a farmácia de cada unidade que dispensa, vincula farmacêuticos, auxiliares e almoxarifes a cada local e ajusta os prazos de validade da receita e os limites de alerta.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-27.2",
+          "slug": "f-27.2",
+          "title": "Entradas, lotes e validade",
+          "benefit": "Cada caixa que chega tem lote e validade.",
+          "description": "O almoxarife registra a entrada por nota fiscal ou doação, com lote, validade e fabricante, convertendo a embalagem do fornecedor na unidade de dispensação. Lote vencido não entra, e o inventário de abertura carrega o saldo inicial de cada local antes de começar.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-27.3",
+          "slug": "f-27.3",
+          "title": "Transferência do almoxarifado para a unidade",
+          "benefit": "A unidade confere o que recebeu, lote a lote.",
+          "description": "O almoxarifado envia por lote e a quantidade fica em trânsito até a unidade receber. A unidade confere cada lote, e a diferença entre o enviado e o recebido exige motivo e fica registrada como perda.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-27.4",
+          "slug": "f-27.4",
+          "title": "Ajustes, perdas e vencimentos",
+          "benefit": "O saldo bate com a prateleira, e cada correção tem dono.",
+          "description": "Ajuste de inventário, perda e vencimento pedem motivo e o código do autenticador; o ajuste acima de 10% do saldo do lote espera a aprovação de um segundo responsável. Nenhum movimento é editado ou apagado, e o saldo nunca fica negativo.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-27.5",
+          "slug": "f-27.5",
+          "title": "Dispensação pela receita digital",
+          "benefit": "O farmacêutico ou o auxiliar dispensa pelo código da receita em segundos.",
+          "description": "A receita digital é encontrada pelo código impresso ou pelo paciente, e o sistema sugere o lote que vence primeiro; a dispensação pode ser total ou parcial. Receita cancelada ou vencida não é dispensada; no uso contínuo, a próxima retirada do mesmo item fica liberada a partir do 25º dia. A devolução volta ao lote, a dispensação entra na linha do tempo do profissional e a lista de medicamentos mostra a última retirada.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-27.6",
+          "slug": "f-27.6",
+          "title": "Receita externa e controlados",
+          "benefit": "Receita de fora da rede também tem registro.",
+          "description": "A receita de fora da rede é digitada com o profissional, o conselho e a data, e fica auditada. Para o antimicrobiano, a segunda via da receita fica retida com quem dispensa, farmacêutico ou auxiliar (RDC 471/2021). Medicamento controlado da Portaria 344 só o farmacêutico dispensa, com retenção da receita.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "O número do SNCR do controlado não foi provado no navegador; a prova com o SNCR real da Anvisa é pendência antes do go-live."
+        },
+        {
+          "id": "F-27.7",
+          "slug": "f-27.7",
+          "title": "Alertas, posição e extrato",
+          "benefit": "O que vence e o que falta, por local.",
+          "description": "Cada local vê os lotes que vencem em 90 dias, os já vencidos, os itens abaixo do estoque mínimo e as transferências em trânsito. A posição mostra o saldo por local e lote, e o extrato, cada movimento do lote.",
+          "surfaces": [
+            "secretaria"
           ],
           "status": "available"
         }

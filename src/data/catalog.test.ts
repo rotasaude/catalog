@@ -137,6 +137,7 @@ describe("formatValidating", () => {
     expect(formatValidating(["19", "20", "21", "22", "23", "24"])).toBe("o 19, o 20, o 21, o 22, o 23 e o 24 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24 e o 25 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25 e o 26a estão");
+    expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a e o 27a estão");
   });
 });
 
@@ -298,7 +299,7 @@ describe("módulo 26a", () => {
   it("entra no ciclo 2 depois do 25: sem SISREG automático, sem posição para o cidadão, convivência em validação", () => {
     const ids = catalog.modules.map((m) => m.id);
     expect(ids.indexOf("26a")).toBe(ids.indexOf("25") + 1);
-    expect(ids.indexOf("iu")).toBe(ids.indexOf("26a") + 1);
+    expect(ids.indexOf("27a")).toBe(ids.indexOf("26a") + 1);
     const m26 = catalog.modules.find((m) => m.id === "26a")!;
     expect(m26.cycle).toBe(2);
     expect(m26.status).toBe("validating");
@@ -320,6 +321,37 @@ describe("módulo 26a", () => {
     expect(findFeature("f-26.7")?.feature.description).toMatch(/nunca a posição/);
     const text = JSON.stringify(m26);
     expect(text).not.toMatch(/automaticamente|envia(m)? ao (SISREG|estado)|integra(do|ção) com o SISREG|teto|APAC|OCI|RNDS|MIRA/i);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 26a e interface");
+  });
+});
+
+describe("módulo 27a", () => {
+  it("entra no ciclo 2 depois do 26a: sem BNAFAR nem SNGPC, saldo nunca negativo, receita vencida não dispensa", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("27a")).toBe(ids.indexOf("26a") + 1);
+    expect(ids.indexOf("iu")).toBe(ids.indexOf("27a") + 1);
+    const m27 = catalog.modules.find((m) => m.id === "27a")!;
+    expect(m27.cycle).toBe(2);
+    expect(m27.status).toBe("validating");
+    expect(m27.name).toBe("Farmácia e almoxarifado");
+    expect(m27.label).toBeUndefined();
+    expect(m27.features.map((f) => f.id)).toEqual(Array.from({ length: 7 }, (_, i) => `F-27.${i + 1}`));
+    for (const n of [1, 2, 3, 4, 5, 7]) expect(findFeature(`f-27.${n}`)?.feature.status).toBe("available");
+    const controlled = findFeature("f-27.6")!.feature;
+    expect(controlled.status).toBe("validating");
+    expect(controlled.note).toMatch(/SNCR/);
+    expect(findFeature("f-27.1")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    for (let i = 2; i <= 7; i++) expect(findFeature(`f-27.${i}`)?.feature.surfaces).toEqual([ "secretaria" ]);
+    expect(findFeature("f-27.2")?.feature.description).toMatch(/embalagem/);
+    expect(findFeature("f-27.3")?.feature.description).toMatch(/em trânsito/);
+    expect(findFeature("f-27.4")?.feature.description).toMatch(/nunca fica negativo/);
+    expect(findFeature("f-27.4")?.feature.description).toMatch(/10%/);
+    expect(findFeature("f-27.5")?.feature.description).toMatch(/cancelada ou vencida/);
+    expect(findFeature("f-27.5")?.feature.description).toMatch(/vence primeiro/);
+    expect(findFeature("f-27.6")?.feature.description).toMatch(/RDC 471\/2021/);
+    expect(findFeature("f-27.6")?.feature.description).toMatch(/só o farmacêutico/);
+    expect(findFeature("f-27.7")?.feature.description).toMatch(/90 dias/);
+    const text = JSON.stringify(m27);
+    expect(text).not.toMatch(/BNAFAR|H[óo]rus|SNGPC|Farm[áa]cia Popular|licita|empenho|compras? |insumo|material|automaticamente|disponibilidade para o cidad/i);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 27a e interface");
   });
 });
