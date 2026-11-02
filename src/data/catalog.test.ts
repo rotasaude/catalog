@@ -138,6 +138,7 @@ describe("formatValidating", () => {
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24 e o 25 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25 e o 26a estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a e o 27a estão");
+    expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a e o 28 estão");
   });
 });
 
@@ -328,7 +329,7 @@ describe("módulo 27a", () => {
   it("entra no ciclo 2 depois do 26a: sem BNAFAR nem SNGPC, saldo nunca negativo, receita vencida não dispensa", () => {
     const ids = catalog.modules.map((m) => m.id);
     expect(ids.indexOf("27a")).toBe(ids.indexOf("26a") + 1);
-    expect(ids.indexOf("iu")).toBe(ids.indexOf("27a") + 1);
+    expect(ids.indexOf("28")).toBe(ids.indexOf("27a") + 1);
     const m27 = catalog.modules.find((m) => m.id === "27a")!;
     expect(m27.cycle).toBe(2);
     expect(m27.status).toBe("validating");
@@ -352,6 +353,36 @@ describe("módulo 27a", () => {
     expect(findFeature("f-27.7")?.feature.description).toMatch(/90 dias/);
     const text = JSON.stringify(m27);
     expect(text).not.toMatch(/BNAFAR|H[óo]rus|SNGPC|Farm[áa]cia Popular|licita|empenho|compras? |insumo|material|automaticamente|disponibilidade para o cidad/i);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 27a e interface");
+  });
+});
+
+describe("módulo 28", () => {
+  it("entra no ciclo 2 depois do 27a: ficha do e-SUS e metas em validação, nada do que ficou fora da entrega", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("28")).toBe(ids.indexOf("27a") + 1);
+    expect(ids.indexOf("iu")).toBe(ids.indexOf("28") + 1);
+    const m28 = catalog.modules.find((m) => m.id === "28")!;
+    expect(m28.cycle).toBe(2);
+    expect(m28.status).toBe("validating");
+    expect(m28.name).toBe("Saúde bucal");
+    expect(m28.label).toBeUndefined();
+    expect(m28.features.map((f) => f.id)).toEqual(Array.from({ length: 8 }, (_, i) => `F-28.${i + 1}`));
+    for (const n of [1, 3, 4, 5, 6, 7]) expect(findFeature(`f-28.${n}`)?.feature.status).toBe("available");
+    for (const n of [2, 8]) {
+      expect(findFeature(`f-28.${n}`)?.feature.status).toBe("validating");
+      expect(findFeature(`f-28.${n}`)?.feature.note).toMatch(/antes do go-live/);
+    }
+    expect(findFeature("f-28.1")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    expect(findFeature("f-28.2")?.feature.surfaces).toEqual([ "secretaria", "cidadao" ]);
+    for (const n of [3, 4, 5, 6, 7, 8]) expect(findFeature(`f-28.${n}`)?.feature.surfaces).toEqual([ "secretaria" ]);
+    expect(findFeature("f-28.2")?.feature.description).toMatch(/sem encaminhamento, documento ou plano/);
+    expect(findFeature("f-28.4")?.feature.description).toMatch(/tratamento concluído/);
+    expect(findFeature("f-28.5")?.feature.description).toMatch(/completo ao finalizar/);
+    expect(findFeature("f-28.6")?.feature.description).toMatch(/moldagem, enviada, recebida e instalada/);
+    expect(findFeature("f-28.7")?.feature.description).toMatch(/CID-10 ou CIAP-2/);
+    expect(findFeature("f-19.20")?.feature.description).not.toMatch(/ainda não está disponível/);
+    const text = JSON.stringify(m28);
+    expect(text).not.toMatch(/BPA|radiogr|ortodon|implant|escova|coletiv|Sesb|B3|B4|B5|B6|automaticamente ao SIAPS/i);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 28 e interface");
   });
 });

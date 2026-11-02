@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-30",
+    "updatedAt": "2026-11-02",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 27a e interface"
+        "modules": "15 a 28 e interface"
       }
     ]
   },
@@ -2459,7 +2459,7 @@
           "slug": "f-19.20",
           "title": "Atestado",
           "benefit": "Atestado emitido na consulta, com conferência pública.",
-          "description": "O médico emite o atestado de afastamento ou de acompanhante durante a consulta. O código de doença só entra com autorização do paciente. O atestado do dentista depende do atendimento odontológico, que ainda não está disponível.",
+          "description": "O médico emite o atestado de afastamento ou de acompanhante durante a consulta. O código de doença só entra com autorização do paciente. O dentista emite o atestado na consulta odontológica (veja a saúde bucal).",
           "surfaces": [
             "secretaria"
           ],
@@ -3612,6 +3612,107 @@
             "secretaria"
           ],
           "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "28",
+      "cycle": 2,
+      "name": "Saúde bucal",
+      "status": "validating",
+      "description": "O dentista da unidade e o especialista do CEO atendem com o odontograma do paciente na tela, seguem um plano de tratamento até a conclusão e emitem atestado e receita no próprio atendimento. A produção sai pela ficha de atendimento odontológico do e-SUS, e a coordenação acompanha as metas do CEO e os indicadores das equipes de saúde bucal.",
+      "features": [
+        {
+          "id": "F-28.1",
+          "slug": "f-28.1",
+          "title": "Interruptor, profissionais de saúde bucal e unidade CEO",
+          "benefit": "Cada CEO com o seu tipo e as suas especialidades.",
+          "description": "A equipe da plataforma liga a saúde bucal por cidade. A secretaria cadastra o CEO com o tipo (I, II ou III) e as especialidades que oferece, associa cada equipe de saúde bucal à equipe de saúde da família e define os procedimentos que o técnico e o auxiliar de saúde bucal podem registrar.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-28.2",
+          "slug": "f-28.2",
+          "title": "Consulta odontológica e ficha do e-SUS",
+          "benefit": "O atendimento do dentista vira ficha de produção sem digitar de novo.",
+          "description": "A consulta odontológica tem os campos da ficha de atendimento odontológico do e-SUS: tipo de atendimento e de consulta, vigilância em saúde bucal, fornecimento, desfechos e gestante. O técnico e o auxiliar registram só os procedimentos da lista da cidade, sem encaminhamento, documento ou plano. Na linha do tempo do cidadão, o atendimento aparece como \"Consulta odontológica\".",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
+          ],
+          "status": "validating",
+          "note": "A aceitação da ficha pelo e-SUS com o CNES real da cidade não foi provada; é pendência antes do go-live."
+        },
+        {
+          "id": "F-28.3",
+          "slug": "f-28.3",
+          "title": "Odontograma",
+          "benefit": "A boca inteira na tela, com o que foi feito e o que falta.",
+          "description": "Dentição permanente, decídua ou mista, com a situação de cada dente e de cada face. Cada marcação fica presa a uma consulta e nunca é editada; o procedimento registrado atualiza o dente sozinho, e o histórico de cada dente mostra quem marcou e quando. Quem já está em tratamento começa por um registro inicial, sem ficha de produção.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-28.4",
+          "slug": "f-28.4",
+          "title": "Plano de tratamento e tratamento concluído",
+          "benefit": "O plano diz o que falta, e o sistema avisa quando acabou.",
+          "description": "O plano nasce na primeira consulta programática, com cada procedimento no seu dente, face, sextante ou arcada. Cada item é dado como feito na consulta que o realiza ou cancelado com motivo, inclusive por adendo. Com tudo feito, o sistema sugere o desfecho \"tratamento concluído\"; com item ainda previsto, ele é recusado.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-28.5",
+          "slug": "f-28.5",
+          "title": "Periograma, registro periodontal e endodontia",
+          "benefit": "O especialista registra o que a especialidade pede.",
+          "description": "Periograma com seis sítios por dente (profundidade, sangramento, recessão, mobilidade e furca), que pode ficar incompleto no rascunho e tem de estar completo ao finalizar. Registro periodontal simplificado por sextante na atenção básica e acompanhamento da endodontia por dente, com canais e sessões.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-28.6",
+          "slug": "f-28.6",
+          "title": "Prótese e laboratório",
+          "benefit": "Cada prótese acompanhada da moldagem à instalação.",
+          "description": "O dentista faz o pedido ao laboratório próprio ou terceiro, e a unidade acompanha as etapas: moldagem, enviada, recebida e instalada. A instalação é registrada na consulta e conta como produção da unidade que entrega.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-28.7",
+          "slug": "f-28.7",
+          "title": "Documentos do dentista e encaminhamento ao CEO",
+          "benefit": "Atestado, receita e encaminhamento sem sair do atendimento.",
+          "description": "O dentista emite atestado, receita comum, receita de controlado (nas mesmas condições do médico) e pedido de exame na consulta odontológica. O encaminhamento ao CEO exige o pedido de regulação da especialidade, que o dentista pode justificar com CID-10 ou CIAP-2.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-28.8",
+          "slug": "f-28.8",
+          "title": "Metas do CEO, indicadores B1 e B2 e saúde bucal na gestação",
+          "benefit": "A coordenação vê no meio do mês se o CEO vai bater a meta.",
+          "description": "Painel mensal por especialidade contra a meta do tipo de CEO, com as regras de composição e o alerta de suspensão por meses abaixo da meta. Os indicadores B1 (primeira consulta programática) e B2 (tratamento concluído) saem por equipe de saúde bucal, e a consulta odontológica na gestação conta no marco de saúde bucal da linha de pré-natal.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Os códigos que substituem as restaurações antigas na meta do CEO e o tipo de equipe de saúde bucal do CNES serão confirmados com a tabela oficial antes do go-live."
         }
       ]
     },
