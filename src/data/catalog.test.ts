@@ -139,6 +139,7 @@ describe("formatValidating", () => {
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25 e o 26a estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a e o 27a estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a e o 28 estão");
+    expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28 e o 29 estão");
   });
 });
 
@@ -360,7 +361,7 @@ describe("módulo 28", () => {
   it("entra no ciclo 2 depois do 27a: ficha do e-SUS e metas em validação, nada do que ficou fora da entrega", () => {
     const ids = catalog.modules.map((m) => m.id);
     expect(ids.indexOf("28")).toBe(ids.indexOf("27a") + 1);
-    expect(ids.indexOf("iu")).toBe(ids.indexOf("28") + 1);
+    expect(ids.indexOf("29")).toBe(ids.indexOf("28") + 1);
     const m28 = catalog.modules.find((m) => m.id === "28")!;
     expect(m28.cycle).toBe(2);
     expect(m28.status).toBe("validating");
@@ -383,6 +384,39 @@ describe("módulo 28", () => {
     expect(findFeature("f-19.20")?.feature.description).not.toMatch(/ainda não está disponível/);
     const text = JSON.stringify(m28);
     expect(text).not.toMatch(/BPA|radiogr|ortodon|implant|escova|coletiv|Sesb|B3|B4|B5|B6|automaticamente ao SIAPS/i);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 28 e interface");
+  });
+});
+
+describe("módulo 29", () => {
+  it("entra no ciclo 2 depois do 28: envio à RNDS e calendário em validação, nada do que ficou fora da entrega", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("29")).toBe(ids.indexOf("28") + 1);
+    expect(ids.indexOf("iu")).toBe(ids.indexOf("29") + 1);
+    const m29 = catalog.modules.find((m) => m.id === "29")!;
+    expect(m29.cycle).toBe(2);
+    expect(m29.status).toBe("validating");
+    expect(m29.name).toBe("Sala de vacina");
+    expect(m29.label).toBeUndefined();
+    expect(m29.features.map((f) => f.id)).toEqual(Array.from({ length: 8 }, (_, i) => `F-29.${i + 1}`));
+    for (const n of [1, 3, 5, 6, 7, 8]) expect(findFeature(`f-29.${n}`)?.feature.status).toBe("available");
+    for (const n of [2, 4]) {
+      expect(findFeature(`f-29.${n}`)?.feature.status).toBe("validating");
+      expect(findFeature(`f-29.${n}`)?.feature.note).toMatch(/antes do go-live/);
+    }
+    expect(findFeature("f-29.2")?.feature.note).toMatch(/enfermagem/);
+    expect(findFeature("f-29.4")?.feature.note).toMatch(/homologação da RNDS/);
+    expect(findFeature("f-29.1")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    expect(findFeature("f-29.7")?.feature.surfaces).toEqual([ "secretaria", "cidadao" ]);
+    for (const n of [2, 3, 4, 5, 6, 8]) expect(findFeature(`f-29.${n}`)?.feature.surfaces).toEqual([ "secretaria" ]);
+    expect(findFeature("f-29.2")?.feature.description).toMatch(/não conferida/);
+    expect(findFeature("f-29.3")?.feature.description).toMatch(/cancelamento com motivo/);
+    expect(findFeature("f-29.4")?.feature.description).toMatch(/24 horas/);
+    expect(findFeature("f-29.5")?.feature.description).toMatch(/perda técnica/);
+    expect(findFeature("f-29.6")?.feature.description).toMatch(/\+2 a \+8 °C/);
+    expect(findFeature("f-23.4")?.feature.description).toMatch(/sala de vacina/);
+    expect(findFeature("f-23.6")?.feature.description).toMatch(/sala de vacina/);
+    const text = JSON.stringify(m29);
+    expect(text).not.toMatch(/SIES|SIPNI|e-SUS Notifica|offline|sem internet|sensor|histórico nacional|agendamento/i);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 29 e interface");
   });
 });

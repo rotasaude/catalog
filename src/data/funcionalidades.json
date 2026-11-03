@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-02",
+    "updatedAt": "2026-11-03",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 28 e interface"
+        "modules": "15 a 29 e interface"
       }
     ]
   },
@@ -3188,7 +3188,7 @@
           "slug": "f-23.4",
           "title": "Acompanhamento das boas práticas",
           "benefit": "A situação de cada pessoa sai do que já foi registrado, sem digitar de novo.",
-          "description": "Consultas, pressão, peso e altura, exames e procedimentos já registrados dizem se cada boa prática está em dia, vencendo ou vencida. O que o sistema ainda não registra, como visita do agente e vacina, aparece como não acompanhado e não conta como atraso.",
+          "description": "Consultas, pressão, peso e altura, exames e procedimentos já registrados dizem se cada boa prática está em dia, vencendo ou vencida. O que o sistema ainda não registra, como a visita do agente, aparece como não acompanhado e não conta como atraso. A vacina é medida pela dose registrada na sala de vacina, quando ela está ligada.",
           "surfaces": [
             "bastidores"
           ],
@@ -3210,7 +3210,7 @@
           "slug": "f-23.6",
           "title": "Prévia dos indicadores C2 a C7",
           "benefit": "A gestão vê onde a equipe vai perder pontos antes da extração oficial.",
-          "description": "Por equipe, a prévia estima a pontuação de cada indicador sobre a população elegível, inscrita ou não, sem visita do agente e vacina. É sempre rotulada como estimativa.",
+          "description": "Por equipe, a prévia estima a pontuação de cada indicador sobre a população elegível, inscrita ou não, sem a visita do agente; a vacina entra quando a sala de vacina está ligada. É sempre rotulada como estimativa.",
           "surfaces": [
             "secretaria"
           ],
@@ -3713,6 +3713,107 @@
           ],
           "status": "validating",
           "note": "Os códigos que substituem as restaurações antigas na meta do CEO e o tipo de equipe de saúde bucal do CNES serão confirmados com a tabela oficial antes do go-live."
+        }
+      ]
+    },
+    {
+      "id": "29",
+      "cycle": 2,
+      "name": "Sala de vacina",
+      "status": "validating",
+      "description": "A sala de vacina da unidade abre o cidadão, vê na caderneta o que ele deve tomar hoje e o que está atrasado e registra a dose com o lote que está na geladeira. A dose vai sozinha à Rede Nacional de Dados em Saúde (RNDS) em até 24 horas, sem digitar de novo em outro sistema, e a sala controla no mesmo lugar o estoque de vacinas, os frascos abertos, as perdas e a temperatura das geladeiras.",
+      "features": [
+        {
+          "id": "F-29.1",
+          "slug": "f-29.1",
+          "title": "Interruptores, credencial da RNDS, sala de vacina e vacinadores",
+          "benefit": "Cada unidade com a sua sala e a sua equipe de vacinação.",
+          "description": "A equipe da plataforma liga a sala de vacina por cidade, para quem usa o prontuário do Rota Saúde; a cidade que usa o e-SUS PEC vacina pelo PEC. O administrador municipal cadastra o certificado digital da secretaria para o envio à RNDS. A secretaria cadastra a sala de cada unidade e quem vacina nela: técnico e auxiliar de enfermagem, enfermeiro e médico, com um enfermeiro responsável pela sala.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-29.2",
+          "slug": "f-29.2",
+          "title": "Calendário, catálogo de vacinas e caderneta conferida",
+          "benefit": "A caderneta diz o que tomar hoje e o que está atrasado.",
+          "description": "O Calendário Nacional de Vacinação de 2026 diz, para cada vacina e dose, a idade e o intervalo entre as doses, e o sistema calcula a próxima data e o que está em atraso. O atraso só aparece depois que o vacinador confere a caderneta, transcrevendo o que falta ou confirmando que está completa; quem nasceu depois que a cidade começou a usar a sala já nasce com a caderneta conferida. Até lá, a caderneta aparece como \"não conferida\".",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "O calendário foi transcrito à mão do documento oficial e passa pela revisão da enfermagem antes do go-live."
+        },
+        {
+          "id": "F-29.3",
+          "slug": "f-29.3",
+          "title": "Registro da dose, transcrição e cancelamento",
+          "benefit": "A dose registrada com o lote certo, sem edição escondida.",
+          "description": "O vacinador registra a dose escolhendo o lote no estoque da sala, só entre lotes válidos e não bloqueados; o fabricante vem do lote e a data nunca é futura. A dose tomada fora da rede entra como transcrição da caderneta, com lote e fabricante opcionais. Nenhuma dose é editada: a correção é um cancelamento com motivo seguido de um novo registro.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-29.4",
+          "slug": "f-29.4",
+          "title": "Envio à RNDS com acompanhamento do retorno",
+          "benefit": "A dose chega ao Ministério sem digitar de novo.",
+          "description": "Cada dose registrada, inclusive a transcrição e o cancelamento, entra numa fila de envio à RNDS no padrão do Ministério da Saúde, com novas tentativas quando falha. Antes do envio, o sistema confere o profissional no CNES e o cidadão; o que não passa vira pendência na sala, com o motivo. Cada dose mostra a situação do envio, e a coordenação recebe alerta quando uma dose passa de 24 horas sem aceite.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "O envio aceito na homologação da RNDS, com o certificado real da cidade, ainda não foi provado; é pendência antes do go-live."
+        },
+        {
+          "id": "F-29.5",
+          "slug": "f-29.5",
+          "title": "Estoque de vacinas, frascos abertos e perdas",
+          "benefit": "A sala sabe quantas doses tem e quanto perdeu.",
+          "description": "A rede de frio municipal recebe as vacinas e as transfere para as salas, por lote e validade, contadas em doses e separadas dos medicamentos. Abrir um frasco de várias doses tira as doses do estoque; o frasco vence no prazo do produto e do fabricante, e as doses que sobram viram perda técnica. A perda física, como frasco quebrado ou vencido, é lançada pela sala, e o resumo de movimentação do mês sai pronto para o lançamento manual nos sistemas do Ministério.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-29.6",
+          "slug": "f-29.6",
+          "title": "Cadeia de frio",
+          "benefit": "Vacina fora da temperatura não é aplicada sem decisão.",
+          "description": "Cada sala cadastra suas geladeiras e câmaras, e a equipe anota a temperatura atual, a mínima e a máxima duas vezes ao dia. Fora da faixa de +2 a +8 °C, o sistema avisa e os lotes daquele equipamento ficam bloqueados até o responsável decidir: usar ou dar perda.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-29.7",
+          "slug": "f-29.7",
+          "title": "Minhas vacinas e linha do tempo",
+          "benefit": "O cidadão vê as próprias vacinas e o que vem pela frente.",
+          "description": "No canal web, quem tem cadastro validado vê em Minhas vacinas as doses tomadas, as próximas doses e se cada dose já foi enviada ao Ministério ou ainda está em envio. As vacinas também entram na linha do tempo da pessoa, para o profissional e para o cidadão.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-29.8",
+          "slug": "f-29.8",
+          "title": "Linhas de cuidado, campanhas, ESAVI e painel",
+          "benefit": "A coordenação vê quem está atrasado e chama de volta.",
+          "description": "Os marcos de vacina das linhas de cuidado passam a ser medidos pela dose registrada; com a caderneta não conferida, aparecem como \"não conferido\" e não contam como atraso. A campanha ganha dois públicos, quem está com vacina em atraso e quem precisa trazer a caderneta, e mostra quantos convocados se vacinaram. Da dose, o vacinador abre a notificação de evento adverso (ESAVI) na vigilância, já ligada à dose. O painel mostra, só em números, as doses por vacina e sala, a cobertura das vacinas do indicador C2 por equipe, o envio à RNDS e as perdas.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
         }
       ]
     },
