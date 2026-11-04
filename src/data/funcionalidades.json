@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-03",
+    "updatedAt": "2026-11-04",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 29 e interface"
+        "modules": "15 a 30 e interface"
       }
     ]
   },
@@ -3812,6 +3812,107 @@
           "description": "Os marcos de vacina das linhas de cuidado passam a ser medidos pela dose registrada; com a caderneta não conferida, aparecem como \"não conferido\" e não contam como atraso. A campanha ganha dois públicos, quem está com vacina em atraso e quem precisa trazer a caderneta, e mostra quantos convocados se vacinaram. Da dose, o vacinador abre a notificação de evento adverso (ESAVI) na vigilância, já ligada à dose. O painel mostra, só em números, as doses por vacina e sala, a cobertura das vacinas do indicador C2 por equipe, o envio à RNDS e as perdas.",
           "surfaces": [
             "secretaria"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "30",
+      "cycle": 2,
+      "name": "Transporte sanitário e TFD",
+      "status": "validating",
+      "description": "A central de transporte da secretaria organiza a frota, monta as viagens do dia com os pacientes que têm atendimento marcado em outra cidade e imprime a lista de passageiros sem nenhum dado clínico. O motorista marca no celular quem embarcou e fecha a viagem com odômetro e abastecimento. O Tratamento Fora de Domicílio (TFD) vai do laudo do médico à decisão da comissão, aos trechos de ida e volta, à ajuda de custo, ao pagamento registrado e à prestação de contas, e a produção sai no BPA.",
+      "features": [
+        {
+          "id": "F-30.1",
+          "slug": "f-30.1",
+          "title": "Interruptores, veículos, motoristas e destinos",
+          "benefit": "A frota da cidade cadastrada num lugar só.",
+          "description": "A equipe da plataforma liga o transporte sanitário e o TFD por cidade; o TFD depende do prontuário do Rota Saúde. A central cadastra os veículos com lugares e vagas para cadeira de rodas, os motoristas com a CNH (o vencido não pode ser escalado e o que vence em 30 dias aparece em alerta) e os destinos com a distância rodoviária a partir da sede. A secretaria cadastra a unidade de gestão e as regras da cidade: distância mínima do TFD e acompanhante.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-30.2",
+          "slug": "f-30.2",
+          "title": "Viagem, passageiros e lista sem dado clínico",
+          "benefit": "A viagem montada a partir dos atendimentos marcados.",
+          "description": "A central monta a viagem do dia com os atendimentos marcados na data (regulação, TFD e agenda da cidade) e, com motivo, com passageiros sem atendimento marcado. Confere lotação, cadeira de rodas, acompanhante pela regra da cidade e categoria da CNH, e recusa veículo ou motorista que já está em outra viagem no mesmo horário. A lista de passageiros impressa leva nome, embarque e destino, sem CPF, sem documento do acompanhante e sem diagnóstico, procedimento ou especialidade.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-30.3",
+          "slug": "f-30.3",
+          "title": "Séries recorrentes",
+          "benefit": "Hemodiálise e radioterapia sem remarcar toda semana.",
+          "description": "Para tratamentos que se repetem nos mesmos dias da semana, a central cadastra uma série e as viagens das próximas três semanas são preenchidas todo dia. Quando não há vaga, o dia aparece em Pendências; as faltas por paciente ficam no mesmo lugar.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-30.4",
+          "slug": "f-30.4",
+          "title": "Tela do motorista, presença e fechamento",
+          "benefit": "O motorista registra o embarque pelo celular.",
+          "description": "O motorista vê as viagens do dia, marca quem embarcou ou faltou, inclusive o acompanhante, e fecha a viagem com odômetro, abastecimentos e despesas; não fecha com presença em aberto. A presença fechada só muda pela central, com motivo e segundo fator, e a mudança fica no histórico.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-30.5",
+          "slug": "f-30.5",
+          "title": "Laudo e comissão de TFD",
+          "benefit": "O pedido de TFD do médico até a decisão da comissão.",
+          "description": "O médico pede o TFD a partir da consulta finalizada, com o laudo pré-preenchido; o sistema recusa destino perto demais, na mesma região metropolitana ou procedimento da atenção básica. A comissão lê o laudo (a leitura fica na trilha), marca o atendimento no destino e autoriza, devolve para complementar ou recusa, sempre com motivo e segundo fator; sem atendimento marcado não há autorização.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-30.6",
+          "slug": "f-30.6",
+          "title": "Ajuda de custo, pagamento e prestação de contas",
+          "benefit": "O dinheiro do TFD calculado e registrado.",
+          "description": "A comissão registra os trechos de ida e volta (pela frota ou por passagem). Quando a volta é realizada, o sistema calcula a ajuda de custo de alimentação e deslocamento, do paciente e do acompanhante que viajou, pela tabela e pelo complemento da cidade. A tesouraria paga e a comissão registra o pagamento, que não se apaga; o processo termina com o comprovante de comparecimento.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Os valores da tabela e a regra do acompanhante de paciente internado são conferidos com a tabela oficial e o manual de TFD do estado antes do go-live."
+        },
+        {
+          "id": "F-30.7",
+          "slug": "f-30.7",
+          "title": "Produção do TFD no BPA",
+          "benefit": "A ajuda de custo vira produção faturada.",
+          "description": "Cada ajuda de custo calculada vira uma linha de BPA individualizado da unidade de gestão, com o médico do laudo, sem digitar de novo.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Os códigos de procedimento e a unidade que fatura são confirmados antes do go-live."
+        },
+        {
+          "id": "F-30.8",
+          "slug": "f-30.8",
+          "title": "Minhas viagens, avisos, linha do tempo e painel",
+          "benefit": "O cidadão sabe quando e onde embarcar.",
+          "description": "No celular, o cidadão vê as viagens marcadas para ele e para quem ele acompanha, com data, hora e ponto de embarque, e o andamento do seu TFD com a ajuda de custo a receber; recebe aviso quando a viagem é marcada, muda ou é cancelada, sem destino nem procedimento no texto. A viagem realizada entra na linha do tempo do paciente, e a secretaria tem o painel do mês com viagens, ocupação, faltas, km e TFD, com contagens pequenas escondidas.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
           ],
           "status": "available"
         }
