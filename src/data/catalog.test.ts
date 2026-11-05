@@ -141,6 +141,7 @@ describe("formatValidating", () => {
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a e o 28 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28 e o 29 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29", "30"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29 e o 30 estão");
+    expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29", "30", "31"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29, o 30 e o 31 estão");
   });
 });
 
@@ -425,7 +426,7 @@ describe("módulo 30", () => {
   it("entra no ciclo 2 depois do 29: dinheiro e BPA do TFD em validação, nada do que ficou fora da entrega", () => {
     const ids = catalog.modules.map((m) => m.id);
     expect(ids.indexOf("30")).toBe(ids.indexOf("29") + 1);
-    expect(ids.indexOf("iu")).toBe(ids.indexOf("30") + 1);
+    expect(ids.indexOf("31")).toBe(ids.indexOf("30") + 1);
     const m30 = catalog.modules.find((m) => m.id === "30")!;
     expect(m30.cycle).toBe(2);
     expect(m30.status).toBe("validating");
@@ -445,6 +446,31 @@ describe("módulo 30", () => {
     expect(findFeature("f-30.8")?.feature.description).toMatch(/sem destino nem procedimento/);
     const text = JSON.stringify(m30);
     expect(text).not.toMatch(/GPS|offline|sem internet|aplicativo|rastreamento|tempo real/i);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 30 e interface");
+  });
+});
+
+describe("módulo 31", () => {
+  it("entra no ciclo 2 depois do 30: leitos e RAAS em validação, sem nada do CAPS para o cidadão", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("31")).toBe(ids.indexOf("30") + 1);
+    expect(ids.indexOf("iu")).toBe(ids.indexOf("31") + 1);
+    const m31 = catalog.modules.find((m) => m.id === "31")!;
+    expect(m31.cycle).toBe(2);
+    expect(m31.status).toBe("validating");
+    expect(m31.name).toBe("Atenção psicossocial (CAPS)");
+    expect(m31.features.map((f) => f.id)).toEqual(Array.from({ length: 8 }, (_, i) => `F-31.${i + 1}`));
+    for (const n of [1, 2, 3, 4, 7, 8]) expect(findFeature(`f-31.${n}`)?.feature.status).toBe("available");
+    for (const n of [5, 6]) {
+      expect(findFeature(`f-31.${n}`)?.feature.status).toBe("validating");
+      expect(findFeature(`f-31.${n}`)?.feature.note).toMatch(/antes do go-live/);
+    }
+    expect(findFeature("f-31.1")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    for (const n of [2, 3, 4, 5, 6, 7, 8]) expect(findFeature(`f-31.${n}`)?.feature.surfaces).toEqual([ "secretaria" ]);
+    expect(m31.features.some((f) => f.surfaces.includes("cidadao"))).toBe(false);
+    expect(findFeature("f-31.7")?.feature.description).toMatch(/sem o nome da unidade/);
+    expect(findFeature("f-31.8")?.feature.description).toMatch(/portal do cidadão/);
+    const text = JSON.stringify(m31);
+    expect(text).not.toMatch(/residência terapêutica como|internação psiquiátrica|comunidade terapêutica|atenção domiciliar|offline/i);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 31 e interface");
   });
 });
