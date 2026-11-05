@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-04",
+    "updatedAt": "2026-11-05",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 30 e interface"
+        "modules": "15 a 31 e interface"
       }
     ]
   },
@@ -3913,6 +3913,106 @@
           "surfaces": [
             "secretaria",
             "cidadao"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "31",
+      "cycle": 2,
+      "name": "Atenção psicossocial (CAPS)",
+      "status": "validating",
+      "description": "A equipe do CAPS acompanha cada usuário num prontuário próprio, do acolhimento à alta, com o projeto terapêutico singular, as ações individuais, em grupo e no território e o acolhimento noturno nos CAPS que têm leito. No fim do mês a RAAS sai montada e conferida, sem digitar de novo. Saúde mental é dado sensível: só a equipe do CAPS lê o prontuário, e fora dela aparece apenas que a pessoa está em acompanhamento num CAPS, sem o nome da unidade.",
+      "features": [
+        {
+          "id": "F-31.1",
+          "slug": "f-31.1",
+          "title": "CAPS, modalidade e equipe",
+          "benefit": "O CAPS cadastrado com a modalidade e a equipe certas.",
+          "description": "A equipe da plataforma liga a atenção psicossocial por cidade; ela depende do prontuário do Rota Saúde. A secretaria cadastra o CAPS com a modalidade (I, II, III, infantojuvenil, álcool e drogas) e a classificação do serviço, os leitos dos CAPS que funcionam 24 horas e as regras da cidade. Só quem tem vínculo com o CAPS no cadastro de profissionais trabalha nele.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-31.2",
+          "slug": "f-31.2",
+          "title": "Encaminhamento, acolhimento e matrícula",
+          "benefit": "Quem chega ao CAPS é acolhido e acompanhado.",
+          "description": "A UBS encaminha ao CAPS, e o CAPS também recebe quem chega por conta própria. A equipe faz o acolhimento e decide: matricular, encaminhar a outro serviço ou não seguir. A matrícula registra origem, diagnóstico, uso de álcool ou outras drogas, cobertura da Saúde da Família e o técnico de referência, e fecha com o destino do usuário.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-31.3",
+          "slug": "f-31.3",
+          "title": "Projeto terapêutico singular",
+          "benefit": "O plano de cuidado de cada usuário, sempre em dia.",
+          "description": "O PTS reúne necessidades, objetivos com responsáveis e a intensidade do cuidado. Cada revisão cria uma versão nova, sem apagar as anteriores, e a revisão vencida aparece para o técnico de referência e a coordenação.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-31.4",
+          "slug": "f-31.4",
+          "title": "Ações individuais, em grupo e no território",
+          "benefit": "O que a equipe faz registrado uma vez só.",
+          "description": "A equipe registra atendimentos individuais e familiares, grupos e oficinas com a lista de presença, ações no território e a receita, inclusive a de controlados. O sistema confere na hora o procedimento, a ocupação do profissional e a quantidade. A tela Hoje no CAPS mostra os grupos e os atendimentos do dia.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-31.5",
+          "slug": "f-31.5",
+          "title": "Acolhimento noturno",
+          "benefit": "Leitos e permanências sem conflito.",
+          "description": "Nos CAPS que funcionam 24 horas, a equipe registra a entrada e a saída no leito. Um leito nunca tem dois usuários ao mesmo tempo, e passar do limite de noites da cidade exige reavaliação da coordenação. Cada noite entra na produção do mês.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "O limite de noites do CAPS III e o código do acolhimento noturno são conferidos com a norma e a tabela oficial antes do go-live."
+        },
+        {
+          "id": "F-31.6",
+          "slug": "f-31.6",
+          "title": "RAAS do mês",
+          "benefit": "A produção do CAPS sai sem redigitar.",
+          "description": "Todo mês o sistema monta a RAAS de cada usuário em acompanhamento, mostra as pendências antes do fechamento e a coordenação fecha o mês com segundo fator. Sai a ficha espelho para o aplicativo do Ministério e, quando homologado, o arquivo para o SIA.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "O arquivo para o SIA depende da homologação do layout oficial antes do go-live; até lá, a ficha espelho é o caminho."
+        },
+        {
+          "id": "F-31.7",
+          "slug": "f-31.7",
+          "title": "Matriciamento e vínculo com a UBS",
+          "benefit": "A UBS sabe com quem falar, sem ler o prontuário do CAPS.",
+          "description": "A equipe do CAPS registra o matriciamento com a equipe da UBS e pode compartilhar um texto sobre um caso. A UBS vê que o usuário está em acompanhamento no CAPS, o técnico de referência e o telefone, sem diagnóstico, sem plano e sem o nome da unidade. As ações para a rede vão ao BPA.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-31.8",
+          "slug": "f-31.8",
+          "title": "Sigilo e painel",
+          "benefit": "Saúde mental fora de onde não deve estar.",
+          "description": "Nada do CAPS aparece no portal do cidadão, em avisos ou SMS, nem no envio ao PEC. A linha do tempo do CAPS é só da equipe, e o atestado sai sem o nome do CAPS nem a especialidade do médico. O painel do mês mostra matrículas, encerramentos, PTS vencidos, leitos e a situação da RAAS, com contagens pequenas escondidas.",
+          "surfaces": [
+            "secretaria"
           ],
           "status": "available"
         }
