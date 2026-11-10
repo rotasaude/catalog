@@ -142,6 +142,7 @@ describe("formatValidating", () => {
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28 e o 29 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29", "30"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29 e o 30 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29", "30", "31"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29, o 30 e o 31 estão");
+    expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29", "30", "31", "32a"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29, o 30, o 31 e o 32a estão");
   });
 });
 
@@ -453,7 +454,7 @@ describe("módulo 31", () => {
   it("entra no ciclo 2 depois do 30: leitos e RAAS em validação, sem nada do CAPS para o cidadão", () => {
     const ids = catalog.modules.map((m) => m.id);
     expect(ids.indexOf("31")).toBe(ids.indexOf("30") + 1);
-    expect(ids.indexOf("iu")).toBe(ids.indexOf("31") + 1);
+    expect(ids.indexOf("32a")).toBe(ids.indexOf("31") + 1);
     const m31 = catalog.modules.find((m) => m.id === "31")!;
     expect(m31.cycle).toBe(2);
     expect(m31.status).toBe("validating");
@@ -471,6 +472,29 @@ describe("módulo 31", () => {
     expect(findFeature("f-31.8")?.feature.description).toMatch(/portal do cidadão/);
     const text = JSON.stringify(m31);
     expect(text).not.toMatch(/residência terapêutica como|internação psiquiátrica|comunidade terapêutica|atenção domiciliar|offline/i);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 31 e interface");
+  });
+});
+
+describe("módulo 32a", () => {
+  it("entra no ciclo 2 depois do 31: protocolo e BPA em validação, sem nome na TV nem nada do 32b", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("32a")).toBe(ids.indexOf("31") + 1);
+    expect(ids.indexOf("iu")).toBe(ids.indexOf("32a") + 1);
+    const m = catalog.modules.find((x) => x.id === "32a")!;
+    expect(m.cycle).toBe(2);
+    expect(m.status).toBe("validating");
+    expect(m.name).toBe("Urgência (UPA)");
+    expect(m.features.map((f) => f.id)).toEqual(Array.from({ length: 6 }, (_, i) => `F-32.${i + 1}`));
+    for (const n of [2, 3, 4, 5]) expect(findFeature(`f-32.${n}`)?.feature.status).toBe("available");
+    for (const n of [1, 6]) {
+      expect(findFeature(`f-32.${n}`)?.feature.status).toBe("validating");
+      expect(findFeature(`f-32.${n}`)?.feature.note).toMatch(/antes do go-live/);
+    }
+    expect(findFeature("f-32.1")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    expect(findFeature("f-32.5")?.feature.description).toMatch(/sem nome nem queixa/);
+    expect(findFeature("f-32.6")?.feature.description).toMatch(/sem cor, CID, queixa nem médico/);
+    const text = JSON.stringify(m);
+    expect(text).not.toMatch(/Manchester|observação|leito|estoque|SAMU|pronto-socorro/i);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 32a e interface");
   });
 });

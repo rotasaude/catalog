@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-05",
+    "updatedAt": "2026-11-10",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 31 e interface"
+        "modules": "15 a 32a e interface"
       }
     ]
   },
@@ -4015,6 +4015,86 @@
             "secretaria"
           ],
           "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "32a",
+      "cycle": 2,
+      "name": "Urgência (UPA)",
+      "status": "validating",
+      "description": "A UPA recebe quem chega sem agendamento, inclusive quem não pode se identificar, classifica o risco em cinco cores pelo protocolo assinado da cidade e atende pela ordem da cor, sem passar do tempo máximo de cada uma. Todo atendimento termina com um desfecho, e a alta pode pedir retorno à UBS. Na sala de espera, a TV chama por senha e local, sem o nome de ninguém.",
+      "features": [
+        {
+          "id": "F-32.1",
+          "slug": "f-32.1",
+          "title": "Protocolo de 5 cores e configuração da UPA",
+          "benefit": "A classificação segue a regra da cidade, assinada.",
+          "description": "A equipe da plataforma liga a urgência e o painel de TV por cidade. A secretaria configura a UPA e monta o protocolo próprio de classificação, com cinco cores e o tempo máximo de cada uma, que só vale depois de assinado por dois revisores.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "O protocolo de cada cidade passa por revisão clínica antes do go-live, e o uso de protocolo licenciado depende da licença da cidade."
+        },
+        {
+          "id": "F-32.2",
+          "slug": "f-32.2",
+          "title": "Chegada, senha e paciente não identificado",
+          "benefit": "Ninguém fica sem atendimento por falta de documento.",
+          "description": "A recepção registra a chegada por CPF, CNS ou cadastro novo, e quem não pode se identificar entra como paciente provisório. Quando a identidade aparece, a equipe confirma duas vezes e o atendimento passa para o cadastro certo.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-32.3",
+          "slug": "f-32.3",
+          "title": "Classificação de risco e fila por cor",
+          "benefit": "Quem está mais grave é atendido primeiro.",
+          "description": "A enfermagem classifica com a cor sugerida pelo protocolo; trocar a cor exige justificativa, e a reclassificação fica registrada. A fila ordena por cor e mostra quem passou do tempo máximo, e chamar o próximo segue a cor.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-32.4",
+          "slug": "f-32.4",
+          "title": "Atendimento médico e desfecho",
+          "benefit": "Todo atendimento termina com destino claro.",
+          "description": "O médico atende numa consulta com CID, exames urgentes e receita. O atendimento só fecha com um desfecho: alta, com retorno pedido à UBS quando for o caso, transferência com destino, óbito ou saída antes do atendimento. A UBS vê os retornos pedidos pela urgência.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-32.5",
+          "slug": "f-32.5",
+          "title": "Chamada na TV da sala de espera",
+          "benefit": "O paciente sabe que foi chamado, sem expor o nome.",
+          "description": "A TV da UPA, e da UBS quando a cidade liga, mostra a senha e o local da chamada em poucos segundos e o tempo médio de espera por cor, sem nome nem queixa. Sem rede, avisa e volta sozinha; revogada, volta ao pareamento.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-32.6",
+          "slug": "f-32.6",
+          "title": "Produção, histórico e painel",
+          "benefit": "A UPA fatura e o cidadão vê por onde passou.",
+          "description": "Os atendimentos entram no BPA e na vigilância. No celular, o cidadão vê as idas à urgência no seu histórico, sem cor, CID, queixa nem médico. O gestor tem o painel com tempos por cor, saídas antes do atendimento e contagens pequenas escondidas.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
+          ],
+          "status": "validating",
+          "note": "Os códigos de procedimento da UPA são conferidos com a tabela oficial antes do go-live."
         }
       ]
     },
