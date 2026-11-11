@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-10",
+    "updatedAt": "2026-11-11",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 32a e interface"
+        "modules": "15 a 32 e interface"
       }
     ]
   },
@@ -4019,11 +4019,11 @@
       ]
     },
     {
-      "id": "32a",
+      "id": "32",
       "cycle": 2,
       "name": "Urgência (UPA)",
       "status": "validating",
-      "description": "A UPA recebe quem chega sem agendamento, inclusive quem não pode se identificar, classifica o risco em cinco cores pelo protocolo assinado da cidade e atende pela ordem da cor, sem passar do tempo máximo de cada uma. Todo atendimento termina com um desfecho, e a alta pode pedir retorno à UBS. Na sala de espera, a TV chama por senha e local, sem o nome de ninguém.",
+      "description": "A UPA recebe quem chega sem agendamento, inclusive quem não pode se identificar, classifica o risco em cinco cores pelo protocolo assinado da cidade e atende pela ordem da cor, sem passar do tempo máximo de cada uma. Todo atendimento termina com um desfecho, e a alta pode pedir retorno à UBS. Na sala de espera, a TV chama por senha e local, sem o nome de ninguém. Quem precisa ficar em observação ocupa um leito, com alerta antes de passar de 24 horas, e recebe a prescrição interna, checada dose a dose pela enfermagem, com baixa no estoque da farmácia quando a cidade liga.",
       "features": [
         {
           "id": "F-32.1",
@@ -4095,6 +4095,31 @@
           ],
           "status": "validating",
           "note": "Os códigos de procedimento da UPA são conferidos com a tabela oficial antes do go-live."
+        },
+        {
+          "id": "F-32.7",
+          "slug": "f-32.7",
+          "title": "Leitos de observação",
+          "benefit": "A UPA sabe quem está em cada leito e há quanto tempo.",
+          "description": "A secretaria cadastra os leitos de observação da UPA. O mapa mostra os leitos livres e ocupados, com a hora de entrada, e avisa a equipe quando a permanência se aproxima de 24 horas e quando passa delas. O médico põe o paciente em observação, troca de leito e encerra a permanência; só a observação entra no BPA.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "O código de procedimento da observação é conferido com a tabela oficial antes do go-live."
+        },
+        {
+          "id": "F-32.8",
+          "slug": "f-32.8",
+          "title": "Prescrição interna e checagem",
+          "benefit": "Cada dose dada fica registrada e sai do estoque certo.",
+          "description": "O médico prescreve os medicamentos do catálogo para uso na própria UPA, com horários, e pode mudar ou suspender a prescrição. A enfermagem vê o aprazamento e checa cada dose dada. Quando a baixa de estoque está ligada para a cidade, a checagem dá baixa no estoque pelo lote que vence primeiro, e a falta vai para a farmácia resolver.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "A escrituração dos medicamentos controlados é validada no sistema oficial antes do go-live."
         }
       ]
     },
