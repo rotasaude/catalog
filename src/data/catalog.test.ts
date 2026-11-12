@@ -143,6 +143,7 @@ describe("formatValidating", () => {
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29", "30"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29 e o 30 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29", "30", "31"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29, o 30 e o 31 estão");
     expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29", "30", "31", "32"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29, o 30, o 31 e o 32 estão");
+    expect(formatValidating(["19", "20", "21", "22", "23", "24", "25", "26a", "27a", "28", "29", "30", "31", "32", "33"])).toBe("o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29, o 30, o 31, o 32 e o 33 estão");
   });
 });
 
@@ -480,7 +481,6 @@ describe("módulo 32", () => {
     const ids = catalog.modules.map((m) => m.id);
     expect(ids).not.toContain("32a");
     expect(ids.indexOf("32")).toBe(ids.indexOf("31") + 1);
-    expect(ids.indexOf("iu")).toBe(ids.indexOf("32") + 1);
     const m = catalog.modules.find((x) => x.id === "32")!;
     expect(m.cycle).toBe(2);
     expect(m.status).toBe("validating");
@@ -498,6 +498,28 @@ describe("módulo 32", () => {
     expect(findFeature("f-32.8")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
     expect(findFeature("f-32.8")?.feature.description).toMatch(/lote que vence primeiro/);
     expect(JSON.stringify(m)).not.toMatch(/Manchester|SAMU|pronto-socorro/i);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 32 e interface");
+  });
+});
+
+describe("módulo 33", () => {
+  it("entra no ciclo 2 depois do 32: prazos, anônima e avisos em validação, sem identidade no encaminhamento", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("33")).toBe(ids.indexOf("32") + 1);
+    expect(ids.indexOf("iu")).toBe(ids.indexOf("33") + 1);
+    const m = catalog.modules.find((x) => x.id === "33")!;
+    expect(m.cycle).toBe(2);
+    expect(m.status).toBe("validating");
+    expect(m.name).toBe("Ouvidoria");
+    expect(m.features.map((f) => f.id)).toEqual(Array.from({ length: 9 }, (_, i) => `F-33.${i + 1}`));
+    for (const n of [2, 4, 5, 7, 9]) expect(findFeature(`f-33.${n}`)?.feature.status).toBe("available");
+    for (const n of [1, 3, 6, 8]) {
+      expect(findFeature(`f-33.${n}`)?.feature.status).toBe("validating");
+      expect(findFeature(`f-33.${n}`)?.feature.note).toMatch(/antes do go-live/);
+    }
+    expect(findFeature("f-33.1")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    expect(findFeature("f-33.5")?.feature.description).toMatch(/nunca o texto original nem a identidade/);
+    expect(findFeature("f-33.9")?.feature.description).toMatch(/"oculto"/);
+    expect(JSON.stringify(m)).not.toMatch(/Fala\.BR|< 5/);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 33 e interface");
   });
 });
