@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-12",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 32 e interface"
+        "modules": "15 a 33 e interface"
       }
     ]
   },
@@ -4120,6 +4120,120 @@
           ],
           "status": "validating",
           "note": "A escrituração dos medicamentos controlados é validada no sistema oficial antes do go-live."
+        }
+      ]
+    },
+    {
+      "id": "33",
+      "cycle": 2,
+      "name": "Ouvidoria",
+      "status": "validating",
+      "description": "A secretaria passa a ter a própria ouvidoria do SUS, conforme a Lei 13.460. O cidadão faz reclamação, denúncia, elogio, sugestão ou solicitação pelo canal do cidadão ou no balcão, recebe protocolo e acompanha até a resposta, com prazo de 30 dias. A identidade pode ficar preservada, e a denúncia pode ser anônima, sem login. A ouvidoria encaminha a setores e unidades só um extrato, nunca quem reclamou, e presta contas num painel e num relatório anual.",
+      "features": [
+        {
+          "id": "F-33.1",
+          "slug": "f-33.1",
+          "title": "Ouvidoria por cidade, setores e prazos",
+          "benefit": "Cada cidade organiza a própria ouvidoria.",
+          "description": "A equipe da plataforma liga a ouvidoria e a denúncia anônima por cidade. A secretaria cadastra setores, quem responde em cada setor ou unidade, os assuntos e os prazos.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Os prazos seguem a norma de ouvidoria da cidade, que precisa ser publicada antes do go-live."
+        },
+        {
+          "id": "F-33.2",
+          "slug": "f-33.2",
+          "title": "Manifestação pelo canal do cidadão",
+          "benefit": "O cidadão se manifesta sem sair de casa.",
+          "description": "Com CPF e código por SMS, o cidadão registra a manifestação, identificada ou com identidade preservada, anexa documentos e recebe o protocolo.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-33.3",
+          "slug": "f-33.3",
+          "title": "Denúncia anônima sem login",
+          "benefit": "Quem tem medo de retaliação também pode denunciar.",
+          "description": "A denúncia anônima entra só com o texto, sem login e sem protocolo, com limites por endereço e por dia para evitar abuso.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "validating",
+          "note": "Os limites e o sigilo do endereço dependem da configuração do servidor de produção, conferida antes do go-live."
+        },
+        {
+          "id": "F-33.4",
+          "slug": "f-33.4",
+          "title": "Registro no balcão e por telefone",
+          "benefit": "Quem não usa o celular também é atendido.",
+          "description": "A equipe registra manifestações recebidas no balcão, por telefone ou pela rede OuvidorSUS e imprime um comprovante só com protocolo, tipo, canal e datas.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-33.5",
+          "slug": "f-33.5",
+          "title": "Encaminhamento por extrato",
+          "benefit": "O setor responde sem saber quem reclamou.",
+          "description": "A ouvidoria classifica e encaminha a setores da secretaria ou a unidades de saúde só um extrato, nunca o texto original nem a identidade. Quem responde vê só os encaminhamentos do seu destino.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-33.6",
+          "slug": "f-33.6",
+          "title": "Prazos, respostas e reabertura",
+          "benefit": "Nenhuma manifestação fica sem resposta.",
+          "description": "Cada manifestação tem prazo de 30 dias, prorrogável uma vez, e 15 na urgente. A ouvidoria pede complemento, dá resposta intermediária e conclusiva, arquiva com motivo e reabre quando preciso.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Os prazos seguem a norma de ouvidoria da cidade, que precisa ser publicada antes do go-live."
+        },
+        {
+          "id": "F-33.7",
+          "slug": "f-33.7",
+          "title": "Identidade preservada com trilha",
+          "benefit": "Quem se identifica não fica exposto.",
+          "description": "Na identidade preservada, só o ouvidor vê quem é, e cada abertura pede justificativa e fica registrada.",
+          "surfaces": [
+            "secretaria",
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-33.8",
+          "slug": "f-33.8",
+          "title": "Acompanhamento, avisos e satisfação",
+          "benefit": "O cidadão sabe o que aconteceu com a manifestação.",
+          "description": "Em \"Minhas manifestações\", o cidadão acompanha cada etapa, manda complemento, pede reabertura e responde a uma pesquisa de satisfação de três perguntas. Os avisos chegam sem o conteúdo da manifestação.",
+          "surfaces": [
+            "cidadao"
+          ],
+          "status": "validating",
+          "note": "O aviso por SMS depende do provedor de SMS da cidade, ligado antes do go-live; até lá, o aviso fica na caixa do canal do cidadão."
+        },
+        {
+          "id": "F-33.9",
+          "slug": "f-33.9",
+          "title": "Painel e relatório anual",
+          "benefit": "A secretaria presta contas da ouvidoria.",
+          "description": "O painel mostra volume, prazos, resolutividade e satisfação, e o relatório de gestão anual é publicado depois que o ano termina. Contagens pequenas, e as que permitiriam deduzi-las, aparecem como \"oculto\".",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
         }
       ]
     },

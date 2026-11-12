@@ -30,8 +30,8 @@ describe("lista de módulos", () => {
       "Ciclo 1 · MVP",
       "Ciclo 2"
     ]);
-    // 32 módulos numerados (com o 26a e o 27a) + o grupo Interface.
-    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(33);
+    // 33 módulos numerados (com o 26a e o 27a) + o grupo Interface.
+    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(34);
     expect(screen.queryAllByRole("link", { name: /Classificação previsível/ })).toHaveLength(0);
     expect(document.title).toBe("Funcionalidades Rota Saúde");
   });
@@ -78,7 +78,7 @@ describe("lista de módulos", () => {
   it("o rodapé resume o estado dos módulos", () => {
     renderAt("/");
     expect(screen.getByRole("contentinfo")).toHaveTextContent(
-      "Os módulos 02 a 18 estão disponíveis e verificados; o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29, o 30, o 31 e o 32 estão em validação."
+      "Os módulos 02 a 18 estão disponíveis e verificados; o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29, o 30, o 31, o 32 e o 33 estão em validação."
     );
   });
 
@@ -87,7 +87,7 @@ describe("lista de módulos", () => {
     const c1 = screen.getByRole("region", { name: "Ciclo 1 · MVP" });
     const c2 = screen.getByRole("region", { name: "Ciclo 2" });
     expect(within(c1).getByText("módulos 01 a 14")).toBeInTheDocument();
-    expect(within(c2).getByText("módulos 15 a 32 e interface")).toBeInTheDocument();
+    expect(within(c2).getByText("módulos 15 a 33 e interface")).toBeInTheDocument();
     expect(within(c1).getByRole("region", { name: /Módulo 14/ })).toBeInTheDocument();
     expect(within(c2).getByRole("region", { name: /Módulo 15/ })).toBeInTheDocument();
     expect(within(c1).queryByRole("region", { name: /Módulo 15/ })).not.toBeInTheDocument();
