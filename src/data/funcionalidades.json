@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-12",
+    "updatedAt": "2026-11-14",
     "cycles": [
       {
         "id": 1,
@@ -3244,9 +3244,9 @@
     {
       "id": "24",
       "cycle": 2,
-      "name": "Cadastro individual e domiciliar",
+      "name": "Atendimento domiciliar e coletivo",
       "status": "validating",
-      "description": "A equipe cadastra pela web cada domicílio, família e morador da sua área, no formato das fichas de cadastro do e-SUS, e sabe por microárea quem tem cadastro válido, quem vence logo e quem falta cadastrar. O cadastro atualizado nos últimos 24 meses é o que conta para o componente de vínculo do financiamento da APS.",
+      "description": "A equipe cadastra pela web cada domicílio, família e morador da sua área, no formato das fichas de cadastro do e-SUS, e sabe por microárea quem tem cadastro válido, quem vence logo e quem falta cadastrar. O cadastro atualizado nos últimos 24 meses é o que conta para o componente de vínculo do financiamento da APS. O agente comunitário registra as visitas do dia e a equipe registra as atividades coletivas, que seguem para o SIAPS em fichas e passam a contar nas linhas de cuidado.",
       "features": [
         {
           "id": "F-24.1",
@@ -3337,6 +3337,112 @@
             "bastidores"
           ],
           "status": "available"
+        },
+        {
+          "id": "F-24.9",
+          "slug": "f-24.9",
+          "title": "Interruptores e quem registra",
+          "benefit": "A cidade liga a visita domiciliar e a atividade coletiva separadamente.",
+          "description": "A equipe da plataforma liga por cidade a visita domiciliar, que exige o cadastro territorial, e a atividade coletiva, que exige o prontuário do Rota Saúde. Registram visita o agente comunitário e os demais agentes de campo aceitos pela ficha do e-SUS, como o agente de endemias e o visitador sanitário; o enfermeiro da equipe atribui a esses outros agentes as microáreas em que atuam. Médico e enfermeiro não registram visita, mas leem as da equipe.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.10",
+          "slug": "f-24.10",
+          "title": "Folha do dia e visita domiciliar",
+          "benefit": "O agente registra as visitas do dia pelo painel, inclusive no celular.",
+          "description": "Cada agente tem uma folha por dia com as suas visitas: a um domicílio cadastrado, a uma família, a um morador ou a um imóvel sem cadastro, com o desfecho (realizada, recusada ou ausente), os motivos da lista oficial e, na visita realizada, peso, altura, pressão, temperatura e glicemia. Quem ainda não é paciente entra por um registro rápido, com o aviso de possível duplicado. Enquanto a folha está aberta, uma visita pode ser retirada com motivo; depois que o dia é fechado, pelo agente ou de madrugada, a folha não muda mais.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.11",
+          "slug": "f-24.11",
+          "title": "Ficha de visita domiciliar para o e-SUS",
+          "benefit": "As visitas do dia vão para o SIAPS numa ficha só.",
+          "description": "Ao fechar o dia, a folha vira a ficha de visita domiciliar e territorial no formato LEDI APS, com até 99 visitas, enviada ao PEC da cidade; a partir da 100ª visita, ou para visita que chega depois do fechamento, sai uma folha complementar do mesmo dia. A ficha leva o documento do morador visitado, ou o do responsável familiar na visita à família, e nunca a observação interna.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "As fichas foram conferidas com as regras oficiais do LEDI; falta o PEC real aceitar fichas da cidade piloto, inclusive mais de uma do mesmo profissional no mesmo dia, e o SIAPS contar as visitas."
+        },
+        {
+          "id": "F-24.12",
+          "slug": "f-24.12",
+          "title": "Atividade coletiva",
+          "benefit": "Grupos, reuniões e ações de educação em saúde, com os participantes.",
+          "description": "A equipe registra a atividade coletiva com os sete tipos da ficha do e-SUS, o local, os temas, o público, as práticas, os profissionais e os participantes, com as regras da ficha guiando o formulário. Participante sem cadastro entra pelo registro rápido. A atividade gravada não muda: um erro é marcado como \"registrada por engano\". As atividades do Programa Saúde na Escola ficam para o próximo ciclo.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.13",
+          "slug": "f-24.13",
+          "title": "Ficha de atividade coletiva para o e-SUS",
+          "benefit": "Cada atividade coletiva vai para o SIAPS.",
+          "description": "Cada atividade gravada vira na hora a ficha de atividade coletiva no formato LEDI APS, enviada ao PEC da cidade, com o CPF de cada participante ou, sem CPF, o CNS. Nos tipos de atividade em que a ficha exige participantes identificados, um participante sem documento impede a geração da ficha, e a tela mostra o motivo.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "As fichas foram conferidas com as regras oficiais do LEDI; falta o PEC real aceitar fichas da cidade piloto e o SIAPS contar as atividades."
+        },
+        {
+          "id": "F-24.14",
+          "slug": "f-24.14",
+          "title": "Visita nas linhas de cuidado e em Meu acompanhamento",
+          "benefit": "As boas práticas que pedem visita do agente passam a ser medidas.",
+          "description": "Com a visita domiciliar ligada, as boas práticas das linhas de cuidado que pedem visita do agente comunitário contam a visita realizada com pelo menos um motivo; na linha da hipertensão, duas visitas só contam com 30 dias de intervalo. A pressão, o peso e a altura medidos na visita também contam. No canal web, Meu acompanhamento passa a mostrar a visita do agente, e o cidadão é orientado a procurar a unidade quando ela atrasa.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.15",
+          "slug": "f-24.15",
+          "title": "Visita na linha do tempo",
+          "benefit": "O profissional vê o histórico de visitas; o cidadão, as que recebeu.",
+          "description": "Na linha do tempo do paciente, o profissional vê cada visita com desfecho, motivos e medidas, e a participação em atividades coletivas. O cidadão vê no canal web só a visita realizada, com a data e \"Visita do agente de saúde\", sem o nome do profissional, motivo, medida ou observação; a visita recusada ou com a pessoa ausente nunca aparece.",
+          "surfaces": [
+            "secretaria",
+            "cidadao"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.16",
+          "slug": "f-24.16",
+          "title": "Quem visitar por microárea",
+          "benefit": "O agente abre a microárea e sabe quem precisa de visita e por quê.",
+          "description": "Por microárea, a lista de quem visitar, só de leitura, com o motivo de cada pessoa: boa prática de linha de cuidado que pede visita, vencida ou a vencer, sem o diagnóstico; cadastro vencido ou a vencer em 60 dias; ou cadastro ativo sem nenhuma visita. Cada pessoa tem atalho para registrar a visita, e a leitura nominal fica na trilha de auditoria.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.17",
+          "slug": "f-24.17",
+          "title": "Aparelho de campo e sincronização",
+          "benefit": "O app de campo já tem para onde enviar e de onde baixar.",
+          "description": "O profissional cadastra o aparelho no painel, com o segundo fator, lendo um código QR que aparece uma única vez; ele ou o administrador municipal revoga o aparelho, e quem sai da equipe perde o acesso. O aparelho envia visitas, atividades coletivas e cadastros sem duplicar o que já chegou, e baixa só as microáreas do profissional, com os domicílios, as famílias, os moradores e quem visitar.",
+          "surfaces": [
+            "secretaria",
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "O app de campo que vai usar esta sincronização é a próxima entrega do módulo; a sincronização foi testada de ponta a ponta sem ele."
         }
       ]
     },
