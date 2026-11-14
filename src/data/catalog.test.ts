@@ -249,15 +249,14 @@ describe("módulo 23", () => {
 });
 
 describe("módulo 24 (24a)", () => {
-  it("entra no ciclo 2 depois do 23: fichas em validação; nada de visita nem app de campo", () => {
+  it("entra no ciclo 2 depois do 23: fichas de cadastro em validação", () => {
     const ids = catalog.modules.map((m) => m.id);
     expect(ids.indexOf("24")).toBe(ids.indexOf("23") + 1);
     const m24 = catalog.modules.find((m) => m.id === "24")!;
     expect(m24.cycle).toBe(2);
     expect(m24.status).toBe("validating");
-    expect(m24.name).toBe("Cadastro individual e domiciliar");
     expect(m24.description).toMatch(/24 meses/);
-    expect(m24.features.map((f) => f.id)).toEqual(Array.from({ length: 8 }, (_, i) => `F-24.${i + 1}`));
+    expect(m24.features.slice(0, 8).map((f) => f.id)).toEqual(Array.from({ length: 8 }, (_, i) => `F-24.${i + 1}`));
     for (const id of ["f-24.1", "f-24.2", "f-24.3", "f-24.4", "f-24.5", "f-24.6", "f-24.8"]) {
       expect(findFeature(id)?.feature.status).toBe("available");
     }
@@ -270,8 +269,38 @@ describe("módulo 24 (24a)", () => {
     expect(findFeature("f-24.5")?.feature.description).toMatch(/recusa/);
     expect(findFeature("f-24.7")?.feature.surfaces).toEqual([ "bastidores" ]);
     expect(findFeature("f-24.8")?.feature.surfaces).toEqual([ "bastidores" ]);
-    const text = JSON.stringify(m24);
-    expect(text).not.toMatch(/visita domiciliar|atividade coletiva|tablet|offline|celular/i);
+  });
+});
+
+describe("módulo 24 (24b)", () => {
+  it("visita e atividade coletiva entram no 24: fichas e sincronização em validação, sem dado clínico do cidadão", () => {
+    const m24 = catalog.modules.find((m) => m.id === "24")!;
+    expect(m24.name).toBe("Atendimento domiciliar e coletivo");
+    expect(m24.status).toBe("validating");
+    expect(m24.description).toMatch(/visitas do dia/);
+    expect(m24.description).toMatch(/atividades coletivas/);
+    expect(m24.features.map((f) => f.id)).toEqual(Array.from({ length: 17 }, (_, i) => `F-24.${i + 1}`));
+    for (const n of [9, 10, 12, 14, 15, 16]) expect(findFeature(`f-24.${n}`)?.feature.status).toBe("available");
+    for (const n of [11, 13]) {
+      const ficha = findFeature(`f-24.${n}`)!.feature;
+      expect(ficha.status).toBe("validating");
+      expect(ficha.note).toMatch(/PEC real/);
+      expect(ficha.note).toMatch(/SIAPS/);
+      expect(ficha.surfaces).toEqual([ "bastidores" ]);
+    }
+    expect(findFeature("f-24.11")?.feature.note).toMatch(/mais de uma do mesmo profissional no mesmo dia/);
+    const sync = findFeature("f-24.17")!.feature;
+    expect(sync.status).toBe("validating");
+    expect(sync.note).toMatch(/próxima entrega/);
+    expect(sync.surfaces).toEqual([ "secretaria", "bastidores" ]);
+    expect(findFeature("f-24.9")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
+    expect(findFeature("f-24.14")?.feature.surfaces).toEqual([ "secretaria", "cidadao" ]);
+    expect(findFeature("f-24.15")?.feature.surfaces).toEqual([ "secretaria", "cidadao" ]);
+    expect(findFeature("f-24.15")?.feature.description).toMatch(/Visita do agente de saúde/);
+    expect(findFeature("f-24.15")?.feature.description).toMatch(/recusada ou com a pessoa ausente nunca aparece/);
+    expect(findFeature("f-24.12")?.feature.description).toMatch(/Saúde na Escola ficam para o próximo ciclo/);
+    const text = JSON.stringify(m24.features.slice(8));
+    expect(text).not.toMatch(/OpenStreetMap|Google Play|tablet|offline|CID/);
   });
 });
 
