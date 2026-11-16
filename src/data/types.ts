@@ -1,7 +1,7 @@
 // Tipos do funcionalidades.json, a fonte única do conteúdo do catálogo.
 
 export type Status = "available" | "validating" | "planned" | "disabled";
-export type Surface = "cidadao" | "secretaria" | "plataforma" | "bastidores";
+export type Surface = "cidadao" | "secretaria" | "campo" | "plataforma" | "bastidores";
 
 export interface Feature {
   id: string;

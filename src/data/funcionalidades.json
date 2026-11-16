@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-14",
+    "updatedAt": "2026-11-16",
     "cycles": [
       {
         "id": 1,
@@ -29,6 +29,10 @@
     "secretaria": {
       "label": "Painel da secretaria",
       "text": "A equipe da cidade vê ou usa no painel."
+    },
+    "campo": {
+      "label": "App de campo",
+      "text": "O agente usa no tablet, mesmo sem internet."
     },
     "plataforma": {
       "label": "Gestão da plataforma",
@@ -3246,7 +3250,7 @@
       "cycle": 2,
       "name": "Atendimento domiciliar e coletivo",
       "status": "validating",
-      "description": "A equipe cadastra pela web cada domicílio, família e morador da sua área, no formato das fichas de cadastro do e-SUS, e sabe por microárea quem tem cadastro válido, quem vence logo e quem falta cadastrar. O cadastro atualizado nos últimos 24 meses é o que conta para o componente de vínculo do financiamento da APS. O agente comunitário registra as visitas do dia e a equipe registra as atividades coletivas, que seguem para o SIAPS em fichas e passam a contar nas linhas de cuidado.",
+      "description": "A equipe cadastra pela web cada domicílio, família e morador da sua área, no formato das fichas de cadastro do e-SUS, e sabe por microárea quem tem cadastro válido, quem vence logo e quem falta cadastrar. O cadastro atualizado nos últimos 24 meses é o que conta para o componente de vínculo do financiamento da APS. O agente comunitário registra as visitas do dia e a equipe registra as atividades coletivas, que seguem para o SIAPS em fichas e passam a contar nas linhas de cuidado. No app de campo, o agente trabalha sem internet no tablet: cadastra, visita e registra atividades, acha os imóveis no mapa do município e envia tudo quando houver rede.",
       "features": [
         {
           "id": "F-24.1",
@@ -3441,8 +3445,104 @@
             "secretaria",
             "bastidores"
           ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.18",
+          "slug": "f-24.18",
+          "title": "Tablet do agente com QR, PIN e dados cifrados",
+          "benefit": "Cada agente usa um tablet só dele, e o dado fica protegido se o aparelho se perder.",
+          "description": "O agente cadastra o tablet lendo o código QR que aparece uma única vez no painel. O app pede um PIN de 6 números ao abrir e depois de cinco minutos fora, guarda tudo cifrado e não mostra a tela na lista de aplicativos recentes. Revogado no painel, o tablet apaga tudo; com o acesso suspenso, como quando o agente sai da equipe, o tablet apaga o território e guarda o que ainda não foi enviado até um novo cadastro da mesma pessoa.",
+          "surfaces": [
+            "campo",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.19",
+          "slug": "f-24.19",
+          "title": "Trabalho sem internet e sincronização",
+          "benefit": "O agente trabalha o dia inteiro sem sinal e envia quando houver rede.",
+          "description": "O tablet baixa só as microáreas do agente, com domicílios, famílias, moradores e a lista de quem visitar, e guarda o que ele registra numa fila que sai sozinha quando há conexão, sem duplicar o que já chegou. A primeira carga espera o Wi-Fi, a menos que o agente libere os dados móveis. Sem uma carga completa em 30 dias, a cópia do território sai do tablet; o que ainda não foi enviado fica.",
+          "surfaces": [
+            "campo",
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.20",
+          "slug": "f-24.20",
+          "title": "Mapa offline do município",
+          "benefit": "O agente acha os imóveis no mapa mesmo sem sinal.",
+          "description": "A equipe da plataforma gera, por cidade, um mapa do município a partir da base aberta do OpenStreetMap, e o tablet o baixa uma vez, retomando o download se a conexão cair. No app, o agente vê os imóveis da microárea e marca o ponto de cada um pelo GPS ou com um toque no mapa; no painel, a equipe vê os mesmos pontos e corrige um ponto errado.",
+          "surfaces": [
+            "campo",
+            "secretaria",
+            "plataforma"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.21",
+          "slug": "f-24.21",
+          "title": "Cadastro do domicílio, da família e do morador no tablet",
+          "benefit": "O cadastro é feito na casa da pessoa, sem papel e sem digitar de novo depois.",
+          "description": "No tablet, o agente cadastra e atualiza domicílio, família e morador com as mesmas regras do painel e do e-SUS, e a tela leva até o campo que falta. Antes de enviar, o app avisa quando a pessoa parece já estar cadastrada no próprio tablet, sem mostrar o documento nem o nome da outra pessoa; quando o cadastro chega, o Rota Saúde confere de novo os possíveis duplicados e o agente decide se é a mesma pessoa.",
+          "surfaces": [
+            "campo"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.22",
+          "slug": "f-24.22",
+          "title": "Conflito resolvido campo a campo",
+          "benefit": "Quando o tablet e o posto mexem no mesmo cadastro, nada se perde sem alguém decidir.",
+          "description": "Se o posto alterou um cadastro enquanto o tablet trabalhava sem rede, o app junta sozinho as mudanças que não se chocam, campo a campo. Quando os dois mexeram no mesmo campo, o agente vê as duas versões e escolhe qual fica; até lá, o registro espera no tablet.",
+          "surfaces": [
+            "campo",
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-24.23",
+          "slug": "f-24.23",
+          "title": "Visita, quem visitar e atividade coletiva no tablet",
+          "benefit": "O agente registra a visita na porta da casa, com ou sem internet.",
+          "description": "O agente vê no tablet a lista de quem visitar, registra a visita com o desfecho e os motivos da ficha do e-SUS, inclusive de morador ainda sem cadastro, e acompanha as visitas do dia, retirando uma lançada por engano. No tablet também se registra a atividade coletiva, com os participantes.",
+          "surfaces": [
+            "campo"
+          ],
           "status": "validating",
-          "note": "O app de campo que vai usar esta sincronização é a próxima entrega do módulo; a sincronização foi testada de ponta a ponta sem ele."
+          "note": "A visita foi provada num tablet ligado ao servidor; a atividade coletiva no tablet ainda espera essa prova."
+        },
+        {
+          "id": "F-24.24",
+          "slug": "f-24.24",
+          "title": "Ponto do imóvel e da visita nas fichas",
+          "benefit": "O ponto marcado no campo segue para o e-SUS.",
+          "description": "O ponto do imóvel, marcado pelo GPS ou no mapa, vai na ficha de cadastro domiciliar, e a posição em que a visita foi registrada vai na ficha de visita domiciliar, nas regras de coordenada do LEDI APS. A posição fica cifrada no banco e não aparece em endereço de página nem em registro de erro.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "As fichas foram conferidas com as regras de coordenada do LEDI; falta o PEC real aceitar fichas com o ponto da cidade piloto."
+        },
+        {
+          "id": "F-24.25",
+          "slug": "f-24.25",
+          "title": "Versão de distribuição do app",
+          "benefit": "O app sai numa versão assinada e conferida antes de ir para os tablets.",
+          "description": "Cada versão de distribuição sai assinada e passa por uma conferência automática antes de ser entregue: só as permissões previstas, sem modo de depuração, sem cópia de segurança do aparelho e só com os endereços de servidor da secretaria. Os fluxos principais do agente foram repetidos num tablet emulado.",
+          "surfaces": [
+            "campo",
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "A distribuição pelo Google Play gerenciado, com a chave de envio da secretaria, e a prova num tablet físico ainda não foram feitas."
         }
       ]
     },
