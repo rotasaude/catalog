@@ -279,7 +279,7 @@ describe("módulo 24 (24b)", () => {
     expect(m24.status).toBe("validating");
     expect(m24.description).toMatch(/visitas do dia/);
     expect(m24.description).toMatch(/atividades coletivas/);
-    expect(m24.features.map((f) => f.id)).toEqual(Array.from({ length: 17 }, (_, i) => `F-24.${i + 1}`));
+    expect(m24.features.slice(0, 17).map((f) => f.id)).toEqual(Array.from({ length: 17 }, (_, i) => `F-24.${i + 1}`));
     for (const n of [9, 10, 12, 14, 15, 16]) expect(findFeature(`f-24.${n}`)?.feature.status).toBe("available");
     for (const n of [11, 13]) {
       const ficha = findFeature(`f-24.${n}`)!.feature;
@@ -290,8 +290,6 @@ describe("módulo 24 (24b)", () => {
     }
     expect(findFeature("f-24.11")?.feature.note).toMatch(/mais de uma do mesmo profissional no mesmo dia/);
     const sync = findFeature("f-24.17")!.feature;
-    expect(sync.status).toBe("validating");
-    expect(sync.note).toMatch(/próxima entrega/);
     expect(sync.surfaces).toEqual([ "secretaria", "bastidores" ]);
     expect(findFeature("f-24.9")?.feature.surfaces).toEqual([ "plataforma", "secretaria" ]);
     expect(findFeature("f-24.14")?.feature.surfaces).toEqual([ "secretaria", "cidadao" ]);
@@ -299,8 +297,49 @@ describe("módulo 24 (24b)", () => {
     expect(findFeature("f-24.15")?.feature.description).toMatch(/Visita do agente de saúde/);
     expect(findFeature("f-24.15")?.feature.description).toMatch(/recusada ou com a pessoa ausente nunca aparece/);
     expect(findFeature("f-24.12")?.feature.description).toMatch(/Saúde na Escola ficam para o próximo ciclo/);
-    const text = JSON.stringify(m24.features.slice(8));
+    const text = JSON.stringify(m24.features.slice(8, 17));
     expect(text).not.toMatch(/OpenStreetMap|Google Play|tablet|offline|CID/);
+  });
+});
+
+describe("módulo 24 (24c)", () => {
+  it("o app de campo entra no 24: tablet sem internet, mapa e conflito disponíveis; fichas com coordenada, coletiva no tablet e distribuição em validação", () => {
+    const m24 = catalog.modules.find((m) => m.id === "24")!;
+    expect(m24.status).toBe("validating");
+    expect(m24.description).toMatch(/app de campo/);
+    expect(m24.description).toMatch(/sem internet/);
+    expect(m24.features.map((f) => f.id)).toEqual(Array.from({ length: 25 }, (_, i) => `F-24.${i + 1}`));
+
+    // A sincronização do 24b já tem o app que a usa: deixa de esperar a próxima entrega.
+    const sync = findFeature("f-24.17")!.feature;
+    expect(sync.status).toBe("available");
+    expect(sync.note).toBeUndefined();
+
+    expect(catalog.surfaces.campo).toEqual({ label: "App de campo", text: "O agente usa no tablet, mesmo sem internet." });
+    for (const n of [18, 19, 20, 21, 22]) {
+      const f = findFeature(`f-24.${n}`)!.feature;
+      expect(f.status).toBe("available");
+      expect(f.note).toBeUndefined();
+      expect(f.surfaces).toContain("campo");
+    }
+    expect(findFeature("f-24.20")?.feature.surfaces).toEqual([ "campo", "secretaria", "plataforma" ]);
+    expect(findFeature("f-24.20")?.feature.description).toMatch(/OpenStreetMap/);
+    expect(findFeature("f-24.22")?.feature.description).toMatch(/campo a campo/);
+
+    const visit = findFeature("f-24.23")!.feature;
+    expect(visit.status).toBe("validating");
+    expect(visit.note).toMatch(/atividade coletiva/);
+    const point = findFeature("f-24.24")!.feature;
+    expect(point.status).toBe("validating");
+    expect(point.surfaces).toEqual([ "bastidores" ]);
+    expect(point.note).toMatch(/PEC real/);
+    const store = findFeature("f-24.25")!.feature;
+    expect(store.status).toBe("validating");
+    expect(store.note).toMatch(/Google Play/);
+    expect(store.note).toMatch(/tablet físico/);
+
+    // A coordenada nunca é número na vitrine: o catálogo fala do ponto, não da posição.
+    expect(JSON.stringify(m24.features.slice(17))).not.toMatch(/-?\d+[.,]\d{4,}/);
   });
 });
 

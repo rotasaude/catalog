@@ -55,6 +55,13 @@ export function SurfaceIcon({ surface }: { surface: string }) {
           <path d="M7 12V9M11 12V7M15 12v-2M8 19h6" />
         </svg>
       );
+    case "campo":
+      return (
+        <svg {...common} strokeLinejoin="round" strokeLinecap="round">
+          <rect x="5" y="2.5" width="12" height="17" rx="2" />
+          <path d="M9.5 16.5h3" />
+        </svg>
+      );
     case "plataforma":
       return (
         <svg {...common} strokeLinejoin="round">
