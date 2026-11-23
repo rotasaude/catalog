@@ -573,7 +573,6 @@ describe("módulo 33", () => {
   it("entra no ciclo 2 depois do 32: prazos, anônima e avisos em validação, sem identidade no encaminhamento", () => {
     const ids = catalog.modules.map((m) => m.id);
     expect(ids.indexOf("33")).toBe(ids.indexOf("32") + 1);
-    expect(ids.indexOf("iu")).toBe(ids.indexOf("33") + 1);
     const m = catalog.modules.find((x) => x.id === "33")!;
     expect(m.cycle).toBe(2);
     expect(m.status).toBe("validating");
@@ -588,6 +587,27 @@ describe("módulo 33", () => {
     expect(findFeature("f-33.5")?.feature.description).toMatch(/nunca o texto original nem a identidade/);
     expect(findFeature("f-33.9")?.feature.description).toMatch(/"oculto"/);
     expect(JSON.stringify(m)).not.toMatch(/Fala\.BR|< 5/);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 33 e interface");
+  });
+});
+
+describe("módulo 35a", () => {
+  it("entra no ciclo 2 depois do 33: endemias com o boletim em validação até o PEC real", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("35a")).toBe(ids.indexOf("33") + 1);
+    expect(ids.indexOf("iu")).toBe(ids.indexOf("35a") + 1);
+    const m = catalog.modules.find((x) => x.id === "35a")!;
+    expect(m.cycle).toBe(2);
+    expect(m.status).toBe("validating");
+    expect(m.name).toBe("Endemias e controle vetorial");
+    expect(m.features.map((f) => f.id)).toEqual(Array.from({ length: 10 }, (_, i) => `F-35.${i + 1}`));
+    for (const n of [1, 3, 4, 5, 6, 7, 8, 9, 10]) expect(findFeature(`f-35.${n}`)?.feature.status).toBe("available");
+    expect(findFeature("f-35.2")?.feature.status).toBe("validating");
+    expect(findFeature("f-35.2")?.feature.note).toMatch(/PEC real/);
+    expect(findFeature("f-35.1")?.feature.surfaces).toEqual(["plataforma", "secretaria"]);
+    expect(findFeature("f-35.3")?.feature.description).toMatch(/não recusa a visita/);
+    expect(findFeature("f-35.7")?.feature.description).toMatch(/nunca mostram nome nem endereço do paciente/);
+    expect(findFeature("f-35.10")?.feature.surfaces).toEqual(["campo"]);
+    expect(JSON.stringify(m)).not.toMatch(/zoonose|Conta Ovos/i);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 33, 35a e interface");
   });
 });
