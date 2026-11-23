@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-16",
+    "updatedAt": "2026-11-23",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 33 e interface"
+        "modules": "15 a 33, 35a e interface"
       }
     ]
   },
@@ -4438,6 +4438,135 @@
           "description": "O painel mostra volume, prazos, resolutividade e satisfação, e o relatório de gestão anual é publicado depois que o ano termina. Contagens pequenas, e as que permitiriam deduzi-las, aparecem como \"oculto\".",
           "surfaces": [
             "secretaria"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "35a",
+      "cycle": 2,
+      "name": "Endemias e controle vetorial",
+      "status": "validating",
+      "description": "A coordenação de endemias organiza o trabalho de rua contra a dengue sobre os imóveis que a cidade já cadastrou: quarteirões e risco, ciclos de visita, ovitrampas, LIRAa e bloqueio de transmissão a partir da notificação. O agente de combate às endemias registra o boletim na própria visita, pelo painel ou pelo tablet sem internet, e o consumo de larvicida e inseticida sai do estoque da vigilância ambiental.",
+      "features": [
+        {
+          "id": "F-35.1",
+          "slug": "f-35.1",
+          "title": "Vigilância ambiental na cidade, quarteirão e risco do imóvel",
+          "benefit": "A coordenação de endemias trabalha sobre os imóveis que a cidade já cadastrou.",
+          "description": "A equipe da plataforma liga a vigilância ambiental por cidade, que exige o cadastro territorial e a visita domiciliar. A coordenação de endemias cadastra os quarteirões de cada bairro, liga cada imóvel ao seu quarteirão e marca a classe de risco por cor, com a data da última avaliação.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.2",
+          "slug": "f-35.2",
+          "title": "Boletim de campo na visita",
+          "benefit": "O agente de endemias registra a inspeção na mesma visita, sem lista à parte.",
+          "description": "Na visita do agente de combate às endemias entra o boletim: atividade, situação do imóvel (trabalhado, fechado, recusado, desocupado, recuperado), depósitos por grupo com água, larva, eliminados e tratados, e as medidas aplicadas. A ficha de visita do e-SUS sai da mesma visita, com o motivo de controle vetorial tirado do boletim.",
+          "surfaces": [
+            "secretaria",
+            "campo",
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "As fichas foram conferidas com as regras do LEDI APS; falta o PEC real aceitar a ficha de visita do agente de endemias da cidade piloto."
+        },
+        {
+          "id": "F-35.3",
+          "slug": "f-35.3",
+          "title": "Produtos, cargas e consumo pelo estoque",
+          "benefit": "O larvicida e o inseticida usados no campo saem do estoque da vigilância ambiental.",
+          "description": "Os produtos e o tamanho da carga são cadastro da cidade, que muda com a nota técnica sem reprogramar o sistema. O consumo registrado no boletim baixa do estoque da unidade de vigilância ambiental pelo lote que vence primeiro. Falta de saldo não recusa a visita: o consumo fica registrado e vira uma pendência de ajuste para a coordenação.",
+          "surfaces": [
+            "secretaria",
+            "bastidores"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.4",
+          "slug": "f-35.4",
+          "title": "Ciclos por risco e folha do agente",
+          "benefit": "Cada agente sabe quais imóveis da sua área estão vencidos.",
+          "description": "A coordenação define, por área e por classe de risco, de quantos em quantos dias cada imóvel deve ser visitado, com o padrão de 60 dias e ponto estratégico quinzenal. Por ciclo, o sistema mostra imóveis a visitar, visitados, pendentes e a porcentagem de pendência, e a folha do dia do agente traz os vencidos, os imóveis do LIRAa e os do bloqueio.",
+          "surfaces": [
+            "secretaria",
+            "campo"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.5",
+          "slug": "f-35.5",
+          "title": "Ovitrampas",
+          "benefit": "As armadilhas de ovos são acompanhadas do cadastro à contagem.",
+          "description": "Cada ovitrampa tem número, imóvel e aceite do morador; a instalação, a coleta com reinstalação e a retirada ficam registradas, inclusive avaria e perda. A entomologia lança a contagem de ovos de cada palheta, também a negativa, e o painel mostra os índices de positividade e de densidade por área e semana e as armadilhas no mapa.",
+          "surfaces": [
+            "secretaria",
+            "campo"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.6",
+          "slug": "f-35.6",
+          "title": "LIRAa",
+          "benefit": "O levantamento rápido de índices sai do cadastro de imóveis da cidade.",
+          "description": "A coordenação monta os estratos, e o sistema calcula a amostra e sorteia os quarteirões e os imóveis de cada um pelo manual do Ministério da Saúde, com a substituição do imóvel fechado. Os agentes fazem a inspeção como atividade LIRAa, e o painel calcula os índices predial, de Breteau e por tipo de recipiente, por estrato e no município, com relatório para exportar.",
+          "surfaces": [
+            "secretaria",
+            "campo"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.7",
+          "slug": "f-35.7",
+          "title": "Bloqueio de transmissão",
+          "benefit": "O caso suspeito confirmado vira bloqueio em volta da casa, sem expor o paciente.",
+          "description": "A notificação de dengue, chikungunya ou zika que entra na fila da vigilância propõe um bloqueio pelos quarteirões em volta do domicílio do caso, e casos próximos no mesmo período entram no mesmo bloqueio. A coordenação confirma e os imóveis entram na folha dos agentes. O mapa e as listas do bloqueio nunca mostram nome nem endereço do paciente.",
+          "surfaces": [
+            "secretaria",
+            "campo"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.8",
+          "slug": "f-35.8",
+          "title": "Amostras com etiqueta e resultado",
+          "benefit": "Cada larva coletada tem etiqueta e volta com o resultado ao imóvel.",
+          "description": "O agente registra um tubito por depósito com larva, com a etiqueta numerada do imóvel. A coordenação ou o laboratório municipal lança o resultado por espécie, e ele volta ao imóvel e aos índices.",
+          "surfaces": [
+            "secretaria",
+            "campo"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.9",
+          "slug": "f-35.9",
+          "title": "Relatórios de endemias",
+          "benefit": "A coordenação acompanha o trabalho de campo e presta contas ao estado.",
+          "description": "Relatórios de imóveis trabalhados, fechados, recusados e recuperados por tipo e ciclo, pontos estratégicos, produção do agente, consumo de produto, ovitrampas, LIRAa e bloqueios. O LIRAa sai também em planilha, marcado como provisório enquanto o levantamento não fecha.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.10",
+          "slug": "f-35.10",
+          "title": "Endemias no app de campo",
+          "benefit": "O agente de endemias faz o boletim, a ovitrampa e o LIRAa sem internet.",
+          "description": "No tablet, o agente vê os imóveis vencidos, do LIRAa e do bloqueio, registra o boletim com amostras e consumo, instala e coleta ovitrampas e cadastra ponto estratégico, tudo sem sinal, e envia quando houver rede. Desligada a vigilância ambiental, o que está na fila espera no tablet e sai quando ela volta.",
+          "surfaces": [
+            "campo"
           ],
           "status": "available"
         }
