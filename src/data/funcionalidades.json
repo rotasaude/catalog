@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-23",
+    "updatedAt": "2026-11-25",
     "cycles": [
       {
         "id": 1,
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "label": "Ciclo 2",
-        "modules": "15 a 33, 35a e interface"
+        "modules": "15 a 33, 35a, 35b e interface"
       }
     ]
   },
@@ -4565,6 +4565,108 @@
           "title": "Endemias no app de campo",
           "benefit": "O agente de endemias faz o boletim, a ovitrampa e o LIRAa sem internet.",
           "description": "No tablet, o agente vê os imóveis vencidos, do LIRAa e do bloqueio, registra o boletim com amostras e consumo, instala e coleta ovitrampas e cadastra ponto estratégico, tudo sem sinal, e envia quando houver rede. Desligada a vigilância ambiental, o que está na fila espera no tablet e sai quando ela volta.",
+          "surfaces": [
+            "campo"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "35b",
+      "cycle": 2,
+      "name": "Centro de zoonoses",
+      "status": "validating",
+      "description": "O centro de zoonoses da cidade cuida, no mesmo sistema, do animal com tutor e domicílio, da vacinação antirrábica, das demandas da população, da observação do animal agressor, do inquérito de leishmaniose canina e do canil. O agente registra animal, vacina, coleta e coleira pelo tablet, mesmo sem internet, e as vacinas e coleiras saem do estoque da vigilância ambiental.",
+      "features": [
+        {
+          "id": "F-35.11",
+          "slug": "f-35.11",
+          "title": "Zoonoses na cidade, veterinário e cadastro do animal",
+          "benefit": "Cada animal tem ficha própria, ligada ao domicílio e ao tutor.",
+          "description": "A equipe da plataforma liga as zoonoses por cidade, que exigem o cadastro territorial. O centro cadastra o animal com espécie, sexo, porte, pelagem, idade estimada e microchip ou registro, ligado a um domicílio e a um tutor do cadastro, ou como animal comunitário. O histórico do animal junta vacinas, observações, sorologias, coleiras e passagens pelo canil.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.12",
+          "slug": "f-35.12",
+          "title": "Vacinação antirrábica",
+          "benefit": "Campanha, posto fixo e rotina com o resultado de cada semana.",
+          "description": "A cidade abre a campanha com período e meta, e a vacina é registrada casa a casa pelo tablet, no posto fixo ou na rotina do centro. Um animal vacinado no posto entra com o mínimo de dados, e o sistema impede a segunda dose na mesma campanha. O resultado semanal de cães e gatos vacinados, com a cobertura sobre a estimativa, sai em planilha.",
+          "surfaces": [
+            "secretaria",
+            "campo"
+          ],
+          "status": "validating",
+          "note": "Falta conferir o formato da planilha estadual da campanha antirrábica com a UF da cidade piloto."
+        },
+        {
+          "id": "F-35.13",
+          "slug": "f-35.13",
+          "title": "Demandas de zoonoses pela ouvidoria",
+          "benefit": "O pedido do cidadão chega direto ao centro de zoonoses.",
+          "description": "Na ouvidoria, o cidadão escolhe o assunto zoonoses e o tipo (escorpião, morcego, roedor, carrapato, animal agressor, animal com sintoma neurológico, esporotricose e outros) e informa o endereço do local. A demanda vai direto à fila do centro, para a vistoria, e a resposta ao cidadão segue os prazos da ouvidoria. A denúncia anônima também pode trazer o endereço do local.",
+          "surfaces": [
+            "cidadao",
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.14",
+          "slug": "f-35.14",
+          "title": "Observação do animal agressor",
+          "benefit": "A notificação de raiva vira observação de 10 dias no centro.",
+          "description": "Quando a unidade notifica um acidente por animal que pode transmitir raiva, o centro recebe a tarefa de observar o cão ou o gato por 10 dias. O centro vê só os dados do animal e do tutor, nunca o paciente. O desfecho volta para a notificação, e a unidade que atendeu recebe o aviso.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.15",
+          "slug": "f-35.15",
+          "title": "Leishmaniose canina",
+          "benefit": "Inquérito, sorologia e coleira com a data de troca.",
+          "description": "O centro planeja o inquérito por área, por amostra ou por censo quando a população de cães é pequena, e cada coleta recebe uma etiqueta. O veterinário ou a equipe lança o resultado do teste rápido e do ELISA, e registra o desfecho do cão reagente. A coleira tem a data de troca em 6 meses e aparece na lista de coleiras a trocar.",
+          "surfaces": [
+            "secretaria",
+            "campo"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.16",
+          "slug": "f-35.16",
+          "title": "Canil e gatil",
+          "benefit": "Entradas, saídas, castrações e eutanásias registradas.",
+          "description": "O canil e o gatil registram a entrada (recolhimento, entrega voluntária ou observação), a saída (devolução, adoção ou óbito) e a castração. A eutanásia só é registrada pelo médico veterinário, com o motivo e a base legal, e o registro não pode ser alterado.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.17",
+          "slug": "f-35.17",
+          "title": "Relatórios de zoonoses",
+          "benefit": "Os números do centro sem montar planilha à mão.",
+          "description": "O centro acompanha a vacinação por campanha e semana, as demandas por tipo e prazo, as observações por desfecho, o inquérito e a prevalência por área, e o canil com lotação, entradas, saídas, castrações e eutanásias.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-35.18",
+          "slug": "f-35.18",
+          "title": "Zoonoses no app de campo",
+          "benefit": "O agente registra o animal e a vacina mesmo sem internet.",
+          "description": "No tablet, o animal entra como item do cadastro do domicílio, ao lado da família, inclusive com um tutor recém-cadastrado na mesma visita. O agente registra a vacina casa a casa, a coleta do inquérito com a etiqueta e a coleira, e tudo é enviado quando volta o sinal. Se a cidade desliga as zoonoses, o que estava na fila espera e é enviado quando elas voltam.",
           "surfaces": [
             "campo"
           ],
