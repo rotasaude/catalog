@@ -594,7 +594,6 @@ describe("módulo 35a", () => {
   it("entra no ciclo 2 depois do 33: endemias com o boletim em validação até o PEC real", () => {
     const ids = catalog.modules.map((m) => m.id);
     expect(ids.indexOf("35a")).toBe(ids.indexOf("33") + 1);
-    expect(ids.indexOf("iu")).toBe(ids.indexOf("35a") + 1);
     const m = catalog.modules.find((x) => x.id === "35a")!;
     expect(m.cycle).toBe(2);
     expect(m.status).toBe("validating");
@@ -608,6 +607,26 @@ describe("módulo 35a", () => {
     expect(findFeature("f-35.7")?.feature.description).toMatch(/nunca mostram nome nem endereço do paciente/);
     expect(findFeature("f-35.10")?.feature.surfaces).toEqual(["campo"]);
     expect(JSON.stringify(m)).not.toMatch(/zoonose|Conta Ovos/i);
-    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 33, 35a e interface");
+  });
+});
+
+describe("módulo 35b", () => {
+  it("entra no ciclo 2 depois do 35a: zoonoses com a planilha da campanha em validação", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("35b")).toBe(ids.indexOf("35a") + 1);
+    expect(ids.indexOf("iu")).toBe(ids.indexOf("35b") + 1);
+    const m = catalog.modules.find((x) => x.id === "35b")!;
+    expect(m.cycle).toBe(2);
+    expect(m.status).toBe("validating");
+    expect(m.name).toBe("Centro de zoonoses");
+    expect(m.features.map((f) => f.id)).toEqual(Array.from({ length: 8 }, (_, i) => `F-35.${i + 11}`));
+    for (const n of [11, 13, 14, 15, 16, 17, 18]) expect(findFeature(`f-35.${n}`)?.feature.status).toBe("available");
+    expect(findFeature("f-35.12")?.feature.status).toBe("validating");
+    expect(findFeature("f-35.12")?.feature.note).toMatch(/planilha estadual/);
+    expect(findFeature("f-35.13")?.feature.surfaces).toEqual(["cidadao", "secretaria"]);
+    expect(findFeature("f-35.14")?.feature.description).toMatch(/nunca o paciente/);
+    expect(findFeature("f-35.16")?.feature.description).toMatch(/só é registrada pelo médico veterinário/);
+    expect(findFeature("f-35.18")?.feature.surfaces).toEqual(["campo"]);
+    expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 33, 35a, 35b e interface");
   });
 });
