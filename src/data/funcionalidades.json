@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-25",
+    "updatedAt": "2026-11-26",
     "cycles": [
       {
         "id": 1,
@@ -3814,6 +3814,88 @@
           "title": "Alertas, posição e extrato",
           "benefit": "O que vence e o que falta, por local.",
           "description": "Cada local vê os lotes que vencem em 90 dias, os já vencidos, os itens abaixo do estoque mínimo e as transferências em trânsito. A posição mostra o saldo por local e lote, e o extrato, cada movimento do lote.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "27b",
+      "cycle": 2,
+      "name": "Envio à BNAFAR e saldo inicial",
+      "status": "validating",
+      "description": "A cidade manda à Base Nacional da Assistência Farmacêutica, todo dia, a posição de estoque e as saídas do dia anterior, de medicamentos, vacinas e produtos de endemias e zoonoses, sem digitar nada de novo. Quem deixa o Hórus abre o estoque por uma planilha, confere antes de aplicar e pode desfazer enquanto nada mais aconteceu.",
+      "features": [
+        {
+          "id": "F-27.8",
+          "slug": "f-27.8",
+          "title": "Interruptores e credencial BNAFAR",
+          "benefit": "O envio liga por cidade e por tipo de produto.",
+          "description": "A equipe da plataforma liga o envio à BNAFAR por cidade e escolhe quais tipos de produto entram: medicamentos, vacinas ou produtos de endemias e zoonoses. O administrador municipal grava a credencial da cidade no painel, com o código do autenticador, e testa a conexão. A senha nunca volta para a tela.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Provado contra o SI-BNAFAR simulado; falta a homologação no SI-BNAFAR real."
+        },
+        {
+          "id": "F-27.9",
+          "slug": "f-27.9",
+          "title": "Dados BNAFAR do lote, do local e do produto",
+          "benefit": "Cada lote leva o que a BNAFAR pede.",
+          "description": "Na entrada, o lote ganha preço, fabricante, registro na ANVISA, programa de saúde e a apresentação do catálogo OBM. O almoxarifado central e a rede de frio ganham o CNES, e o produto de endemias ganha o código CATMAT. O lote antigo é completado depois, pela tela de pendências.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Falta cadastrar o CNPJ de cada fabricante e o código OBM de cada vacina antes de ligar o envio de vacinas."
+        },
+        {
+          "id": "F-27.10",
+          "slug": "f-27.10",
+          "title": "Saída externa",
+          "benefit": "O que sai para fora da rede fica registrado.",
+          "description": "O almoxarife registra a devolução ao fornecedor, a transferência para outro ente, a doação e o empréstimo, com o destino pelo CNES ou pelo CNPJ e o motivo. Lote vencido só sai como devolução ao fornecedor, e lote bloqueado por temperatura não sai. Funciona mesmo com o envio à BNAFAR desligado.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-27.11",
+          "slug": "f-27.11",
+          "title": "Envio diário ao SI-BNAFAR",
+          "benefit": "A posição e as saídas de ontem vão sozinhas.",
+          "description": "Toda madrugada o sistema monta, no fuso da cidade, a posição de estoque e as saídas do dia anterior e as envia ao SI-BNAFAR, guardando o protocolo de cada parte. Nada de paciente vai no envio. O que a BNAFAR ainda está processando continua sendo consultado até a resposta.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "Provado contra o SI-BNAFAR simulado; falta a homologação no SI-BNAFAR real."
+        },
+        {
+          "id": "F-27.12",
+          "slug": "f-27.12",
+          "title": "Situação, pendências, reenvio e correção",
+          "benefit": "A cidade vê o que foi aceito e o que falta.",
+          "description": "O painel mostra cada remessa, o motivo de cada recusa em português e um alerta quando o envio atrasa. A tela de pendências lista os lotes incompletos, os locais sem CNES e os produtos sem código, e completa o lote ali mesmo. O administrador reenvia os recusados no dia seguinte e corrige uma saída aceita em até 30 dias.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Provado contra o SI-BNAFAR simulado; falta a homologação no SI-BNAFAR real."
+        },
+        {
+          "id": "F-27.13",
+          "slug": "f-27.13",
+          "title": "Saldo inicial por planilha",
+          "benefit": "Quem sai do Hórus começa com o estoque certo.",
+          "description": "O administrador ou o almoxarife do central baixa o modelo, envia a planilha e vê o relatório antes de aplicar: linhas com erro, produtos sem catálogo, locais sem CNES e totais por local. Aplicar e desfazer pedem o código do autenticador, e o desfazer só vale enquanto o local não teve outro movimento nem envio. A cidade grande importa por local.",
           "surfaces": [
             "secretaria"
           ],

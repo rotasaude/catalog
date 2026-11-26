@@ -30,8 +30,8 @@ describe("lista de módulos", () => {
       "Ciclo 1 · MVP",
       "Ciclo 2"
     ]);
-    // 35 módulos numerados (com o 26a, o 27a, o 35a e o 35b) + o grupo Interface.
-    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(36);
+    // 36 módulos numerados (com o 26a, o 27a, o 27b, o 35a e o 35b) + o grupo Interface.
+    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(37);
     expect(screen.queryAllByRole("link", { name: /Classificação previsível/ })).toHaveLength(0);
     expect(document.title).toBe("Funcionalidades Rota Saúde");
   });
@@ -78,7 +78,7 @@ describe("lista de módulos", () => {
   it("o rodapé resume o estado dos módulos", () => {
     renderAt("/");
     expect(screen.getByRole("contentinfo")).toHaveTextContent(
-      "Os módulos 02 a 18 estão disponíveis e verificados; o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 28, o 29, o 30, o 31, o 32, o 33, o 35a e o 35b estão em validação."
+      "Os módulos 02 a 18 estão disponíveis e verificados; o 19, o 20, o 21, o 22, o 23, o 24, o 25, o 26a, o 27a, o 27b, o 28, o 29, o 30, o 31, o 32, o 33, o 35a e o 35b estão em validação."
     );
   });
 

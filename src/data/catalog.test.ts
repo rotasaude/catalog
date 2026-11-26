@@ -402,7 +402,7 @@ describe("módulo 27a", () => {
   it("entra no ciclo 2 depois do 26a: sem BNAFAR nem SNGPC, saldo nunca negativo, receita vencida não dispensa", () => {
     const ids = catalog.modules.map((m) => m.id);
     expect(ids.indexOf("27a")).toBe(ids.indexOf("26a") + 1);
-    expect(ids.indexOf("28")).toBe(ids.indexOf("27a") + 1);
+    expect(ids.indexOf("27b")).toBe(ids.indexOf("27a") + 1);
     const m27 = catalog.modules.find((m) => m.id === "27a")!;
     expect(m27.cycle).toBe(2);
     expect(m27.status).toBe("validating");
@@ -432,7 +432,7 @@ describe("módulo 27a", () => {
 describe("módulo 28", () => {
   it("entra no ciclo 2 depois do 27a: ficha do e-SUS e metas em validação, nada do que ficou fora da entrega", () => {
     const ids = catalog.modules.map((m) => m.id);
-    expect(ids.indexOf("28")).toBe(ids.indexOf("27a") + 1);
+    expect(ids.indexOf("28")).toBe(ids.indexOf("27b") + 1);
     expect(ids.indexOf("29")).toBe(ids.indexOf("28") + 1);
     const m28 = catalog.modules.find((m) => m.id === "28")!;
     expect(m28.cycle).toBe(2);
@@ -628,5 +628,26 @@ describe("módulo 35b", () => {
     expect(findFeature("f-35.16")?.feature.description).toMatch(/só é registrada pelo médico veterinário/);
     expect(findFeature("f-35.18")?.feature.surfaces).toEqual(["campo"]);
     expect(catalog.meta.cycles.find((c) => c.id === 2)?.modules).toBe("15 a 33, 35a, 35b e interface");
+  });
+});
+
+describe("módulo 27b", () => {
+  it("entra no ciclo 2 depois do 27a: envio à BNAFAR em validação até a homologação real", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("27b")).toBe(ids.indexOf("27a") + 1);
+    expect(ids.indexOf("28")).toBe(ids.indexOf("27b") + 1);
+    const m = catalog.modules.find((x) => x.id === "27b")!;
+    expect(m.cycle).toBe(2);
+    expect(m.status).toBe("validating");
+    expect(m.name).toBe("Envio à BNAFAR e saldo inicial");
+    expect(m.features.map((f) => f.id)).toEqual(Array.from({ length: 6 }, (_, i) => `F-27.${i + 8}`));
+    for (const n of [8, 11, 12]) {
+      expect(findFeature(`f-27.${n}`)?.feature.status).toBe("validating");
+      expect(findFeature(`f-27.${n}`)?.feature.note).toMatch(/SI-BNAFAR simulado/);
+    }
+    expect(findFeature("f-27.9")?.feature.note).toMatch(/vacina/);
+    for (const n of [10, 13]) expect(findFeature(`f-27.${n}`)?.feature.status).toBe("available");
+    expect(findFeature("f-27.11")?.feature.surfaces).toEqual(["bastidores"]);
+    expect(findFeature("f-27.11")?.feature.description).toMatch(/Nada de paciente/);
   });
 });
