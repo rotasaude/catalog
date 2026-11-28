@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-11-26",
+    "updatedAt": "2026-11-28",
     "cycles": [
       {
         "id": 1,
@@ -3728,6 +3728,74 @@
           "description": "Em Meus encaminhamentos, a pessoa vê se o pedido está aguardando, autorizado à espera do horário, agendado com data e local, em revisão pela unidade, não autorizado ou encerrado — nunca a posição na fila, que muda com o risco dos outros pedidos.",
           "surfaces": [
             "cidadao"
+          ],
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "26c",
+      "cycle": 2,
+      "name": "Envio da regulação à RNDS",
+      "status": "validating",
+      "description": "A cidade manda à Rede Nacional de Dados em Saúde, no padrão de regulação do Ministério, a situação de cada pedido regulado: pendente, agendado, realizado, cancelado ou falta. Cada mudança vai sozinha no mesmo dia, sem digitar nada de novo, e a secretaria vê o que foi aceito, o que está parado e o que corrigir.",
+      "features": [
+        {
+          "id": "F-26.8",
+          "slug": "f-26.8",
+          "title": "Interruptor e credencial da regulação na RNDS",
+          "benefit": "O envio liga por cidade, com a credencial da própria cidade.",
+          "description": "A equipe da plataforma liga o envio da regulação à RNDS por cidade. O administrador municipal grava a credencial do credenciamento da regulação no painel, com o certificado digital, o identificador do solicitante e o CNS do responsável, e testa a conexão. O segredo nunca volta para a tela.",
+          "surfaces": [
+            "plataforma",
+            "secretaria"
+          ],
+          "status": "validating",
+          "note": "Provado contra a RNDS simulada; falta a homologação na RNDS real."
+        },
+        {
+          "id": "F-26.9",
+          "slug": "f-26.9",
+          "title": "Situação de cada pedido no padrão do Ministério",
+          "benefit": "Documento fora do padrão não sai.",
+          "description": "Cada pedido regulado ganha a sua situação no padrão de regulação da RNDS, com a cor traduzida em urgência ou eletivo e o procedimento pelo código SIGTAP. Antes do envio, o documento é conferido; o que não passa fica parado, com o motivo e o caminho para corrigir.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "Os exemplos passam no validador oficial do padrão; falta a homologação na RNDS real."
+        },
+        {
+          "id": "F-26.10",
+          "slug": "f-26.10",
+          "title": "Envio contínuo e correção de duplicados",
+          "benefit": "A RNDS fica com a situação mais recente.",
+          "description": "Cada mudança do pedido é enviada sozinha, substituindo o documento anterior na RNDS. Recusas passageiras são repetidas por até 15 dias, e documentos duplicados são conferidos e removidos.",
+          "surfaces": [
+            "bastidores"
+          ],
+          "status": "validating",
+          "note": "Provado contra a RNDS simulada; falta a homologação na RNDS real."
+        },
+        {
+          "id": "F-26.11",
+          "slug": "f-26.11",
+          "title": "Carga inicial, alarme de atraso e tela de envio",
+          "benefit": "A secretaria vê o que está parado e por quê.",
+          "description": "Ao ligar o envio, os pedidos abertos e os encerrados nos últimos 30 dias entram numa fila mais lenta. A tela mostra os pedidos aceitos, parados e recusados, com o motivo e um atalho para corrigir o dado de origem, e marca os que passaram do prazo do dia seguinte. A lista não mostra o paciente.",
+          "surfaces": [
+            "secretaria"
+          ],
+          "status": "available"
+        },
+        {
+          "id": "F-26.12",
+          "slug": "f-26.12",
+          "title": "RNDS simulada e validação oficial",
+          "benefit": "Cada mudança é provada antes de chegar à RNDS.",
+          "description": "Fora de produção, a cidade pode enviar a uma RNDS simulada, que devolve aceite ou recusa de exemplo sem chegar ao Ministério. Os documentos de exemplo passam pelo validador oficial do padrão a cada mudança do sistema.",
+          "surfaces": [
+            "bastidores"
           ],
           "status": "available"
         }

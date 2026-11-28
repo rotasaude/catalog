@@ -373,7 +373,7 @@ describe("módulo 26a", () => {
   it("entra no ciclo 2 depois do 25: sem SISREG automático, sem posição para o cidadão, convivência em validação", () => {
     const ids = catalog.modules.map((m) => m.id);
     expect(ids.indexOf("26a")).toBe(ids.indexOf("25") + 1);
-    expect(ids.indexOf("27a")).toBe(ids.indexOf("26a") + 1);
+    expect(ids.indexOf("26c")).toBe(ids.indexOf("26a") + 1);
     const m26 = catalog.modules.find((m) => m.id === "26a")!;
     expect(m26.cycle).toBe(2);
     expect(m26.status).toBe("validating");
@@ -399,9 +399,9 @@ describe("módulo 26a", () => {
 });
 
 describe("módulo 27a", () => {
-  it("entra no ciclo 2 depois do 26a: sem BNAFAR nem SNGPC, saldo nunca negativo, receita vencida não dispensa", () => {
+  it("entra no ciclo 2 depois do 26c: sem BNAFAR nem SNGPC, saldo nunca negativo, receita vencida não dispensa", () => {
     const ids = catalog.modules.map((m) => m.id);
-    expect(ids.indexOf("27a")).toBe(ids.indexOf("26a") + 1);
+    expect(ids.indexOf("27a")).toBe(ids.indexOf("26c") + 1);
     expect(ids.indexOf("27b")).toBe(ids.indexOf("27a") + 1);
     const m27 = catalog.modules.find((m) => m.id === "27a")!;
     expect(m27.cycle).toBe(2);
@@ -649,5 +649,27 @@ describe("módulo 27b", () => {
     for (const n of [10, 13]) expect(findFeature(`f-27.${n}`)?.feature.status).toBe("available");
     expect(findFeature("f-27.11")?.feature.surfaces).toEqual(["bastidores"]);
     expect(findFeature("f-27.11")?.feature.description).toMatch(/Nada de paciente/);
+  });
+});
+
+describe("módulo 26c", () => {
+  it("entra no ciclo 2 depois do 26a: envio à RNDS em validação até a homologação real, sem paciente na tela", () => {
+    const ids = catalog.modules.map((m) => m.id);
+    expect(ids.indexOf("26c")).toBe(ids.indexOf("26a") + 1);
+    expect(ids.indexOf("27a")).toBe(ids.indexOf("26c") + 1);
+    const m = catalog.modules.find((x) => x.id === "26c")!;
+    expect(m.cycle).toBe(2);
+    expect(m.status).toBe("validating");
+    expect(m.name).toBe("Envio da regulação à RNDS");
+    expect(m.features.map((f) => f.id)).toEqual(Array.from({ length: 5 }, (_, i) => `F-26.${i + 8}`));
+    for (const n of [8, 10]) {
+      expect(findFeature(`f-26.${n}`)?.feature.status).toBe("validating");
+      expect(findFeature(`f-26.${n}`)?.feature.note).toMatch(/RNDS simulada/);
+    }
+    expect(findFeature("f-26.9")?.feature.status).toBe("validating");
+    expect(findFeature("f-26.9")?.feature.note).toMatch(/validador oficial/);
+    for (const n of [11, 12]) expect(findFeature(`f-26.${n}`)?.feature.status).toBe("available");
+    expect(findFeature("f-26.8")?.feature.surfaces).toEqual(["plataforma", "secretaria"]);
+    expect(findFeature("f-26.11")?.feature.description).toMatch(/não mostra o paciente/);
   });
 });
